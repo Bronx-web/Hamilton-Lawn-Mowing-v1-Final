@@ -208,42 +208,43 @@
         </div>
     </div>
 
-    <!-- ========== CALENDLY WIDGET ========== -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-    <script>
-        window.addEventListener("load", function () {
-            if (typeof Calendly !== "undefined") {
-                Calendly.initBadgeWidget({
-                    url: "https://calendly.com/hamilton-lawn-mowing/appointment?hide_event_type_details=1&hide_gdpr_banner=1",
-                    text: "Book Online",
-                    color: "#ff7b00",
-                    textColor: "#ffffff"
-                });
-            }
-
-            let ticking = false;
-            function updateBadgePosition() {
-                const scrolled = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const badge = document.querySelector(".calendly-badge-widget");
-
-                if (badge && scrolled / docHeight > 0.8) {
-                    badge.classList.add("scrolled");
-                } else if (badge) {
-                    badge.classList.remove("scrolled");
-                }
-                ticking = false;
-            }
-
-            window.addEventListener("scroll", function () {
-                if (!ticking) {
-                    requestAnimationFrame(updateBadgePosition);
-                    ticking = true;
-                }
+<!-- ========== CALENDLY WIDGET ========== -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+    window.addEventListener("load", function () {
+        if (typeof Calendly !== "undefined") {
+            Calendly.initBadgeWidget({
+                url: "https://calendly.com/galvinkowhai/online-job-booking",
+                text: "Book Online",
+                color: "#ff7b00",
+                textColor: "#ffffff"
             });
+        }
+
+        let ticking = false;
+        function updateBadgePosition() {
+            const scrolled = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const badge = document.querySelector(".calendly-badge-widget");
+
+            if (badge && scrolled / docHeight > 0.8) {
+                badge.classList.add("scrolled");
+            } else if (badge) {
+                badge.classList.remove("scrolled");
+            }
+            ticking = false;
+        }
+
+        window.addEventListener("scroll", function () {
+            if (!ticking) {
+                requestAnimationFrame(updateBadgePosition);
+                ticking = true;
+            }
         });
-    </script>
+    });
+</script>
+
 
     <!-- ========== HAMBURGER MENU SCRIPT ========== -->
     <script>

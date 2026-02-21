@@ -721,6 +721,18 @@ button[type="submit"]:active {
   padding: 20px;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(0,0,0,0.03);
+  overflow: hidden;
+}
+
+.calendly-inline-widget {
+  height: 935px !important;
+  overflow: hidden !important;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.calendly-inline-widget::-webkit-scrollbar {
+  display: none;
 }
 
 /* ========= CONTACT / WORK WITH US FORM ========= */
