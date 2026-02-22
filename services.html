@@ -133,42 +133,17 @@
         </div>
     </div>
 
-    <!-- ========== CALENDLY WIDGET ========== -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-    <script>
-        window.addEventListener("load", function () {
-            if (typeof Calendly !== "undefined") {
-                Calendly.initBadgeWidget({
-                    url: "https://calendly.com/galvinkowhai/online-job-booking",
-                    text: "Book Online",
-                    color: "#ff7b00",
-                    textColor: "#ffffff"
-                });
-            }
 
-            let ticking = false;
-            function updateBadgePosition() {
-                const scrolled = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const badge = document.querySelector(".calendly-badge-widget");
+    <!--================================== SCRIPTS =============================================== -->
 
-                if (badge && scrolled / docHeight > 0.8) {
-                    badge.classList.add("scrolled");
-                } else if (badge) {
-                    badge.classList.remove("scrolled");
-                }
-                ticking = false;
-            }
+<!-------FLOATING CONTACT BUTTON =!!!!!!! IMPORTANT !!!!! must be between the footer and the scirpts -->
 
-            window.addEventListener("scroll", function () {
-                if (!ticking) {
-                    requestAnimationFrame(updateBadgePosition);
-                    ticking = true;
-                }
-            });
-        });
-    </script>
+
+<a href="contact.html" class="floating-button" aria-label="Contact us">
+    <i class="fas fa-phone"></i>
+</a>
+
+<!-------FLOATING CONTACT BUTTON =!!!!!!! IMPORTANT !!!!! must be between the footer and the scirpts -->
 
     <!-- ========== HAMBURGER MENU SCRIPT ========== -->
     <script>
