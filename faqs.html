@@ -350,6 +350,31 @@
         </div>
     </section>
 
+    <style>
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+    
+            100% {
+                opacity: 1;
+            }
+        }
+    
+        .center-btn {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 1rem;
+            animation: fadeIn 0.5s ease-in;
+        }
+    
+        .center-btn+table {
+            margin-top: 2rem;
+        }
+    </style>
+    
+    <a href="contact.html" class="service-btn center-btn">Book Online <i class="fas fa-arrow-right"></i></a>
+
     <script>
         function toggleFaq(button) {
             const faqItem = button.closest('.faq-item');

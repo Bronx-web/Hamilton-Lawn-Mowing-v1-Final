@@ -1402,20 +1402,21 @@ footer {
 
 .card,
 .service-card,
-.review-card {
+.review-card,
+.why-card {
   animation: fadeInUp 0.6s ease-out forwards;
   opacity: 0;
+  animation-delay: 0.15s;
 }
 
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.3s; }
+.card:nth-child(3) { animation-delay: 0.4s; }
+.card:nth-child(4) { animation-delay: 0.5s; }
 
-.services-grid .service-card:nth-child(1) { animation-delay: 0.1s; }
-.services-grid .service-card:nth-child(2) { animation-delay: 0.2s; }
-.services-grid .service-card:nth-child(3) { animation-delay: 0.3s; }
-.services-grid .service-card:nth-child(4) { animation-delay: 0.4s; }
+.services-grid .service-card:nth-child(1) { animation-delay: 0.2s; }
+.services-grid .service-card:nth-child(2) { animation-delay: 0.4s; }
+.services-grid .service-card:nth-child(3) { animation-delay: 0.5s; }
+.services-grid .service-card:nth-child(4) { animation-delay: 0.6s; }
 
-.reviews-grid .review-card:nth-child(1) { animation-delay: 0.1s; }
-.reviews-grid .review-card:nth-child(2) { animation-delay: 0.2s; }
+
