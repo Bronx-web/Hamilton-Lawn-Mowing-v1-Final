@@ -232,6 +232,18 @@
                     <input type="text" id="name" name="name" required>
                 </div>
 
+                <!-- Phone -->
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
                 <!-- Address -->
                 <div class="form-group">
                     <label for="area">Address</label>
@@ -276,10 +288,10 @@
                     </div>
                 </div>
 
-                <!-- Resume upload -->
+                <!-- Tell us about yourself -->
                 <div class="form-group">
-                    <label for="resume">Upload Resume / CV (PDF or Word)</label>
-                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                    <label for="message">Tell us about yourself</label>
+                    <textarea id="message" name="message" placeholder="Share a bit about your experience and why you'd like to work with us..." required></textarea>
                 </div>
 
                 <!-- Error message container -->
@@ -301,8 +313,9 @@
                     <div class="success-card-icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
-                    <h2 class="success-card-heading">Application Received!</h2>
-                    <p class="success-card-text">Thanks for your interest in joining the Hamilton Lawn Mowing team. We'll be in touch with you soon.</p>
+                    <h2 class="success-card-heading">Success!</h2>
+                    <p class="success-card-text">Thanks for your interest in joining the Hamilton Lawn Mowing team.</p>
+                    <p class="success-card-text-secondary">To complete your application please email your resume to <a href="mailto:info@hamiltonlawns.co.nz?subject=Job Application" class="success-card-link">info@hamiltonlawns.co.nz</a> with the subject line: Job Application</p>
                 </div>
             </div>
         </div>

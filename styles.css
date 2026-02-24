@@ -1624,6 +1624,25 @@ input[type="file"]:focus {
   margin: 0;
 }
 
+.success-card-text-secondary {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.7;
+  margin: 1rem 0 0 0;
+}
+
+.success-card-link {
+  color: #174903;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.success-card-link:hover {
+  color: #ff7b00;
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .success-popup-card {
     padding: 2rem 1.5rem;
