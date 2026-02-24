@@ -247,7 +247,7 @@
                 <!-- Address -->
                 <div class="form-group">
                     <label for="area">Address</label>
-                    <input type="text" id="area" name="area" placeholder="123 My Street, Hamilton East" required>
+                    <input type="text" id="area" name="area" placeholder="12 My Street, Hamilton East" required>
                 </div>
 
                 <!-- Job type -->
@@ -448,25 +448,37 @@
                 // Submit form via AJAX
                 fetch('https://formspree.io/f/meelvkpv', {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: formData.get('name'),
+                        phone: formData.get('phone'),
+                        email: formData.get('email'),
+                        area: formData.get('area'),
+                        jobtype: formData.get('jobtype'),
+                        start: formData.get('start'),
+                        message: formData.get('message')
+                    })
                 })
-                .then(response => {
-                    if (response.ok) {
-                        // Success - hide form and show success card
-                        form.style.display = 'none';
-                        successCard.classList.add('show');
-                    } else {
-                        throw new Error('Form submission failed');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Show error message
-                    errorMessageDiv.textContent = 'Something went wrong. Please try again later.';
-                    errorMessageDiv.style.display = 'block';
-                    errorMessageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    .then(response => {
+                        if (response.ok) {
+                            // Success - hide form and show success card
+                            form.style.display = 'none';
+                            successCard.classList.add('show');
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Show error message
+                        errorMessageDiv.textContent = 'Something went wrong. Please try again later.';
+                        errorMessageDiv.style.display = 'block';
+                        errorMessageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    });
                 });
-            });
 
             // Handle close button on success card
             closeButton.addEventListener('click', function () {
