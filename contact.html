@@ -224,7 +224,7 @@
         <div class="container">
             <h1>Work With Us</h1>
 
-            <form class="form-container" action="#" method="post">
+            <form class="form-container" id="workWithUsForm" action="https://formspree.io/f/meelvkpv" method="POST" enctype="multipart/form-data">
 
                 <!-- Name -->
                 <div class="form-group">
@@ -278,9 +278,12 @@
 
                 <!-- Resume upload -->
                 <div class="form-group">
-                    <label for="message">Upload your resume</label>
-                    <textarea id="message" name="message" placeholder="Upload your resume in PDF format"></textarea>
+                    <label for="resume">Upload Resume / CV (PDF or Word)</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
                 </div>
+
+                <!-- Error message container -->
+                <div id="formErrorMessage" class="form-error-message" style="display: none;"></div>
 
                 <button type="submit">Send</button>
 
@@ -290,6 +293,18 @@
                     <a href="terms.html">Terms of Service</a>.
                 </p>
             </form>
+
+            <!-- Success Popup Card -->
+            <div id="successCard" class="success-popup-card">
+                <div class="success-card-content">
+                    <button type="button" class="success-card-close" aria-label="Close">&times;</button>
+                    <div class="success-card-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2 class="success-card-heading">Application Received!</h2>
+                    <p class="success-card-text">Thanks for your interest in joining the Hamilton Lawn Mowing team. We'll be in touch with you soon.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -395,6 +410,67 @@
         `
             })
 
+        });
+    </script>
+
+    <!-- ========== WORK WITH US FORM AJAX SUBMISSION ========== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('workWithUsForm');
+            const successCard = document.getElementById('successCard');
+            const closeButton = document.querySelector('.success-card-close');
+            const errorMessageDiv = document.getElementById('formErrorMessage');
+
+            // Handle form submission
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Clear previous error messages
+                errorMessageDiv.style.display = 'none';
+                errorMessageDiv.textContent = '';
+
+                // Create FormData object to handle file upload
+                const formData = new FormData(form);
+
+                // Submit form via AJAX
+                fetch('https://formspree.io/f/meelvkpv', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Success - hide form and show success card
+                        form.style.display = 'none';
+                        successCard.classList.add('show');
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Show error message
+                    errorMessageDiv.textContent = 'Something went wrong. Please try again later.';
+                    errorMessageDiv.style.display = 'block';
+                    errorMessageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                });
+            });
+
+            // Handle close button on success card
+            closeButton.addEventListener('click', function () {
+                successCard.classList.remove('show');
+                form.style.display = 'block';
+                form.reset();
+                errorMessageDiv.style.display = 'none';
+            });
+
+            // Close success card when clicking the backdrop
+            successCard.addEventListener('click', function (e) {
+                if (e.target === successCard) {
+                    successCard.classList.remove('show');
+                    form.style.display = 'block';
+                    form.reset();
+                }
+            });
         });
     </script>
 
