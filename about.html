@@ -244,6 +244,15 @@
         </div>
     </section>
 
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">See Our Reviews</h2>
+            <div class="reviews-grid">
+            </div>
+    
+    </section>
+
     <style>
         @keyframes fadeIn {
             0% {
@@ -386,6 +395,48 @@
                     else prevSlide();
                 }
             });
+        });
+    </script>
+
+    <!-- ========== REVIEWS CAROUSEL SCRIPT ========== -->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const reviews = [
+                {
+                    name: "Jo McLaren",
+                    rating: 5,
+                    text: "Amazing service, got in touch early morning and my lawns were done later that afternoon, done to an amazing standard. 10/10.",
+                    date: "6th November"
+                },
+                {
+                    name: "Shoshanna James",
+                    rating: 5,
+                    text: "Fast & efficient. Does a lovely tidy job of our lawns. Great communication & listens to customer's requests",
+                    date: "28th April"
+                }
+            ]
+
+            function renderStars(rating) {
+                return '★'.repeat(rating) + '☆'.repeat(5 - rating)
+            }
+
+            const grid = document.querySelector('.reviews-grid')
+
+            reviews.forEach(review => {
+                grid.innerHTML += `
+        <div class="review-card">
+            <div class="review-stars">${renderStars(review.rating)}</div>
+            <p class="review-text">"${review.text}"</p>
+            <div class="review-meta">
+                <span class="review-name">${review.name}</span>
+                <span class="review-date">${review.date}</span>
+            </div>
+        </div>
+        `
+            })
+
         });
     </script>
 
