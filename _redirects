@@ -15,3 +15,6 @@ https://www.hamiltonlawn.co.nz/*  https://www.hamiltonlawns.co.nz/:splat  301
 /service-page/lawn-care             /services                              301
 /service-page/landscaping           /services                              301
 /service-page/weed-wacking          /services                              301
+
+# privacy → privacy-policy
+/privacy.html                       /privacy-policy                        301
