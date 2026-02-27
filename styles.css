@@ -1220,7 +1220,7 @@ footer {
   right: 30px;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #ff7b00, #ff9424);
+  background: #25d366; /* WhatsApp green */
   color: white;
   border-radius: 50%;
   display: flex;
@@ -1228,16 +1228,16 @@ footer {
   justify-content: center;
   font-size: 24px;
   text-decoration: none;
-  box-shadow: 0 6px 20px rgba(255, 123, 0, 0.4);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  z-index: 999;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.22);
+  transition: all 0.25s ease;
+  z-index: 2000;
   border: none;
 }
 
 .floating-button:hover {
-  background: linear-gradient(135deg, #ff9424, #ffaa44);
-  box-shadow: 0 8px 28px rgba(255, 123, 0, 0.5);
-  transform: scale(1.1) translateY(-3px);
+  background: #1ebe57;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05) translateY(-3px);
 }
 
 .floating-button:active {
@@ -1252,6 +1252,14 @@ footer {
     height: 55px;
     font-size: 20px;
   }
+}
+
+/* ensure SVG icon is white */
+.floating-button svg,
+.floating-button svg path {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
 }
 
 /* ========= FAQ / ACCORDION SECTION ========= */
