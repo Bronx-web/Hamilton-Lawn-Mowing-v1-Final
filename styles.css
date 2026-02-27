@@ -1695,7 +1695,7 @@ input[type="file"]:focus {
   position: fixed;
   bottom: 85px;
   right: 20px;
-  background-color: #fff;
+  background-color: #f7f5ef;
   border-radius: 12px;
   box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
   width: 320px;
@@ -1721,7 +1721,7 @@ input[type="file"]:focus {
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  background-color: #25d366;
+  background-color: #174903;
   color: #fff;
   font-weight: 600;
   font-size: 0.95rem;
@@ -1730,7 +1730,7 @@ input[type="file"]:focus {
 .whatsapp-popup-close {
   background: none;
   border: none;
-  color: #fff;
+  color: #fcfaee;
   font-size: 24px;
   cursor: pointer;
   padding: 0;
@@ -1759,8 +1759,8 @@ input[type="file"]:focus {
 /* Start Chat Button */
 .whatsapp-start {
   display: inline-block;
-  background-color: #25d366;
-  color: #fff;
+  background-color: #174903;
+  color: #fcfaee;
   text-decoration: none;
   padding: 12px 20px;
   border-radius: 8px;
@@ -1773,7 +1773,7 @@ input[type="file"]:focus {
 }
 
 .whatsapp-start:hover {
-  background-color: #1ebe57;
+  background-color: #174903;
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
   transform: translateY(-2px);
 }
