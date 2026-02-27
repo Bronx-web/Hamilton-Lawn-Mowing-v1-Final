@@ -1213,54 +1213,7 @@ footer {
   text-decoration: underline;
 }
 
-/* ========= FLOATING CONTACT BUTTON ========= */
-.floating-button {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  background: #25d366; /* WhatsApp green */
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  text-decoration: none;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.22);
-  transition: all 0.25s ease;
-  z-index: 2000;
-  border: none;
-}
-
-.floating-button:hover {
-  background: #1ebe57;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  transform: scale(1.05) translateY(-3px);
-}
-
-.floating-button:active {
-  transform: scale(0.95);
-}
-
-@media (max-width: 768px) {
-  .floating-button {
-    bottom: 20px;
-    right: 20px;
-    width: 55px;
-    height: 55px;
-    font-size: 20px;
-  }
-}
-
-/* ensure SVG icon is white */
-.floating-button svg,
-.floating-button svg path {
-  width: 24px;
-  height: 24px;
-  fill: #fff;
-}
+/* Consolidated floating button - kept blank, defined below in contact page section */
 
 /* ========= FAQ / ACCORDION SECTION ========= */
 .faq-section {
@@ -1676,7 +1629,7 @@ input[type="file"]:focus {
   }
 }
 
-/* WhatsApp floating button */
+/* WhatsApp floating button -HOME, ABOUT, SERVICES PAGES ONLY */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
@@ -1701,4 +1654,157 @@ input[type="file"]:focus {
   width: 24px;
   height: 24px;
   fill: #fff;
+}
+
+/* ========= WhatsApp Floating Button + Popup (CONTACT PAGE) ========= */
+
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  background: #25d366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  z-index: 2000;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.floating-button:hover {
+  background: #1ebe57;
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
+  transform: scale(1.1);
+}
+
+.floating-button:active {
+  transform: scale(0.95);
+}
+
+/* WhatsApp Popup Container */
+.whatsapp-popup {
+  position: fixed;
+  bottom: 85px;
+  right: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
+  width: 320px;
+  display: none;
+  flex-direction: column;
+  z-index: 1999;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Show popup when .active class is added */
+.whatsapp-popup.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Popup Header */
+.whatsapp-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #25d366;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.whatsapp-popup-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Popup Body */
+.whatsapp-popup-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.whatsapp-popup-body p {
+  margin: 0;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Start Chat Button */
+.whatsapp-start {
+  display: inline-block;
+  background-color: #25d366;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.whatsapp-start:hover {
+  background-color: #1ebe57;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .floating-button {
+    bottom: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .whatsapp-popup {
+    bottom: 75px;
+    right: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+  }
+
+  .whatsapp-popup-header {
+    padding: 14px 16px;
+  }
+
+  .whatsapp-popup-body {
+    padding: 16px;
+  }
+
+  .whatsapp-start {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
 }
