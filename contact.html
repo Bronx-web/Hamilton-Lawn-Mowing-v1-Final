@@ -374,6 +374,19 @@
             toggle.setAttribute('aria-expanded', 'false');
         }
 
+        // Show/hide button based on scroll position
+        function handleScroll() {
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            if (scrollPercentage >= 80) {
+                toggle.style.display = 'flex';
+            } else {
+                toggle.style.display = 'none';
+                closePopup();
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
         toggle.addEventListener('click', function (e) {
             e.stopPropagation();
             popup.classList.contains('active') ? closePopup() : openPopup();
