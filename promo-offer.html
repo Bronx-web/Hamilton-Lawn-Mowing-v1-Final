@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamilton Lawn Mowing | Promo Offer</title>
+  <meta name="description" content="Hamilton's reliable lawn mowing service. Based in Frankton. Free quotes, no hidden fees. Serving Chartwell, Rototuna, Pukete, Hamilton East & more." />
+  <!-- Prevent indexing — this is an ad landing page only -->
+  <meta name="robots" content="noindex, nofollow" />
+
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:      #174903;
+      --green-dark: #1a3d1a;
+      --green-light:#175704;
+      --lime:       #ff7b00;
+      --white:      #ffffff;
+      --off-white:  #fcfaee;
+      --text:       #333;
+      --text-muted: #555042;
+      --border:     #d3d7c8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── STICKY CALL BAR ── */
+    .call-bar {
+      background: var(--green-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .call-bar a {
+      color: var(--lime);
+      font-weight: 700;
+      font-size: 18px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+    .call-bar a:hover { text-decoration: underline; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 60%, var(--green-light) 100%);
+      color: var(--white);
+      padding: 60px 20px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-weight: 700;
+    }
+    .hero h1 {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: clamp(38px, 8vw, 68px);
+      font-weight: 800;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--lime); }
+    .hero-sub {
+      font-size: clamp(16px, 3vw, 20px);
+      opacity: 0.92;
+      max-width: 560px;
+      margin: 0 auto 32px;
+      font-weight: 400;
+    }
+    .hero-cta-group {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #ff7b00, #ff9a2b);
+      color: #fff;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px 36px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .btn-primary:hover { background: #ff9a2b; transform: translateY(-2px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 14px 30px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,0.6);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      background: var(--off-white);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+    .trust-item .icon {
+      width: 22px;
+      height: 22px;
+      fill: var(--green);
+      flex-shrink: 0;
+    }
+
+    /* ── OFFER SECTION ── */
+    .offer-section {
+      background: var(--white);
+      padding: 56px 20px;
+      text-align: center;
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+    .section-body {
+      max-width: 600px;
+      margin: 0 auto 36px;
+      color: var(--text-muted);
+      font-size: 17px;
+    }
+
+    .offer-card {
+      background: var(--green-dark);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 40px 32px;
+      max-width: 520px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .offer-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      background: var(--lime);
+      opacity: 0.08;
+      border-radius: 50%;
+    }
+    .offer-card .offer-tag {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--green-dark);
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .offer-card h3 {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .offer-card p {
+      font-size: 16px;
+      opacity: 0.88;
+      margin-bottom: 24px;
+    }
+    .offer-card .price-note {
+      font-size: 13px;
+      opacity: 0.65;
+      margin-top: -16px;
+      margin-bottom: 24px;
+    }
+
+    /* ── PRICING SECTION ── */
+    .pricing-section {
+      background: var(--off-white);
+      padding: 56px 20px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      max-width: 780px;
+      margin: 36px auto 0;
+    }
+    .price-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .price-card .size { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--green); margin-bottom: 6px; }
+    .price-card .m2 { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .price-card .amount {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--green-dark);
+      line-height: 1;
+    }
+    .price-card .per { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+    .price-note-global {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 18px;
+    }
+
+    /* ── WHY US ── */
+    .why-section {
+      background: var(--white);
+      padding: 56px 20px;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 28px;
+      max-width: 900px;
+      margin: 36px auto 0;
+    }
+    .why-card {
+      border-left: 4px solid var(--lime);
+      padding: 4px 0 4px 20px;
+    }
+    .why-card h4 {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+    .why-card p { font-size: 15px; color: var(--text-muted); }
+
+    /* ── AREAS ── */
+    .areas-section {
+      background: var(--off-white);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .areas-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 700px;
+      margin: 20px auto 0;
+    }
+    .area-tag {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+
+    /* ── FORM SECTION ── */
+    .form-section {
+      background: var(--green-dark);
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--white);
+    }
+    .form-section .section-title { color: var(--white); }
+    .form-section .section-body { color: rgba(255,255,255,0.8); }
+
+    .quote-form {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 36px 28px;
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background: var(--off-white);
+      transition: border-color 0.2s;
+      appearance: auto;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      background: #fff;
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #ff7b00, #ff9a2b);
+      color: #fff;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 4px;
+      box-shadow: 0 12px 25px rgba(34, 33, 32, 0.35);
+    }
+    .form-submit:hover { background: #ff9a2b; transform: translateY(-1px); box-shadow: 0 16px 32px rgba(27,27,26,0.4); }
+    .form-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #111;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 13px;
+    }
+    .footer a { color: rgba(255,255,255,0.5); text-decoration: underline; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-badge  { animation: fadeUp 0.5s ease both; }
+    .hero h1     { animation: fadeUp 0.5s 0.1s ease both; }
+    .hero-sub    { animation: fadeUp 0.5s 0.2s ease both; }
+    .hero-cta-group { animation: fadeUp 0.5s 0.3s ease both; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 480px) {
+      .hero { padding: 44px 16px 40px; }
+      .quote-form { padding: 24px 18px; }
+      .offer-card { padding: 28px 20px; }
+      .call-bar { font-size: 13px; }
+      .call-bar a { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY CALL BAR -->
+  <div class="call-bar">
+    <span>📞 READY TO BOOK ? CALL US NOW</span>
+    <button class="btn" onclick="window.location.href='tel:+642108387863'">CALL NOW</button>
+    <style>
+      .btn {
+        background-color: #ff7b00;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 12px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+ 
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- <div class="hero-badge">📍 Frankton-Based · Serving Hamilton Region</div> -->
+    <h1>Hamilton <br> Lawn Mowing</h1>
+    <p class="hero-sub">
+      🌿 Clean Lines 🌿 Fair Quotes 🌿 On Time 🌿<br>Ask About Our End-Of-Summer-Promo!
+    </p>
+    <div class="hero-cta-group">
+      <a href="tel:+642108387863" class="btn-primary">📞 Claim Your Offer</a>
+      <a href="#quote-form" class="btn-secondary">Book Online</a>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-item">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Google Verified Business
+    </div>
+    <div class="trust-item">
+      <span class="icon">🚫</span>
+      No Hidden Fees
+    </div>
+    <div class="trust-item">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      WINZ Quotes Approved
+    </div>
+    <div class="trust-item">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      Residential & Commercial
+    </div>
+  </div>
+
+  <!-- OFFER -->
+  <section class="offer-section">
+    <p class="section-label">Limited Time</p>
+    <h2 class="section-title">New Customers Get a Massive 30% Discount! <br /></h2>
+    <p class="section-body">
+      Sign up for fortnightly or weekly service and recieve a wooping 30% discount. No contracts, No lock-ins. Just the way it should be. Your property looking great all year long.
+    </p>
+    <div class="offer-card">
+      <span class="offer-tag">Current Offer</span>
+      <h3>30% Discount<br /></h3>
+      <p>Book a fortnightly or weekly mow and get 30% off. We call you to confirm, show up on time, and leave your section cleaner than we found it.</p>
+      <p class="price-note">* Offer applies to new residential customers in Hamilton. One per household.</p>
+      <a href="#quote-form" class="btn-primary" style="background:var(--lime);color:var(--green-dark);">Claim This Offer</a>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-section" style="text-align:center;">
+    <p class="section-label">Transparent Pricing</p>
+    <h2 class="section-title">What You'll Pay</h2>
+    <p class="section-body" style="max-width:580px;margin:0 auto 8px;">
+      Hamilton lawn mowing prices that are upfront from the start. Based on your section size m² No surprises when the invoice arrives.
+    </p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="size">Small Lawn</div>
+        <div class="m2">Under 400m²</div>
+        <div class="amount">$30-55<span style="font-size:22px;"></span></div>
+        <div class="per">per visit incl. GST</div>
+      </div>
+      <div class="price-card">
+        <div class="size">Medium Lawn</div>
+        <div class="m2">400m² – 800m²</div>
+        <div class="amount">$40-75<span style="font-size:22px;"></span></div>
+        <div class="per">per visit incl. GST</div>
+      </div>
+      <div class="price-card">
+        <div class="size">Large Lawn</div>
+        <div class="m2">800m²+</div>
+        <div class="amount">$75<span style="font-size:22px;">+</span></div>
+        <div class="per">per visit incl. GST</div>
+      </div>
+    </div>
+    <p class="price-note-global">Mowing, edging & blowing included. Free quote for your specific section 👉 just call or fill in the form below.</p>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-section">
+    <p class="section-label" style="text-align:center;">Why Hamilton Lawn Mowing</p>
+    <h2 class="section-title" style="text-align:center;">No Run-Around. Just a Tidy Lawn.</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h4>We Actually Show Up</h4>
+        <p>No chasing, no reschedules at the last minute. You book, we confirm, we arrive. That's the standard every time.</p>
+      </div>
+      <div class="why-card">
+        <h4>Based in Frankton</h4>
+        <p>We're local. Not a franchise. You deal directly with the people doing the work.</p>
+      </div>
+      <div class="why-card">
+        <h4>Giving Access to all whanu</h4>
+        <p>Need a WINZ quote? We handle WINZ-approved quotes so you can get help covering the cost.</p>
+      </div>
+      <div class="why-card">
+        <h4>Free Quotes, Always</h4>
+        <p>No guessing. Every job gets a clear, upfront quote before we start. With room for adjustments.</p>
+      </div>
+      <div class="why-card">
+        <h4>Mowing + More</h4>
+        <p>Edging, blowing, garden maintenance, green waste removal, hedge trimming. One call covers it all.</p>
+      </div>
+      <div class="why-card">
+        <h4>Clean Lines Every Time</h4>
+        <p>We mow, edge, and blow down your paths and driveway. You come home to a property that looks properly finished, not just cut.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREAS -->
+  <section class="areas-section">
+    <p class="section-label">Service Areas</p>
+    <h2 class="section-title">We Cover All of Hamilton</h2>
+    <div class="areas-list">
+      <span class="area-tag">Frankton</span>
+      <span class="area-tag">Hamilton East</span>
+      <span class="area-tag">Chartwell</span>
+      <span class="area-tag">Rototuna</span>
+      <span class="area-tag">Pukete</span>
+      <span class="area-tag">Te Rapa</span>
+      <span class="area-tag">Nawton</span>
+      <span class="area-tag">Melville</span>
+      <span class="area-tag">Flagstaff</span>
+      <span class="area-tag">Rototuna North</span>
+      <span class="area-tag">Peacocke</span>
+      <span class="area-tag">+ Surrounding Areas</span>
+    </div>
+    <p style="margin-top:18px;font-size:14px;color:var(--text-muted);">Not sure if we cover your street? Just call — we'll let you know straight away.</p>
+  </section>
+
+  <!-- QUOTE FORM -->
+  <section class="form-section" id="quote-form">
+    <p class="section-label" style="color:var(--lime);">Free Quote — No Obligation</p>
+    <h2 class="section-title">Get Your Free Quote Today</h2>
+    <p class="section-body">Fill this in and we'll contact you. Or if you'd rather talk now, call us directly. Tap CALL NOW</p>
+
+    <div class="quote-form">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="e.g. Sarah M." autocomplete="name" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="027 000 0000" autocomplete="tel" required />
+      </div>
+      <div class="form-group">
+        <label for="suburb">Suburb</label>
+        <input type="text" id="suburb" name="suburb" placeholder="e.g. Frankton, Hamilton East, Chartwell..." required />
+      </div>
+      <div class="form-group">
+        <label for="frequency">How Often?</label>
+        <select id="frequency" name="frequency">
+          <option value="" disabled selected>Select frequency</option>
+          <option>Weekly</option>
+          <option>Fortnightly</option>
+          <option>Monthly</option>
+          <option>One-off tidy up</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="notes">Anything else? (optional)</label>
+        <textarea id="notes" name="notes" placeholder="e.g. big section, dog in yard, need edges done too..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send My Free Quote Request →</button>
+      <p class="form-note">We call you • Same day <!DOCTYPE html>
+        <br><br>
+
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-item">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Google Verified Business
+    </div>
+    <div class="trust-item">
+         <span class="icon">🚫</span>
+      No Hidden Fees
+    </div>
+    <div class="trust-item">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      WINZ Quotes Approved
+    </div>
+    <div class="trust-item">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      Residential & Commercial
+    </div>
+  </div>
+
+      <p class="form-note">Save $$ on your next mow • Limited Spots Available</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Hamilton Lawn Mowing. Frankton, Hamilton NZ 3204.</p>
+    <p style="margin-top:6px;">
+      <a href="/privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="/terms-of-services.html">Terms of Service</a> &nbsp;·&nbsp;
+      <a href="https://hamiltonlawns.co.nz">Back to Main Site</a>
+    </p>
+  </footer>
+
+</body>
+</html>
