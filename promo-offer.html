@@ -675,7 +675,7 @@
     });
     const data = new URLSearchParams(new FormData(this));
     try {
-      await fetch(SCRIPT_URL, { method: 'POST', body: data });
+      await fetch(SCRIPT_URL, { method: 'POST', body: data, mode: 'no-cors' });
       this.innerHTML = `
         <div style="text-align:center;padding:20px 0;">
           <div style="font-size:48px;margin-bottom:12px;">✅</div>
