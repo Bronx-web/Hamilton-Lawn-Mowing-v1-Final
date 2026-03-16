@@ -661,7 +661,8 @@
   </footer>
 
   <!-- SCRIPTS -->
-   <script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
   const SCRIPT_URL = 'https://script.google.com/a/macros/hamiltonlawns.co.nz/s/AKfycbyZ435WU0b2DdRICtaFBsPURWuapsEGWzBz6T5yW78snFkHxLl-GrAMJu_SB0jfNnZ9/exec';
 
   document.querySelector('.quote-form').addEventListener('submit', async function(e) {
@@ -689,6 +690,7 @@
       alert('Something went wrong. Please call 021 083 87863.');
     }
   });
+});
 </script>
 
 </body>
