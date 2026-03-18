@@ -199,7 +199,7 @@
     <section class="booking-section">
         <div class="container">
             <div class="booking-card">
-                <div class="calendly-inline-widget" data-url="https://calendly.com/hamiltonlawns/online-job-booking?hide_gdpr_banner=1&background_color=fcfcf6&primary_color=ff7b00" style="min-width:320px;height:900px;">
+                <div class="calendly-inline-widget" data-url="https://calendly.com/hamiltonlawns/online-job-booking?hide_event_type_details=1&hide_gdpr_banner=1&background_color=fcfcf6&primary_color=ff7b00" style="min-width:320px;height:900px;">
                 </div>
                 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
             </div>
@@ -213,6 +213,49 @@
             <div class="reviews-grid">
             </div>
         
+    </section>
+
+    <!-- ========== OUR RECENT WORK SLIDER ========== -->
+    <section class="our-work">
+        <div class="container">
+            <h2 class="section-title">Our Recent Work</h2>
+
+            <div class="work-carousel-wrapper">
+                <div class="work-carousel">
+                    <div class="work-slide active">
+                        <img src="https://cdn.prod.website-files.com/62a6520d16a4c82ce7aba2af/6327a3673dca23800c348921_Zones-Millwater-New-Zealand-Judd-Stratful-decorative-greenery-tidy-lawn-top-soil-design-lawns-nursery-G-N2.jpeg" alt="Lawn mowing before and after">
+                        <div class="work-caption">Complete Lawn Transformation Hamilton East</div>
+                    </div>
+                    <div class="work-slide">
+                        <img src="images/b4-after-4.png" alt="Hedge trimming before and after">
+                        <div class="work-caption">Hedge Trimming Chartwell</div>
+                    </div>
+                    <div class="work-slide">
+                        <img src="images/b4-after-3.png" alt="Backyard cleanup before and after">
+                        <div class="work-caption">Backyard cleanup Pukete</div>
+                    </div>
+                <div class="work-slide">
+                    <img src="images/b4-after-1.png" alt="Backyard cleanup before and after">
+                    <div class="work-caption">Backyard mow & tidy up</div>
+                </div>
+                <div class="work-slide">
+                    <img src="images/b4-after-2.png" alt="Backyard cleanup before and after">
+                    <div class="work-caption">Catch mow green waste removal </div>
+                </div>
+                </div>
+
+                <!-- Navigation arrows -->
+                <button class="carousel-btn prev-btn" aria-label="Previous">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next-btn" aria-label="Next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Dots indicator -->
+                <div class="carousel-dots"></div>
+            </div>
+        </div>
     </section>
 
     <!-- ========== WORK WITH US FORM ========== -->
@@ -352,6 +395,8 @@
             <a class="whatsapp-start" href="https://wa.me/send?phone=64210837863&text=Hi%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener">Start Chat</a>
         </div>
     </div>
+
+    <!-- SCRIPTS -->
 
     <!-------WHATSAPP FLOATING BUTTON + POPUP END -->
 
@@ -493,6 +538,67 @@
 
         });
     </script>
+
+     <!-- ========== WORK CAROUSEL SCRIPT ========== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const carousel = document.querySelector(".work-carousel");
+            const slides = document.querySelectorAll(".work-slide");
+            const prevBtn = document.querySelector(".prev-btn");
+            const nextBtn = document.querySelector(".next-btn");
+            const dotsContainer = document.querySelector(".carousel-dots");
+
+            let currentIndex = 0;
+
+            // Create dots
+            slides.forEach((_, i) => {
+                const dot = document.createElement("span");
+                dot.classList.add("dot");
+                if (i === 0) dot.classList.add("active");
+                dot.addEventListener("click", () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = document.querySelectorAll(".carousel-dots span");
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                slides.forEach((s, i) => s.classList.toggle("active", i === currentIndex));
+                dots.forEach((d, i) => d.classList.toggle("active", i === currentIndex));
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateCarousel();
+            }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+
+            nextBtn.addEventListener("click", nextSlide);
+            prevBtn.addEventListener("click", prevSlide);
+
+            // Swipe support for mobile
+            let touchStartX = 0;
+            carousel.parentElement.addEventListener("touchstart", e => touchStartX = e.touches[0].clientX);
+            carousel.parentElement.addEventListener("touchend", e => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) nextSlide();
+                    else prevSlide();
+                }
+            });
+        });
+    </script>
+
 
     <!-- ========== WORK WITH US FORM AJAX SUBMISSION ========== -->
     <script>
