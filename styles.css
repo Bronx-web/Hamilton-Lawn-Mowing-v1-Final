@@ -525,6 +525,155 @@ header {
   height: fit-content;
 }
 
+
+/* ── FORMSPREE FORM Two-column split row ── */
+.form-row-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+ 
+@media (max-width: 600px) {
+  .form-row-split {
+    grid-template-columns: 1fr;
+  }
+}
+ 
+/* ── Select dropdown — matches your existing input style ── */
+select {
+  width: 100%;
+  padding: 0.9rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid #d3d7c8;
+  font-size: 0.98rem;
+  background-color: #faf8f1;
+  font-family: inherit;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23174903' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+ 
+select:focus {
+  outline: none;
+  border-color: #ff7b00;
+  box-shadow: 0 0 0 2px rgba(255, 123, 0, 0.25);
+  background-color: #ffffff;
+}
+ 
+/* ── Required star ── */
+.req-star {
+  color: #ff7b00;
+  margin-left: 2px;
+}
+ 
+/* ── Label note (smaller hint text) ── */
+.label-note {
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: #888;
+  margin-left: 4px;
+}
+ 
+/* ── Checkbox group — pill style ── */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+ 
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #faf8f1;
+  border: 1px solid #d3d7c8;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+ 
+.check-item:has(input:checked) {
+  border-color: #ff7b00;
+  background: #fff9f0;
+}
+ 
+.check-item label {
+  color: #333;
+  font-weight: 500;
+  font-size: 0.93rem;
+  margin: 0;
+  cursor: pointer;
+}
+ 
+.check-item input[type="checkbox"] {
+  accent-color: #175704;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
+}
+ 
+/* ── Radio group — horizontal pill style for booking ── */
+.booking-radio-group {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+ 
+.booking-radio-group .radio-item {
+  background: #faf8f1;
+  border: 1px solid #d3d7c8;
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+ 
+.booking-radio-group .radio-item:has(input:checked) {
+  border-color: #ff7b00;
+  background: #fff9f0;
+}
+ 
+/* ── Time slot grid ── */
+.time-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin-top: 6px;
+}
+ 
+.time-slot-btn {
+  background: #faf8f1;
+  border: 1px solid #d3d7c8;
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #174903;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+ 
+.time-slot-btn:hover {
+  border-color: #174903;
+  background: #f0f7ee;
+}
+ 
+.time-slot-btn.selected {
+  background: linear-gradient(135deg, #ff7b00, #ff9a2b);
+  border-color: #ff7b00;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 123, 0, 0.3);
+}
+
 /* ========= CONTACT / FORM SECTION ========= */
 .contact-section {
   padding: 80px 0;

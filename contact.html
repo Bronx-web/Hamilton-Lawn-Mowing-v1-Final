@@ -175,7 +175,7 @@
                 <p class="why-eyebrow">What's next?</p>
                 <h2 class="why-heading">How Online Booking Works?</h2>
                 <p class="why-intro">
-                    Use the calendar to pick a date/time, then enter your contact details. No sign up required.
+                    No sign up required.
                 </p>
                 <ul class="why-list">
                     <li>
@@ -195,16 +195,149 @@
         </div>
     </section>
 
-    <!-- ========== CALENDLY BOOKING SECTION ========== -->
+    <!-- ========== FORMSPREE BOOKING SECTION ========== -->
     <section class="booking-section">
-        <div class="container">
-            <div class="booking-card">
-                <div class="calendly-inline-widget" data-url="https://calendly.com/hamiltonlawns/online-job-booking?hide_gdpr_banner=1&background_color=fcfcf6&primary_color=ff7b00" style="min-width:320px;height:900px;">
-                </div>
-                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-            </div>
+  <div class="container">
+ 
+    <h2 class="section-title">Book Your Lawn Service</h2>
+ 
+    <div class="booking-card">
+      <form class="form-container" id="bookingForm" action="https://formspree.io/f/meelvkpv" method="POST">
+ 
+        <!-- Hidden Formspree fields -->
+        <input type="hidden" name="_subject" value="New Booking Request — Hamilton Lawn Mowing">
+        <input type="hidden" name="_next" value="https://hamiltonlawns.co.nz/contact">
+ 
+        <!-- Name + Phone -->
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="b-name">Full Name <span class="req-star">*</span></label>
+            <input type="text" id="b-name" name="name" placeholder="Jane Smith" required>
+          </div>
+          <div class="form-group">
+            <label for="b-phone">Phone <span class="req-star">*</span></label>
+            <input type="tel" id="b-phone" name="phone" placeholder="021 123 4567" required>
+          </div>
         </div>
-    </section>
+ 
+        <!-- Email + Suburb -->
+        <div class="form-row-split">
+          <div class="form-group">
+            <label for="b-email">Email <span class="req-star">*</span></label>
+            <input type="email" id="b-email" name="email" placeholder="jane@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="b-suburb">Suburb <span class="req-star">*</span></label>
+            <input type="text" id="b-suburb" name="suburb" placeholder="Enter your suburb" required>
+          </div>
+        </div>
+ 
+        <!-- Address -->
+        <div class="form-group">
+          <label for="b-address">Street Address <span class="req-star">*</span></label>
+          <input type="text" id="b-address" name="address" placeholder="12 My Street, Hamilton East" required>
+        </div>
+ 
+        <!-- Services -->
+        <div class="form-group">
+          <label>Services Required <span class="req-star">*</span></label>
+          <div class="checkbox-group">
+            <div class="check-item">
+              <input type="checkbox" id="svc-mow" name="services" value="Lawn Mowing">
+              <label for="svc-mow">Lawn Mowing</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="svc-weed" name="services" value="Weed Spraying">
+              <label for="svc-weed">Weed Spraying</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="svc-hedge" name="services" value="Hedge Trimming">
+              <label for="svc-hedge">Hedge Trimming</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="svc-garden" name="services" value="Garden Maintenance">
+              <label for="svc-garden">Garden Maintenance</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="svc-waste" name="services" value="Green Waste Removal">
+              <label for="svc-waste">Green Waste Removal</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="svc-wash" name="services" value="Home Exterior Wash">
+              <label for="svc-wash">Exterior Wash</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="svc-other" name="services" value="Other">
+              <label for="svc-other">Other</label>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Frequency -->
+        <div class="form-group">
+          <label>How often? <span class="req-star">*</span></label>
+          <div class="radio-group booking-radio-group">
+            <div class="radio-item">
+              <input type="radio" id="freq-once" name="frequency" value="One-off" required>
+              <label for="freq-once">One-off</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="freq-fort" name="frequency" value="Fortnightly">
+              <label for="freq-fort">Fortnightly</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="freq-week" name="frequency" value="Weekly">
+              <label for="freq-week">Weekly</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="freq-month" name="frequency" value="Monthly">
+              <label for="freq-month">Monthly</label>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- Preferred Date -->
+        <div class="form-group">
+          <label for="b-date">Preferred Date <span class="req-star">*</span> <span class="label-note">(Mon–Fri only)</span></label>
+          <input type="date" id="b-date" name="preferred_date" required>
+        </div>
+ 
+        <!-- Notes -->
+        <div class="form-group">
+          <label for="b-notes">Additional Notes</label>
+          <textarea id="b-notes" name="notes" placeholder="Gate codes, lawn size, any useful info..."></textarea>
+        </div>
+ 
+        <!-- Error message -->
+        <div id="bookingErrorMessage" class="form-error-message" style="display:none;"></div>
+ 
+        <button type="submit">📅 Request Booking</button>
+ 
+        <p class="form-disclaimer">
+          We'll call to confirm your date and time. By submitting you agree to our
+          <a href="/privacy-policy">Privacy Policy</a> and
+          <a href="/terms-of-services">Terms of Service</a>.
+        </p>
+ 
+      </form>
+    </div><!-- /.booking-card -->
+  </div><!-- /.container -->
+</section>
+ 
+ 
+<!-- ========== SUCCESS POPUP — matches your existing .success-popup-card pattern ========== -->
+<div id="bookingSuccessCard" class="success-popup-card">
+  <div class="success-card-content">
+    <button type="button" class="success-card-close" id="closeBookingSuccess" aria-label="Close">&times;</button>
+    <div class="success-card-icon">
+      <i class="fas fa-calendar-check"></i>
+    </div>
+    <h2 class="success-card-heading">Booking Requested!</h2>
+    <p class="success-card-text">Thanks! We've got your request and will call to confirm your booking</p>
+    <div id="bookingSummary" style="background:#f2faf3;border-radius:10px;padding:14px 18px;margin:18px 0;font-size:0.92rem;color:#174903;text-align:left;line-height:1.9;"></div>
+    <p class="success-card-text-secondary">Questions? Call us: <a href="tel:+642108387863" class="success-card-link">0210 838 7863</a></p>
+  </div>
+</div>
 
     <!-- Reviews Section -->
     <section id="reviews" class="reviews-section">
@@ -397,6 +530,150 @@
     </div>
 
     <!-- SCRIPTS -->
+
+    <!-- ========== BOOKING FORM SCRIPT ========== -->
+<script>
+(function () {
+  const form       = document.getElementById('bookingForm');
+  const errorDiv   = document.getElementById('bookingErrorMessage');
+  const successCard = document.getElementById('bookingSuccessCard');
+  const closeBtn   = document.getElementById('closeBookingSuccess');
+  const summaryDiv = document.getElementById('bookingSummary');
+  const timeInput  = document.getElementById('b-preferred-time');
+  const timeAsap   = document.getElementById('time-asap');
+
+  // ASAP radio disables/clears text field
+  timeAsap.addEventListener('change', function () {
+    if (this.checked) {
+      timeInput.value = '';
+      timeInput.disabled = true;
+      timeInput.placeholder = 'ASAP selected';
+    }
+  });
+  timeInput.addEventListener('focus', function () {
+    timeAsap.checked = false;
+    timeInput.disabled = false;
+    timeInput.placeholder = 'e.g. 9:00am – 10:00am';
+  });
+  const dateInput  = document.getElementById('b-date');
+ 
+  // Set minimum date to today
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
+ 
+  // Block weekends
+  dateInput.addEventListener('change', function () {
+    const picked = new Date(this.value + 'T00:00:00');
+    const day = picked.getDay(); // 0 Sun, 6 Sat
+    if (day === 0 || day === 6) {
+      errorDiv.textContent = 'We work Monday to Friday only — please choose a weekday.';
+      errorDiv.style.display = 'block';
+      this.value = '';
+    } else {
+      errorDiv.style.display = 'none';
+    }
+  });
+ 
+ 
+  // Form submit
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errorDiv.style.display = 'none';
+ 
+    // Validate at least one service ticked
+    const services = Array.from(form.querySelectorAll('input[name="services"]:checked'));
+    if (services.length === 0) {
+      errorDiv.textContent = 'Please select at least one service.';
+      errorDiv.style.display = 'block';
+      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+ 
+    // Validate time entered or ASAP selected
+    const preferredTime = timeAsap.checked ? 'ASAP' : timeInput.value.trim();
+    if (!preferredTime) {
+      errorDiv.textContent = 'Please enter a preferred time or select ASAP.';
+      errorDiv.style.display = 'block';
+      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+ 
+    const serviceList = services.map(s => s.value).join(', ');
+    const frequency   = (form.querySelector('input[name="frequency"]:checked') || {}).value || 'Not specified';
+ 
+    const payload = {
+      name:           form.querySelector('#b-name').value,
+      phone:          form.querySelector('#b-phone').value,
+      email:          form.querySelector('#b-email').value,
+      suburb:         form.querySelector('#b-suburb').value,
+      address:        form.querySelector('#b-address').value,
+      services:       serviceList,
+      frequency:      frequency,
+      preferred_date: dateInput.value,
+      preferred_time: preferredTime,
+      notes:          form.querySelector('#b-notes').value || 'None',
+      _subject:       'New Booking Request — Hamilton Lawn Mowing'
+    };
+ 
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+ 
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function (res) {
+      if (!res.ok) throw new Error('failed');
+ 
+      // Format date nicely
+      const dateFormatted = new Date(payload.preferred_date + 'T00:00:00').toLocaleDateString('en-NZ', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+ 
+      summaryDiv.innerHTML =
+        '<strong>Name:</strong> '     + payload.name     + '<br>' +
+        '<strong>Date:</strong> '     + dateFormatted     + '<br>' +
+        '<strong>Time:</strong> '     + payload.preferred_time + '<br>' +
+        '<strong>Services:</strong> ' + payload.services  + '<br>' +
+        '<strong>Frequency:</strong> '+ payload.frequency + '<br>' +
+        '<strong>Suburb:</strong> '   + payload.suburb;
+ 
+      // Show success popup (reuses your existing .success-popup-card.show pattern)
+      successCard.classList.add('show');
+      form.style.display = 'none';
+    })
+    .catch(function () {
+      errorDiv.textContent = 'Something went wrong. Please try again or call 0210 838 7863.';
+      errorDiv.style.display = 'block';
+    })
+    .finally(function () {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '📅 Request Booking';
+    });
+  });
+ 
+  // Close success popup
+  closeBtn.addEventListener('click', function () {
+    successCard.classList.remove('show');
+    form.style.display = 'block';
+    form.reset();
+    timeInput.disabled = false;
+    timeInput.placeholder = 'e.g. 9:00am – 10:00am';
+  });
+ 
+  successCard.addEventListener('click', function (e) {
+    if (e.target === successCard) {
+      successCard.classList.remove('show');
+      form.style.display = 'block';
+      form.reset();
+      document.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
+      timeInput.value = '';
+    }
+  });
+})();
+</script>
 
     <!-------WHATSAPP FLOATING BUTTON + POPUP END -->
 
