@@ -388,11 +388,15 @@
                 <!-- Dots indicator -->
                 <div class="carousel-dots"></div>
             </div>
+
+            <div style="text-align:center; margin-top:2rem;">
+                <button id="workWithUsBtn" class="cta-button" type="button">Work With Us</button>
+            </div>
         </div>
     </section>
 
     <!-- ========== WORK WITH US FORM ========== -->
-    <section class="contact-section">
+    <section class="contact-section" id="workWithUsSection" style="display: none;">
         <div class="container">
             <h1>Work With Us</h1>
 
@@ -876,6 +880,16 @@
         });
     </script>
 
+
+    <!-- ========== WORK WITH US REVEAL ========== -->
+    <script>
+        document.getElementById('workWithUsBtn').addEventListener('click', function () {
+            var section = document.getElementById('workWithUsSection');
+            section.style.display = 'block';
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            this.style.display = 'none';
+        });
+    </script>
 
     <!-- ========== WORK WITH US FORM AJAX SUBMISSION ========== -->
     <script>
