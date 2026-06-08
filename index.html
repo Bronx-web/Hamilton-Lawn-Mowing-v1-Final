@@ -297,13 +297,12 @@
     <section id="reviews" class="reviews-section">
         <div class="container">
             <h2 class="section-title">See Our Reviews</h2>
-        <div class="reviews-grid">
+            <div class="reviews-carousel-wrapper">
+                <div class="reviews-carousel">
+                </div>
+                <div class="carousel-dots reviews-dots"></div>
+            </div>
         </div>
-        <!-- <p style="text-align: center;">
-            <a href="https://share.google/qkk6N3Bw5cXyJMhOf" target="_blank" class="see-all-reviews">
-                <small>Leave us a review on Google ⭐</small>
-            </a>
-        </p> -->
     </section>
     
 
@@ -355,16 +354,38 @@
 
 
     <style>
+        .reviews-carousel-wrapper {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .reviews-carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+        .review-slide {
+            min-width: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .review-slide.active {
+            opacity: 1;
+        }
+        .reviews-carousel-wrapper .carousel-dots {
+            background: transparent;
+        }
         @keyframes fadeIn {
             0% {
                 opacity: 0;
             }
-    
+
             100% {
                 opacity: 1;
             }
         }
-    
+
         .center-btn {
             display: flex;
             justify-content: center;
@@ -377,7 +398,7 @@
         }
     </style>
     
-    <a href="about.html" class="service-btn center-btn">More about us <i class="fas fa-arrow-right"></i></a>
+    <div class="center-btn"><a href="about.html" class="service-btn">More about us <i class="fas fa-arrow-right"></i></a></div>
 
 
     <!-- ========== FOOTER ========== -->
@@ -446,15 +467,15 @@
     <!-- ========== WORK CAROUSEL SCRIPT ========== -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const carousel = document.querySelector(".work-carousel");
-            const slides = document.querySelectorAll(".work-slide");
-            const prevBtn = document.querySelector(".prev-btn");
-            const nextBtn = document.querySelector(".next-btn");
-            const dotsContainer = document.querySelector(".carousel-dots");
+            const wrapper = document.querySelector(".work-carousel-wrapper");
+            const carousel = wrapper.querySelector(".work-carousel");
+            const slides = wrapper.querySelectorAll(".work-slide");
+            const prevBtn = wrapper.querySelector(".prev-btn");
+            const nextBtn = wrapper.querySelector(".next-btn");
+            const dotsContainer = wrapper.querySelector(".carousel-dots");
 
             let currentIndex = 0;
 
-            // Create dots
             slides.forEach((_, i) => {
                 const dot = document.createElement("span");
                 dot.classList.add("dot");
@@ -463,7 +484,7 @@
                 dotsContainer.appendChild(dot);
             });
 
-            const dots = document.querySelectorAll(".carousel-dots span");
+            const dots = dotsContainer.querySelectorAll("span");
 
             function updateCarousel() {
                 carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -489,12 +510,10 @@
             nextBtn.addEventListener("click", nextSlide);
             prevBtn.addEventListener("click", prevSlide);
 
-            // Swipe support for mobile
             let touchStartX = 0;
-            carousel.parentElement.addEventListener("touchstart", e => touchStartX = e.touches[0].clientX);
-            carousel.parentElement.addEventListener("touchend", e => {
-                const touchEndX = e.changedTouches[0].clientX;
-                const diff = touchStartX - touchEndX;
+            wrapper.addEventListener("touchstart", e => touchStartX = e.touches[0].clientX);
+            wrapper.addEventListener("touchend", e => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
                 if (Math.abs(diff) > 50) {
                     if (diff > 0) nextSlide();
                     else prevSlide();
@@ -507,42 +526,82 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-    
-    const reviews = [
-    {
-    name: "Jo McLaren",
-    rating: 5,
-    text: "Amazing service, got in touch early morning and my lawns were done later that afternoon, done to an amazing standard. 10/10.",
-    date: "6th November"
-    },
-    {
-    name: "Shoshanna James",
-    rating: 5,
-    text: "Fast & efficient. Does a lovely tidy job of our lawns. Great communication & listens to customer's requests",
-    date: "28th April"
-    }
-    ]
-    
-    function renderStars(rating) {
-    return '★'.repeat(rating) + '☆'.repeat(5 - rating)
-    }
-    
-    const grid = document.querySelector('.reviews-grid')
-    
-    reviews.forEach(review => {
-    grid.innerHTML += `
-    <div class="review-card">
-        <div class="review-stars">${renderStars(review.rating)}</div>
-        <p class="review-text">"${review.text}"</p>
-        <div class="review-meta">
-            <span class="review-name">${review.name}</span>
-            <span class="review-date">${review.date}</span>
-        </div>
-    </div>
-    `
-    })
-    
-    });
+            const reviews = [
+                {
+                    name: "Jo McLaren",
+                    rating: 5,
+                    text: "Amazing service, got in touch early morning and my lawns were done later that afternoon, done to an amazing standard. 10/10.",
+                    date: "6th November"
+                },
+                {
+                    name: "Shoshanna James",
+                    rating: 5,
+                    text: "Fast & efficient. Does a lovely tidy job of our lawns. Great communication & listens to customer's requests",
+                    date: "28th April"
+                },
+                {
+                    name: "Justin Compton",
+                    rating: 5,
+                    text: "Cheers to the team at Hamilton Lawn Mowing, for getting one of my rentals ready for new tenants. Quick booking, easy as, no fuss",
+                    date: "13 weeks ago"
+                }
+            ];
+
+            function renderStars(rating) {
+                return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+            }
+
+            const carousel = document.querySelector('.reviews-carousel');
+            const dotsContainer = document.querySelector('.reviews-dots');
+            let currentIndex = 0;
+
+            reviews.forEach((review, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'review-slide' + (i === 0 ? ' active' : '');
+                slide.innerHTML = `
+                    <div class="review-card">
+                        <div class="review-stars">${renderStars(review.rating)}</div>
+                        <p class="review-text">"${review.text}"</p>
+                        <div class="review-meta">
+                            <span class="review-name">${review.name}</span>
+                            <span class="review-date">${review.date}</span>
+                        </div>
+                    </div>`;
+                carousel.appendChild(slide);
+
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            });
+
+            const slides = carousel.querySelectorAll('.review-slide');
+            const dots = dotsContainer.querySelectorAll('span');
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                slides.forEach((s, i) => s.classList.toggle('active', i === currentIndex));
+                dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+            }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+
+            let touchStartX = 0;
+            carousel.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+            carousel.addEventListener('touchend', e => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    currentIndex = diff > 0
+                        ? (currentIndex + 1) % slides.length
+                        : (currentIndex - 1 + slides.length) % slides.length;
+                    updateCarousel();
+                }
+            });
+        });
     </script>
 
     

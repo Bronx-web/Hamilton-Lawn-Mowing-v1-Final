@@ -179,44 +179,40 @@
                 </p>
                 <ul class="why-list">
                     <li>
-                        <h3>Step 1: Choose a time</h3>
-                        <p>Select an available time slot that works best for you.</p>
+                        <h3>Step 1: Add your details</h3>
+                        <p>Simply complete the booking form below.</p>
                     </li>
                     <li>
-                        <h3>Step 2: Add your details</h3>
-                        <p>Include your name, phone, email and service required.</p>
+                        <h3>Step 2: Request your quote</h3>
+                        <p>Tap the Request Quote button.</p>
                     </li>
                     <li>
                         <h3>Step 3: Wait for Confirmation</h3>
-                        <p>We will call to confirm your booking date/time & service.</p>
+                        <p>We will call you to confirm your booking.</p>
                     </li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- ========== FORMSPREE BOOKING SECTION ========== -->
+    <!-- ========== BOOKING FORM SECTION ========== -->
     <section class="booking-section">
-  <div class="container">
+        <div class="container">
+
+            <h2 class="section-title">Book Your Lawn Service</h2>
+
+                <form class="form-container" id="bookingForm" action="https://script.google.com/macros/s/AKfycbyGHCTBi1lF6lqq-L-S9CtjsJqyBrH36hbUV0C5W15GPOyyIe-nFmavqPewYCJQBBE/exec" method="POST">
  
-    <h2 class="section-title">Book Your Lawn Service</h2>
- 
-    <div class="booking-card">
-      <form class="form-container" id="bookingForm" action="https://formspree.io/f/meelvkpv" method="POST">
- 
-        <!-- Hidden Formspree fields -->
-        <input type="hidden" name="_subject" value="New Booking Request — Hamilton Lawn Mowing">
-        <input type="hidden" name="_next" value="https://hamiltonlawns.co.nz/contact">
  
         <!-- Name + Phone -->
         <div class="form-row-split">
           <div class="form-group">
             <label for="b-name">Full Name <span class="req-star">*</span></label>
-            <input type="text" id="b-name" name="name" placeholder="Jane Smith" required>
+            <input type="text" id="b-name" name="name" required>
           </div>
           <div class="form-group">
             <label for="b-phone">Phone <span class="req-star">*</span></label>
-            <input type="tel" id="b-phone" name="phone" placeholder="021 123 4567" required>
+            <input type="tel" id="b-phone" name="phone" required>
           </div>
         </div>
  
@@ -224,23 +220,23 @@
         <div class="form-row-split">
           <div class="form-group">
             <label for="b-email">Email <span class="req-star">*</span></label>
-            <input type="email" id="b-email" name="email" placeholder="jane@email.com" required>
+            <input type="email" id="b-email" name="email" required>
           </div>
           <div class="form-group">
             <label for="b-suburb">Suburb <span class="req-star">*</span></label>
-            <input type="text" id="b-suburb" name="suburb" placeholder="Enter your suburb" required>
+            <input type="text" id="b-suburb" name="suburb" required>
           </div>
         </div>
  
         <!-- Address -->
         <div class="form-group">
           <label for="b-address">Street Address <span class="req-star">*</span></label>
-          <input type="text" id="b-address" name="address" placeholder="12 My Street, Hamilton East" required>
+          <input type="text" id="b-address" name="address" required>
         </div>
  
         <!-- Services -->
         <div class="form-group">
-          <label>Services Required <span class="req-star">*</span></label>
+          <label>Service Required <span class="req-star">*</span></label>
           <div class="checkbox-group">
             <div class="check-item">
               <input type="checkbox" id="svc-mow" name="services" value="Lawn Mowing">
@@ -298,14 +294,14 @@
  
         <!-- Preferred Date -->
         <div class="form-group">
-          <label for="b-date">Preferred Date <span class="req-star">*</span> <span class="label-note">(Mon–Fri only)</span></label>
+          <label for="b-date">Preferred Date <span class="req-star">*</span> <span class="label-note"></span></label>
           <input type="date" id="b-date" name="preferred_date" required>
         </div>
  
         <!-- Notes -->
         <div class="form-group">
           <label for="b-notes">Additional Notes</label>
-          <textarea id="b-notes" name="notes" placeholder="Gate codes, lawn size, any useful info..."></textarea>
+          <textarea id="b-notes" name="notes" placeholder="lawn, garden size, any useful info..."></textarea>
         </div>
  
         <!-- Error message -->
@@ -314,13 +310,12 @@
         <button type="submit">📅 Request Booking</button>
  
         <p class="form-disclaimer">
-          We'll call to confirm your date and time. By submitting you agree to our
+          By submitting you agree to our
           <a href="/privacy-policy">Privacy Policy</a> and
-          <a href="/terms-of-services">Terms of Service</a>.
+          <a href="/terms-of-services">Terms of Service</a>.<br>We'll call to confirm your booking. 
         </p>
  
       </form>
-    </div><!-- /.booking-card -->
   </div><!-- /.container -->
 </section>
  
@@ -343,10 +338,38 @@
     <section id="reviews" class="reviews-section">
         <div class="container">
             <h2 class="section-title">See Our Reviews</h2>
-            <div class="reviews-grid">
+            <div class="reviews-carousel-wrapper">
+                <div class="reviews-carousel">
+                </div>
+                <div class="carousel-dots reviews-dots"></div>
             </div>
-        
+        </div>
     </section>
+
+    <style>
+        .reviews-carousel-wrapper {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .reviews-carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+        .review-slide {
+            min-width: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .review-slide.active {
+            opacity: 1;
+        }
+        .reviews-carousel-wrapper .carousel-dots {
+            background: transparent;
+        }
+    </style>
 
     <!-- ========== OUR RECENT WORK SLIDER ========== -->
     <section class="our-work">
@@ -536,148 +559,111 @@
     <!-- SCRIPTS -->
 
     <!-- ========== BOOKING FORM SCRIPT ========== -->
-<script>
-(function () {
-  const form       = document.getElementById('bookingForm');
-  const errorDiv   = document.getElementById('bookingErrorMessage');
-  const successCard = document.getElementById('bookingSuccessCard');
-  const closeBtn   = document.getElementById('closeBookingSuccess');
-  const summaryDiv = document.getElementById('bookingSummary');
-  const timeInput  = document.getElementById('b-preferred-time');
-  const timeAsap   = document.getElementById('time-asap');
+            
+    <script>
+        (function () {
+        const form        = document.getElementById('bookingForm');
+        const errorDiv    = document.getElementById('bookingErrorMessage');
+        const successCard = document.getElementById('bookingSuccessCard');
+        const closeBtn    = document.getElementById('closeBookingSuccess');
+        const summaryDiv  = document.getElementById('bookingSummary');
+        const dateInput   = document.getElementById('b-date');
 
-  // ASAP radio disables/clears text field
-  timeAsap.addEventListener('change', function () {
-    if (this.checked) {
-      timeInput.value = '';
-      timeInput.disabled = true;
-      timeInput.placeholder = 'ASAP selected';
-    }
-  });
-  timeInput.addEventListener('focus', function () {
-    timeAsap.checked = false;
-    timeInput.disabled = false;
-    timeInput.placeholder = 'e.g. 9:00am – 10:00am';
-  });
-  const dateInput  = document.getElementById('b-date');
- 
-  // Set minimum date to today
-  const today = new Date().toISOString().split('T')[0];
-  dateInput.setAttribute('min', today);
- 
-  // Block weekends
-  dateInput.addEventListener('change', function () {
-    const picked = new Date(this.value + 'T00:00:00');
-    const day = picked.getDay(); // 0 Sun, 6 Sat
-    if (day === 0 || day === 6) {
-      errorDiv.textContent = 'We work Monday to Friday only — please choose a weekday.';
-      errorDiv.style.display = 'block';
-      this.value = '';
-    } else {
-      errorDiv.style.display = 'none';
-    }
-  });
- 
- 
-  // Form submit
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    errorDiv.style.display = 'none';
- 
-    // Validate at least one service ticked
-    const services = Array.from(form.querySelectorAll('input[name="services"]:checked'));
-    if (services.length === 0) {
-      errorDiv.textContent = 'Please select at least one service.';
-      errorDiv.style.display = 'block';
-      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      return;
-    }
- 
-    // Validate time entered or ASAP selected
-    const preferredTime = timeAsap.checked ? 'ASAP' : timeInput.value.trim();
-    if (!preferredTime) {
-      errorDiv.textContent = 'Please enter a preferred time or select ASAP.';
-      errorDiv.style.display = 'block';
-      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      return;
-    }
- 
-    const serviceList = services.map(s => s.value).join(', ');
-    const frequency   = (form.querySelector('input[name="frequency"]:checked') || {}).value || 'Not specified';
- 
-    const payload = {
-      name:           form.querySelector('#b-name').value,
-      phone:          form.querySelector('#b-phone').value,
-      email:          form.querySelector('#b-email').value,
-      suburb:         form.querySelector('#b-suburb').value,
-      address:        form.querySelector('#b-address').value,
-      services:       serviceList,
-      frequency:      frequency,
-      preferred_date: dateInput.value,
-      preferred_time: preferredTime,
-      notes:          form.querySelector('#b-notes').value || 'None',
-      _subject:       'New Booking Request — Hamilton Lawn Mowing'
-    };
- 
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
- 
-    fetch(form.action, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    .then(function (res) {
-      if (!res.ok) throw new Error('failed');
- 
-      // Format date nicely
-      const dateFormatted = new Date(payload.preferred_date + 'T00:00:00').toLocaleDateString('en-NZ', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-      });
- 
-      summaryDiv.innerHTML =
-        '<strong>Name:</strong> '     + payload.name     + '<br>' +
-        '<strong>Date:</strong> '     + dateFormatted     + '<br>' +
-        '<strong>Time:</strong> '     + payload.preferred_time + '<br>' +
-        '<strong>Services:</strong> ' + payload.services  + '<br>' +
-        '<strong>Frequency:</strong> '+ payload.frequency + '<br>' +
-        '<strong>Suburb:</strong> '   + payload.suburb;
- 
-      // Show success popup (reuses your existing .success-popup-card.show pattern)
-      successCard.classList.add('show');
-      form.style.display = 'none';
-    })
-    .catch(function () {
-      errorDiv.textContent = 'Something went wrong. Please try again or call 0210 838 7863.';
-      errorDiv.style.display = 'block';
-    })
-    .finally(function () {
-      submitBtn.disabled = false;
-      submitBtn.textContent = '📅 Request Booking';
-    });
-  });
- 
-  // Close success popup
-  closeBtn.addEventListener('click', function () {
-    successCard.classList.remove('show');
-    form.style.display = 'block';
-    form.reset();
-    timeInput.disabled = false;
-    timeInput.placeholder = 'e.g. 9:00am – 10:00am';
-  });
- 
-  successCard.addEventListener('click', function (e) {
-    if (e.target === successCard) {
-      successCard.classList.remove('show');
-      form.style.display = 'block';
-      form.reset();
-      document.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
-      timeInput.value = '';
-    }
-  });
-})();
-</script>
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        dateInput.addEventListener('change', function () {
+            const picked = new Date(this.value + 'T00:00:00');
+            const day = picked.getDay();
+            if (day === 0 || day === 6) {
+            errorDiv.textContent = 'We work Monday to Friday only — please choose a weekday.';
+            errorDiv.style.display = 'block';
+            this.value = '';
+            } else {
+            errorDiv.style.display = 'none';
+            }
+        });
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            errorDiv.style.display = 'none';
+
+            const services = Array.from(form.querySelectorAll('input[name="services"]:checked'));
+            if (services.length === 0) {
+            errorDiv.textContent = 'Please select at least one service.';
+            errorDiv.style.display = 'block';
+            errorDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            return;
+            }
+
+            const serviceList = services.map(s => s.value).join(', ');
+            const frequency   = (form.querySelector('input[name="frequency"]:checked') || {}).value || 'Not specified';
+
+            const payload = {
+            name:           form.querySelector('#b-name').value,
+            phone:          form.querySelector('#b-phone').value,
+            email:          form.querySelector('#b-email').value,
+            suburb:         form.querySelector('#b-suburb').value,
+            address:        form.querySelector('#b-address').value,
+            services:       serviceList,
+            frequency:      frequency,
+            preferred_date: dateInput.value,
+            notes:          form.querySelector('#b-notes').value || 'None'
+            };
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending…';
+
+            // Use FormData + no-cors to avoid CORS block with Apps Script
+            const formData = new FormData();
+            Object.keys(payload).forEach(key => formData.append(key, payload[key]));
+
+            fetch(form.action, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData
+            })
+            .then(function () {
+            const dateFormatted = new Date(payload.preferred_date + 'T00:00:00').toLocaleDateString('en-NZ', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            });
+
+            summaryDiv.innerHTML =
+                '<strong>Name:</strong> '      + payload.name      + '<br>' +
+                '<strong>Date:</strong> '      + dateFormatted      + '<br>' +
+                '<strong>Services:</strong> '  + payload.services   + '<br>' +
+                '<strong>Frequency:</strong> ' + payload.frequency  + '<br>' +
+                '<strong>Suburb:</strong> '    + payload.suburb;
+
+            successCard.classList.add('show');
+            form.style.display = 'none';
+            })
+            .catch(function () {
+            errorDiv.textContent = 'Something went wrong. Please try again or call 0210 838 7863.';
+            errorDiv.style.display = 'block';
+            })
+            .finally(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = '📅 Request Booking';
+            });
+        });
+
+        closeBtn.addEventListener('click', function () {
+            successCard.classList.remove('show');
+            form.style.display = 'block';
+            form.reset();
+        });
+
+        successCard.addEventListener('click', function (e) {
+            if (e.target === successCard) {
+            successCard.classList.remove('show');
+            form.style.display = 'block';
+            form.reset();
+            }
+        });
+        })();
+    </script>
 
     <!-------WHATSAPP FLOATING BUTTON + POPUP END -->
 
@@ -742,7 +728,6 @@
 
     <!-------WHATSAPP FLOATING BUTTON + POPUP END -->
 
-    <!-- ================================== SCRIPTS =============================================== -->
 
     <!-- ========== HAMBURGER MENU SCRIPT ========== -->
     <script>
@@ -778,11 +763,10 @@
         });
     </script>
 
-    <!-- ========== REVIEWS SCRIPT ========== -->
+    <!-- ========== REVIEWS CAROUSEL SCRIPT ========== -->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
             const reviews = [
                 {
                     name: "Jo McLaren",
@@ -795,43 +779,84 @@
                     rating: 5,
                     text: "Fast & efficient. Does a lovely tidy job of our lawns. Great communication & listens to customer's requests",
                     date: "28th April"
+                },
+                {
+                    name: "Justin Compton",
+                    rating: 5,
+                    text: "Cheers to the team at Hamilton Lawn Mowing, for getting one of my rentals ready for new tenants. Quick booking, easy as, no fuss",
+                    date: "13 weeks ago"
                 }
-            ]
+            ];
 
             function renderStars(rating) {
-                return '★'.repeat(rating) + '☆'.repeat(5 - rating)
+                return '★'.repeat(rating) + '☆'.repeat(5 - rating);
             }
 
-            const grid = document.querySelector('.reviews-grid')
+            const carousel = document.querySelector('.reviews-carousel');
+            const dotsContainer = document.querySelector('.reviews-dots');
+            let currentIndex = 0;
 
-            reviews.forEach(review => {
-                grid.innerHTML += `
-        <div class="review-card">
-            <div class="review-stars">${renderStars(review.rating)}</div>
-            <p class="review-text">"${review.text}"</p>
-            <div class="review-meta">
-                <span class="review-name">${review.name}</span>
-                <span class="review-date">${review.date}</span>
-            </div>
-        </div>
-        `
-            })
+            reviews.forEach((review, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'review-slide' + (i === 0 ? ' active' : '');
+                slide.innerHTML = `
+                    <div class="review-card">
+                        <div class="review-stars">${renderStars(review.rating)}</div>
+                        <p class="review-text">"${review.text}"</p>
+                        <div class="review-meta">
+                            <span class="review-name">${review.name}</span>
+                            <span class="review-date">${review.date}</span>
+                        </div>
+                    </div>`;
+                carousel.appendChild(slide);
 
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            });
+
+            const slides = carousel.querySelectorAll('.review-slide');
+            const dots = dotsContainer.querySelectorAll('span');
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                slides.forEach((s, i) => s.classList.toggle('active', i === currentIndex));
+                dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+            }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+
+            let touchStartX = 0;
+            carousel.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+            carousel.addEventListener('touchend', e => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) {
+                    currentIndex = diff > 0
+                        ? (currentIndex + 1) % slides.length
+                        : (currentIndex - 1 + slides.length) % slides.length;
+                    updateCarousel();
+                }
+            });
         });
     </script>
 
      <!-- ========== WORK CAROUSEL SCRIPT ========== -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const carousel = document.querySelector(".work-carousel");
-            const slides = document.querySelectorAll(".work-slide");
-            const prevBtn = document.querySelector(".prev-btn");
-            const nextBtn = document.querySelector(".next-btn");
-            const dotsContainer = document.querySelector(".carousel-dots");
+            const wrapper = document.querySelector(".work-carousel-wrapper");
+            const carousel = wrapper.querySelector(".work-carousel");
+            const slides = wrapper.querySelectorAll(".work-slide");
+            const prevBtn = wrapper.querySelector(".prev-btn");
+            const nextBtn = wrapper.querySelector(".next-btn");
+            const dotsContainer = wrapper.querySelector(".carousel-dots");
 
             let currentIndex = 0;
 
-            // Create dots
             slides.forEach((_, i) => {
                 const dot = document.createElement("span");
                 dot.classList.add("dot");
@@ -840,7 +865,7 @@
                 dotsContainer.appendChild(dot);
             });
 
-            const dots = document.querySelectorAll(".carousel-dots span");
+            const dots = dotsContainer.querySelectorAll("span");
 
             function updateCarousel() {
                 carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -866,12 +891,10 @@
             nextBtn.addEventListener("click", nextSlide);
             prevBtn.addEventListener("click", prevSlide);
 
-            // Swipe support for mobile
             let touchStartX = 0;
-            carousel.parentElement.addEventListener("touchstart", e => touchStartX = e.touches[0].clientX);
-            carousel.parentElement.addEventListener("touchend", e => {
-                const touchEndX = e.changedTouches[0].clientX;
-                const diff = touchStartX - touchEndX;
+            wrapper.addEventListener("touchstart", e => touchStartX = e.touches[0].clientX);
+            wrapper.addEventListener("touchend", e => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
                 if (Math.abs(diff) > 50) {
                     if (diff > 0) nextSlide();
                     else prevSlide();
