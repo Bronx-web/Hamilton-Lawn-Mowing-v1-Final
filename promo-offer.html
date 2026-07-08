@@ -74,7 +74,9 @@
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 60%, var(--green-light) 100%);
+      background: linear-gradient(135deg, rgba(27, 60, 32, 0) 0%, rgba(27, 63, 32, 0.486) 60%, rgba(76, 155, 58, 0.336) 100%), url("images/hompage-hero.jpg");
+      background-size: cover;
+      background-position: center;
       color: var(--white);
       padding: 60px 20px 50px;
       text-align: center;
@@ -142,6 +144,23 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
     .btn-primary:hover { background: #ff9a2b; transform: translateY(-2px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35); }
+
+    /* Auto-play buzz — shake in short bursts, rest between */
+    @keyframes buzz {
+      0%, 82%, 100% { transform: translateX(0) rotate(0); }
+      84% { transform: translateX(-3px) rotate(-1.2deg); }
+      86% { transform: translateX(3px) rotate(1.2deg); }
+      88% { transform: translateX(-3px) rotate(-1.2deg); }
+      90% { transform: translateX(3px) rotate(1.2deg); }
+      92% { transform: translateX(-2px) rotate(-0.8deg); }
+      94% { transform: translateX(2px) rotate(0.8deg); }
+      96% { transform: translateX(0) rotate(0); }
+    }
+    .buzz { animation: buzz 3s ease-in-out infinite; }
+    .buzz:hover { animation-play-state: paused; }
+    @media (prefers-reduced-motion: reduce) {
+      .buzz { animation: none; }
+    }
 
     .btn-secondary {
       background: transparent;
@@ -484,7 +503,7 @@
     <!-- <div class="hero-badge">📍 Frankton-Based · Serving Hamilton Region</div> -->
     <h1>Hamilton<br> Lawn Mowing</h1>
     <p class="hero-sub">
-      🌿 Clean Lines 🌿 Fair Quotes 🌿 On Time 🌿<br>Ask About Our End-of-Summer-Offer
+      🌿 Clean Lines 🌿 Fair Quotes 🌿 On Time 🌿<br>
     </p>
     <div class="hero-cta-group">
       <a href="tel:+642108387863" class="btn-primary">📞 Claim Your Offer</a>
@@ -524,7 +543,7 @@
       <h3>30% Discount<br /></h3>
       <p>Book a fortnightly or weekly mow and get 30% off your first mow. We call you to confirm, show up on time, and leave your section cleaner than we found it.</p>
       <p class="price-note">* Offer applies to new residential customers in Hamilton. One per household.</p>
-      <a href="#quote-form" class="btn-primary" style="background:var(--lime);color:var(--green-dark);">Claim This Offer</a>
+      <a href="#quote-form" class="btn-primary buzz" style="background:var(--lime);color:var(--green-dark);">Claim This Offer</a>
     </div>
   </section>
 
@@ -538,24 +557,24 @@
     <div class="pricing-grid">
       <div class="price-card">
         <div class="size">Small Lawn</div>
-        <div class="m2">starts from</div>
+        <div class="m2">From</div>
         <div class="amount">$45<span style="font-size:22px;"></span></div>
-        <div class="per">per visit incl. GST</div>
+        <div class="per">incl. GST</div>
       </div>
       <div class="price-card">
         <div class="size">Medium Lawn</div>
-        <div class="m2">starts from</div>
+        <div class="m2">From</div>
         <div class="amount">$65<span style="font-size:22px;"></span></div>
-        <div class="per">per visit incl. GST</div>
+        <div class="per">incl. GST</div>
       </div>
       <div class="price-card">
         <div class="size">Large Lawn</div>
-        <div class="m2">starts from</div>
+        <div class="m2">From</div>
         <div class="amount">$85<span style="font-size:22px;">+</span></div>
-        <div class="per">per visit incl. GST</div>
+        <div class="per">incl. GST</div>
       </div>
     </div>
-    <p class="price-note-global">Mowing, Edging & Blowing Included. Free quotes 👉 Just call or fill in the form below.</p>
+    <p class="price-note-global">Mow + Edging + Blowing Included.</p>
   </section>
 
   <!-- WHY US -->
