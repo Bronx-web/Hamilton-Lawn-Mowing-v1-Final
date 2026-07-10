@@ -1147,6 +1147,16 @@ footer {
   padding: 2rem 0;
 }
 
+.site-credit {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+.site-credit a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .legal-menu {
   padding: 5px 0;
   background: #1a3d1a;
