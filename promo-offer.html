@@ -990,16 +990,18 @@ document.addEventListener('DOMContentLoaded', function() {
     nextBtn.disabled = true;
     gtag('event', 'form_submit', { event_category: 'lead', event_label: 'quote_request' });
 
+    // Pack lawn size + chosen extras into the Notes field the script records
+    const size   = document.getElementById('hf-size').value;
+    const extras = document.getElementById('hf-addons').value || 'None';
+    const notes  = 'Lawn size: ' + size + ' | Extras: ' + extras;
+
     const data = new URLSearchParams();
     data.append('name',      name);
     data.append('phone',     phone);
     data.append('email',     form.querySelector('#email').value.trim());
     data.append('suburb',    form.querySelector('#suburb').value.trim());
-    const extras = document.getElementById('hf-addons').value || 'None';
-    data.append('size',      document.getElementById('hf-size').value);
     data.append('frequency', document.getElementById('hf-frequency').value);
-    data.append('addons',    extras);
-    data.append('services',  extras);   // mirror for sheets that map the "services" column
+    data.append('notes',     notes);
 
     try {
       await fetch(SCRIPT_URL, { method: 'POST', body: data, mode: 'no-cors' });
