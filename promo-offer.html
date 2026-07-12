@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Hamilton Lawn Mowing | First Mow 30% Off — Promo Offer!</title>
-<meta name="description" content="New customers get 30% off Now. Hamilton Lawn Mowing — No contracts, No hidden fees. WINZ-approved quotes. Serving all of Hamilton. Claim your offer now." />
+ <title>Hamilton Lawn Mowing | First Mow 30% Off Promo Offer!</title>
+<meta name="description" content="New customers get 30% off now. Hamilton Lawn Mowing. No contracts, no hidden fees. WINZ-approved quotes. Serving all of Hamilton. Claim your offer now." />
   <!-- Prevent indexing — this is an ad landing page only -->
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/png" href="images/ham-lawn-white-trans-premium.png">
@@ -183,24 +183,29 @@
     .trust-strip {
       background: var(--off-white);
       border-bottom: 1px solid var(--border);
-      padding: 18px 20px;
-      display: flex;
-      justify-content: center;
-      gap: 28px;
-      flex-wrap: wrap;
+      padding: 14px 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 18px;
+      max-width: 460px;
+      margin: 0 auto;
     }
     .trust-item {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--green-dark);
     }
     .trust-item .icon {
-      width: 22px;
-      height: 22px;
-      fill: var(--green);
+      width: 17px;
+      height: 17px;
+      margin-right: 8px;
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
       flex-shrink: 0;
     }
 
@@ -447,6 +452,163 @@
       margin-top: 12px;
     }
 
+    /* ── MULTI-STEP QUOTE FLOW ── */
+    .flow-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px 26px 32px;
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: left;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    }
+    /* Progress */
+    .flow-progress-wrap { margin-bottom: 24px; }
+    .flow-progress-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .flow-step-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--green-dark);
+    }
+    .flow-percent {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--lime);
+    }
+    .flow-bar {
+      height: 10px;
+      background: var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .flow-bar-fill {
+      height: 100%;
+      width: 25%;
+      background: linear-gradient(90deg, var(--green), var(--green-light));
+      border-radius: 20px;
+      transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .flow-done-note {
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 700;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    /* Steps */
+    .flow-step { display: none; animation: fadeUp 0.35s ease both; }
+    .flow-step.active { display: block; }
+    .flow-step h3 {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 4px;
+      line-height: 1.15;
+    }
+    .flow-step .flow-hint {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    /* Option tiles (property, size, freq) */
+    .flow-options { display: grid; gap: 10px; margin-bottom: 6px; }
+    .flow-options.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .flow-tile {
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 12px;
+      text-align: center;
+      cursor: pointer;
+      background: var(--off-white);
+      transition: border-color 0.15s, background 0.15s, transform 0.1s;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--green-dark);
+      user-select: none;
+    }
+    .flow-tile .tile-emoji { display: block; font-size: 26px; margin-bottom: 6px; }
+    .flow-tile .tile-sub { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); margin-top: 4px; text-transform: none; letter-spacing: 0; }
+    .flow-tile:hover { border-color: var(--green-light); transform: translateY(-1px); }
+    .flow-tile.selected {
+      border-color: var(--green);
+      background: #eef5e8;
+      box-shadow: 0 4px 12px rgba(23,73,3,0.12);
+    }
+    /* Add-on checklist */
+    .flow-addons { display: grid; gap: 10px; margin-bottom: 6px; }
+    .flow-addon {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 14px;
+      cursor: pointer;
+      background: var(--off-white);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .flow-addon:hover { border-color: var(--green-light); }
+    .flow-addon.selected { border-color: var(--green); background: #eef5e8; }
+    .flow-addon input { width: 20px; height: 20px; accent-color: var(--green); flex-shrink: 0; cursor: pointer; }
+    .flow-addon .addon-text { font-size: 15px; font-weight: 700; color: var(--green-dark); }
+    .flow-addon .addon-text small { display: block; font-weight: 400; font-size: 12px; color: var(--text-muted); text-transform: none; }
+    /* Reciprocity tip */
+    .flow-tip {
+      background: #eef5e8;
+      border-left: 4px solid var(--green);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-top: 18px;
+      font-size: 14px;
+      color: var(--green-dark);
+    }
+    .flow-tip strong { display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.4px; font-size: 12px; }
+    /* Contact fields inside flow reuse .form-group */
+    .flow-step .form-group { margin-bottom: 14px; }
+    /* Nav buttons */
+    .flow-nav { display: flex; gap: 12px; margin-top: 22px; }
+    .flow-back {
+      flex: 0 0 auto;
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .flow-back:hover { border-color: var(--green); color: var(--green-dark); }
+    .flow-next {
+      flex: 1 1 auto;
+      background: linear-gradient(135deg, #ff7b00, #ff9a2b);
+      color: #fff;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 15px;
+      transition: transform 0.12s, box-shadow 0.2s;
+      box-shadow: 0 10px 22px rgba(255,123,0,0.35);
+    }
+    .flow-next:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(255,123,0,0.42); }
+    .flow-error { color: #c0392b; font-size: 13px; font-weight: 700; margin-top: 10px; display: none; }
+
     /* ── FOOTER ── */
     .footer {
       background: #111;
@@ -506,26 +668,26 @@
       🌿 Clean Lines 🌿 Fair Quotes 🌿 On Time 🌿<br>
     </p>
     <div class="hero-cta-group">
-      <a href="tel:+642108387863" class="btn-primary buzz">📞 Claim Your Offer</a>
+      <a href="#quote-form" class="btn-primary buzz">Claim Your Offer</a>
     </div>
   </section>
 
   <!-- TRUST STRIP -->
   <div class="trust-strip">
     <div class="trust-item">
-      <svg class="icon" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      Google Verified Business
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+      Google Verified
     </div>
     <div class="trust-item">
-      <span class="icon">🚫</span>
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18z"/><path d="M12 7v10"/><path d="M14.5 9.2c-.6-.7-1.6-1.2-2.5-1.2-1.4 0-2.5.8-2.5 2s1.1 2 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-.9 0-1.9-.5-2.5-1.2"/></svg>
       No Hidden Fees
     </div>
     <div class="trust-item">
-      <svg class="icon" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-      WINZ Quotes Approved
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.5l2.4 1.7 2.9-.2 1 2.8 2.4 1.6-.7 2.8.7 2.8-2.4 1.6-1 2.8-2.9-.2L12 21.5l-2.4-1.7-2.9.2-1-2.8-2.4-1.6.7-2.8-.7-2.8 2.4-1.6 1-2.8 2.9.2L12 2.5z"/><path d="M9 12l2 2 4-4"/></svg>
+      WINZ Quotes Accepted
     </div>
     <div class="trust-item">
-      <svg class="icon" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l6-4v18"/><path d="M11 9h8v12"/><path d="M8 8v0M8 11v0M8 14v0"/><path d="M15 12v0M15 15v0M15 18v0"/></svg>
       Residential & Commercial
     </div>
   </div>
@@ -535,7 +697,7 @@
     <p class="section-label">Limited Time</p>
     <h2 class="section-title">New Customers Get a Massive 30% Discount! <br /></h2>
     <p class="section-body">
-      Get a fortnightly or weekly service and receive a whopping 30% discount on your first mow. No contracts, No lock-ins. Just the way it should be. Your property looking great all year long.
+      Get a fortnightly or weekly service and receive a whopping 30% discount on your first mow. Tip: Great way to try us out or catch up on an overdue mow.
     </p>
     <div class="offer-card">
       <span class="offer-tag">Current Offer</span>
@@ -632,38 +794,116 @@
   <!-- QUOTE FORM -->
   <section class="form-section" id="quote-form">
     <img src="images/ham-lawn-white-trans-premium.png" alt="Hamilton Lawn Mowing" style="width:140px;max-width:50%;margin:0 auto 20px;display:block;opacity:0.9;" />
-    <p class="section-label" style="color:var(--lime);">Free Quote — No Obligation</p>
-    <h2 class="section-title">Claim Your OFFER NOW</h2>
-    <p class="section-body">Fill in the form below & we'll contact you ASAP. Or call us directly.</p>
+    <p class="section-label" style="color:var(--lime);">Almost Yours. 30% Off Your First Mow!</p>
+    <h2 class="section-title">Stop Losing Your Weekends To Overgrowth</h2>
+    <p class="section-body">Every week you wait, the grass gets longer and the good slots fill up. Answer 3 quick questions and claim your 30% offer.</p>
 
-    <form class="quote-form">
-      <div class="form-group">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="e.g. Sarah M." autocomplete="name" required />
+    <form class="flow-card" id="quoteFlow" novalidate>
+
+      <!-- Progress -->
+      <div class="flow-progress-wrap">
+        <div class="flow-progress-top">
+          <span class="flow-step-label" id="flowStepLabel">Step 1 of 4</span>
+          <span class="flow-percent" id="flowPercent">25% Complete</span>
+        </div>
+        <div class="flow-bar"><div class="flow-bar-fill" id="flowBarFill"></div></div>
+        <div class="flow-done-note">✔ Step 1: New customer offer applied</div>
       </div>
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" placeholder="027 000 0000" autocomplete="tel" required />
+
+      <!-- STEP 1 — Lawn size -->
+      <div class="flow-step active" data-step="1">
+        <h3>How big is your lawn?</h3>
+        <p class="flow-hint">A rough idea is fine. We confirm on the day.</p>
+        <div class="flow-options cols-3">
+          <div class="flow-tile" data-field="size" data-value="Small">
+            <span class="tile-emoji">🌱</span>Small<span class="tile-sub">Courtyard / unit</span>
+          </div>
+          <div class="flow-tile selected" data-field="size" data-value="Medium">
+            <span class="tile-emoji">🏡</span>Medium<span class="tile-sub">Standard section</span>
+          </div>
+          <div class="flow-tile" data-field="size" data-value="Large">
+            <span class="tile-emoji">🌳</span>Large<span class="tile-sub">Big / lifestyle</span>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="e.g. sarah@example.com" autocomplete="email" required />
+
+      <!-- STEP 2 — Frequency -->
+      <div class="flow-step" data-step="2">
+        <h3>How often should we mow?</h3>
+        <p class="flow-hint">Fortnightly is our most popular. Keeps it tidy without overdoing it.</p>
+        <div class="flow-options" style="grid-template-columns:repeat(2,1fr);">
+          <div class="flow-tile selected" data-field="frequency" data-value="Fortnightly">
+            <span class="tile-emoji">⭐</span>Fortnightly<span class="tile-sub">Most popular</span>
+          </div>
+          <div class="flow-tile" data-field="frequency" data-value="Weekly">
+            <span class="tile-emoji">📅</span>Weekly<span class="tile-sub">Fast-growing</span>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="suburb">Address</label>
-        <input type="text" id="suburb" name="suburb" placeholder="e.g. 123 Main Street, Frankton" autocomplete="street-address" required />
+
+      <!-- STEP 3 — Add-ons + reciprocity tip -->
+      <div class="flow-step" data-step="3">
+        <h3>Add anything extra?</h3>
+        <p class="flow-hint">Optional. Tick what you'd like, or skip if it's just a mow.</p>
+        <div class="flow-addons">
+          <label class="flow-addon">
+            <input type="checkbox" data-field="addons" value="Weed Spraying">
+            <span class="addon-text">Weed Spraying</span>
+          </label>
+          <label class="flow-addon">
+            <input type="checkbox" data-field="addons" value="Hedge Trimming">
+            <span class="addon-text">Hedge Trimming</span>
+          </label>
+          <label class="flow-addon">
+            <input type="checkbox" data-field="addons" value="Garden Maintenance">
+            <span class="addon-text">Garden Maintenance</span>
+          </label>
+          <label class="flow-addon">
+            <input type="checkbox" data-field="addons" value="Green Waste Removal">
+            <span class="addon-text">Green Waste Removal</span>
+          </label>
+        </div>
+        <div class="flow-tip">
+          <strong>🌿 Free lawn tip</strong>
+          Mowing fortnightly at a higher blade setting keeps roots shaded and crowds out weeds. Greener lawn, less spraying. We set the height right for you automatically.
+        </div>
       </div>
-      <div class="form-group">
-        <label for="frequency">How Often?</label>
-        <select id="frequency" name="frequency">
-          <option value="" disabled selected>Select frequency</option>
-          <option>Weekly</option>
-          <option>Fortnightly</option>
-        </select>
+
+      <!-- STEP 4 — Contact -->
+      <div class="flow-step" data-step="4">
+        <h3>Where do we send your 30% off?</h3>
+        <p class="flow-hint">We'll call same day to confirm your spot.</p>
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Jon Jones" autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="021 123 456 78" autocomplete="tel" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="suburb">Address</label>
+          <input type="text" id="suburb" name="suburb" placeholder="21 Jump Street, Rototuna" autocomplete="street-address" />
+        </div>
       </div>
-     
-      <button type="submit" class="form-submit buzz">Claim My Offer  →</button>
-      <p class="form-note">We'll call you ASAP same day to confirm.</p>
+
+      <!-- Hidden fields carrying selections -->
+      <input type="hidden" name="size" id="hf-size" value="Medium" />
+      <input type="hidden" name="frequency" id="hf-frequency" value="Fortnightly" />
+      <input type="hidden" name="addons" id="hf-addons" value="" />
+
+      <p class="flow-error" id="flowError">Please add your name and phone so we can call you back.</p>
+
+      <!-- Nav -->
+      <div class="flow-nav">
+        <button type="button" class="flow-back" id="flowBack" style="display:none;">← Back</button>
+        <button type="button" class="flow-next buzz" id="flowNext">Next →</button>
+      </div>
+      <p class="form-note" style="color:var(--text-muted);">No contracts · No Obligation Quote ·  Limit One Per Household.</p>
     </form>
   </section>
 
@@ -681,32 +921,102 @@
   <!-- SCRIPTS -->
   <script>
 document.addEventListener('DOMContentLoaded', function() {
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUuFtel2ZkRMKVQDvohZ_kM2vZf3ao8GSxX5vNUlrnVXrCsiYeWzZdG_wNZiYoYzcm/exec';
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUuFtel2ZkRMKVQDvohZ_kM2vZf3ao8GSxX5vNUlrnVXrCsiYeWzZdG_wNZiYoYzcm/exec';
-  document.querySelector('.quote-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = document.querySelector('.form-submit');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-    gtag('event', 'form_submit', {
-      event_category: 'lead',
-      event_label: 'quote_request'
+  const form      = document.getElementById('quoteFlow');
+  const steps     = Array.from(form.querySelectorAll('.flow-step'));
+  const barFill   = document.getElementById('flowBarFill');
+  const stepLabel = document.getElementById('flowStepLabel');
+  const percent   = document.getElementById('flowPercent');
+  const backBtn   = document.getElementById('flowBack');
+  const nextBtn   = document.getElementById('flowNext');
+  const errorEl   = document.getElementById('flowError');
+
+  let current = 0;          // index into steps[] (0-based), 4 screens
+  // Goal-gradient: already 25% done (offer applied). Each screen advances a quarter.
+  const pct = [25, 50, 75, 100];
+
+  function render() {
+    steps.forEach((s, i) => s.classList.toggle('active', i === current));
+    const p = pct[current];
+    barFill.style.width = p + '%';
+    percent.textContent = p + '% Complete';
+    stepLabel.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
+    backBtn.style.display = current === 0 ? 'none' : 'block';
+    nextBtn.textContent = current === steps.length - 1 ? ' Claim My 30% Offer' : 'Next →';
+    errorEl.style.display = 'none';
+  }
+
+  // Single-select tiles (size, frequency)
+  form.querySelectorAll('.flow-tile').forEach(tile => {
+    tile.addEventListener('click', () => {
+      const field = tile.dataset.field;
+      form.querySelectorAll('.flow-tile[data-field="' + field + '"]').forEach(t => t.classList.remove('selected'));
+      tile.classList.add('selected');
+      document.getElementById('hf-' + field).value = tile.dataset.value;
     });
-    const data = new URLSearchParams(new FormData(this));
+  });
+
+  // Multi-select add-ons
+  const addonInputs = form.querySelectorAll('.flow-addon input');
+  addonInputs.forEach(cb => {
+    cb.addEventListener('change', () => {
+      cb.closest('.flow-addon').classList.toggle('selected', cb.checked);
+      const chosen = Array.from(addonInputs).filter(c => c.checked).map(c => c.value);
+      document.getElementById('hf-addons').value = chosen.join(', ');
+    });
+  });
+
+  backBtn.addEventListener('click', () => {
+    if (current > 0) { current--; render(); form.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    // Final step: validate contact + submit
+    if (current === steps.length - 1) { submit(); return; }
+    current++;
+    render();
+    form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  async function submit() {
+    const name  = form.querySelector('#name').value.trim();
+    const phone = form.querySelector('#phone').value.trim();
+    if (!name || !phone) {
+      errorEl.style.display = 'block';
+      return;
+    }
+    nextBtn.textContent = 'Sending...';
+    nextBtn.disabled = true;
+    gtag('event', 'form_submit', { event_category: 'lead', event_label: 'quote_request' });
+
+    const data = new URLSearchParams();
+    data.append('name',      name);
+    data.append('phone',     phone);
+    data.append('email',     form.querySelector('#email').value.trim());
+    data.append('suburb',    form.querySelector('#suburb').value.trim());
+    const extras = document.getElementById('hf-addons').value || 'None';
+    data.append('size',      document.getElementById('hf-size').value);
+    data.append('frequency', document.getElementById('hf-frequency').value);
+    data.append('addons',    extras);
+    data.append('services',  extras);   // mirror for sheets that map the "services" column
+
     try {
       await fetch(SCRIPT_URL, { method: 'POST', body: data, mode: 'no-cors' });
-      this.innerHTML = `
-        <div style="text-align:center;padding:20px 0;">
-          <div style="font-size:48px;margin-bottom:12px;">✅</div>
-          <h3 style="color:#1a3d1a;">Request Sent!</h3>
-          <p style="color:#555;font-size:15px;">We'll call you back shortly.</p>
+      form.innerHTML = `
+        <div style="text-align:center;padding:24px 0;">
+          <div style="font-size:52px;margin-bottom:12px;">🎉</div>
+          <h3 style="color:#1a3d1a;font-size:24px;">Your 30% Offer Is Locked In!</h3>
+          <p style="color:#555;font-size:15px;margin-top:8px;">We'll call you back same day to confirm your spot. Keep your phone handy.</p>
         </div>`;
     } catch {
-      btn.textContent = 'Send My Free Quote Request →';
-      btn.disabled = false;
+      nextBtn.textContent = 'Claim My 30% Offer';
+      nextBtn.disabled = false;
       alert('Something went wrong. Please call 0210 838 7863.');
     }
-  });
+  }
+
+  render();
 });
 </script>
 
