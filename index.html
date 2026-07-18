@@ -20,11 +20,15 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Hamilton Lawn Mowing",
-      "description": "Professional lawn mowing, gardening, hedge trimming, green waste removal and home exterior washing services in Hamilton, NZ. WINZ quotes approved.",
+      "description": "Professional lawn mowing, weed spraying, gardening, hedge trimming and green waste removal services in Hamilton, NZ. WINZ quotes approved.",
       "url": "https://www.hamiltonlawns.co.nz",
       "telephone": "+642108387863",
-      "image": "images\\google-profile-search-pic.png",
+      "image": "images/google-profile-search-pic.png",
       "priceRange": "$$",
+      "founder": {
+        "@type": "Person",
+        "name": "Kowhai Galvin"
+      },
       "areaServed": {
         "@type": "City",
         "name": "Hamilton",
@@ -91,8 +95,8 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Home Exterior Wash",
-              "description": "Full home exterior washing service to increase longevity and improve curb appeal."
+              "name": "Weed Spraying",
+              "description": "Targeted weed spraying keeping lawns, gardens and paths weed-free across Hamilton."
             }
           }
         ]
@@ -262,17 +266,6 @@
                     <div class="service-content">
                         <h3>Hedge Trimming</h3>
                         <p>Love hedges but hate the maintenance? We offer professional hedge trimming for residential properties across Hamilton. We shape and trim hedges to maintain clean lines, encourage healthier growth, and keep your property neat.</p>
-                        <a href="contact.html" class="service-btn">Book Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-    
-                <div class="service-card">
-                    <div class="service-image">
-                        <img src="images/exterior-home-wash.png" alt="Exterior Wash">
-                    </div>
-                    <div class="service-content">
-                        <h3>Home Exterior Wash</h3>
-                        <p>Full home exterior washing service for residential properties in Hamilton. Regular washing removes mould, lichen, dirt, and grime from weatherboards, cladding, and fencing — protecting your home's surfaces and increasing their longevity.</p>
                         <a href="contact.html" class="service-btn">Book Now <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -527,7 +520,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const reviews = [
+            // ============================================================
+            //  LIVE GOOGLE REVIEWS
+            //  Fetches fresh reviews from the Apps Script Web App.
+            //  Falls back to the hardcoded FALLBACK_REVIEWS below if the
+            //  URL is unset, the request fails, or no reviews come back —
+            //  so the carousel ALWAYS shows something.
+            //
+            //  SETUP: paste your deployed Web App URL here (see .env /
+            //  SETUP-REVIEWS.md). Leave blank to stay on hardcoded reviews.
+            // ============================================================
+            const GOOGLE_SCRIPT_WEBAPP_URL = ""; // e.g. "https://script.google.com/macros/s/XXXX/exec"
+
+            const FALLBACK_REVIEWS = [
                 {
                     name: "Jo McLaren",
                     rating: 5,
@@ -556,6 +561,33 @@
             const dotsContainer = document.querySelector('.reviews-dots');
             let currentIndex = 0;
 
+            // Normalise a Google Places review object to our simple shape.
+            function normalise(r) {
+                return {
+                    name: r.author_name || r.name || 'Google review',
+                    rating: r.rating || 5,
+                    text: r.text || '',
+                    date: r.relative_time_description || r.date || ''
+                };
+            }
+
+            async function getReviews() {
+                if (!GOOGLE_SCRIPT_WEBAPP_URL) return FALLBACK_REVIEWS;
+                try {
+                    const res = await fetch(GOOGLE_SCRIPT_WEBAPP_URL + '?action=getReviews');
+                    if (!res.ok) return FALLBACK_REVIEWS;
+                    const data = await res.json();
+                    if (!Array.isArray(data) || data.length === 0) return FALLBACK_REVIEWS;
+                    return data.map(normalise);
+                } catch (err) {
+                    console.warn('Live reviews unavailable, using fallback:', err);
+                    return FALLBACK_REVIEWS;
+                }
+            }
+
+            getReviews().then(reviews => buildCarousel(reviews));
+
+            function buildCarousel(reviews) {
             reviews.forEach((review, i) => {
                 const slide = document.createElement('div');
                 slide.className = 'review-slide' + (i === 0 ? ' active' : '');
@@ -602,6 +634,7 @@
                     updateCarousel();
                 }
             });
+            } // end buildCarousel
         });
     </script>
 
