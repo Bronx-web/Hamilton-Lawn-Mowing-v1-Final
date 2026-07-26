@@ -539,7 +539,7 @@ header {
   }
 }
  
-/* ── Select dropdown — matches your existing input style ── */
+/* ── Select dropdown - matches your existing input style ── */
 select {
   width: 100%;
   padding: 0.9rem 0.85rem;
@@ -579,7 +579,7 @@ select:focus {
   margin-left: 4px;
 }
  
-/* ── Checkbox group — pill style ── */
+/* ── Checkbox group - pill style ── */
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
@@ -620,7 +620,7 @@ select:focus {
   cursor: pointer;
 }
  
-/* ── Radio group — horizontal pill style for booking ── */
+/* ── Radio group - horizontal pill style for booking ── */
 .booking-radio-group {
   flex-direction: row;
   flex-wrap: wrap;
