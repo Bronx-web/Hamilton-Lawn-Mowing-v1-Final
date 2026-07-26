@@ -1937,6 +1937,74 @@ input[type="file"]:focus {
   transform: translateY(-2px);
 }
 
+/* Chat channel options - shared layout */
+.chat-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.chat-option i {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+/* Keep each channel recognisable by its own brand colour */
+.chat-option-whatsapp:hover {
+  background-color: #1f6304;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+.chat-option-messenger {
+  background-color: #2c5f8a;
+}
+
+.chat-option-messenger:hover {
+  background-color: #24506f;
+  box-shadow: 0 4px 12px rgba(44, 95, 138, 0.4);
+}
+
+/* Floating button attention buzz - short shake, long rest.
+   Same timing as the promo page so the motion feels consistent. */
+@keyframes buzz {
+  0%, 82%, 100% { transform: translateX(0) rotate(0); }
+  84% { transform: translateX(-3px) rotate(-1.2deg); }
+  86% { transform: translateX(3px) rotate(1.2deg); }
+  88% { transform: translateX(-3px) rotate(-1.2deg); }
+  90% { transform: translateX(3px) rotate(1.2deg); }
+  92% { transform: translateX(-2px) rotate(-0.8deg); }
+  94% { transform: translateX(2px) rotate(0.8deg); }
+  96% { transform: translateX(0) rotate(0); }
+}
+
+.floating-button {
+  animation: buzz 3s ease-in-out infinite;
+}
+
+/* Hover and open states already have their own transform, so stop the
+   buzz fighting them. */
+.floating-button:hover,
+.floating-button[aria-expanded="true"] {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-start,
+  .whatsapp-popup,
+  .floating-button {
+    transition: none;
+  }
+
+  .whatsapp-start:hover {
+    transform: none;
+  }
+
+  .floating-button {
+    animation: none;
+  }
+}
+
 /* Mobile Responsive */
 @media (max-width: 480px) {
   .floating-button {

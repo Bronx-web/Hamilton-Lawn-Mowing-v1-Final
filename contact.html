@@ -540,20 +540,25 @@
         </div>
     </div>
 
-    <!-------WHATSAPP FLOATING BUTTON + POPUP (replaces old contact button) -->
+    <!-------CHAT FLOATING BUTTON + POPUP (replaces old contact button) -->
 
-    <button class="floating-button whatsapp-toggle" aria-label="Chat on WhatsApp" aria-expanded="false" type="button">
+    <button class="floating-button whatsapp-toggle" aria-label="Chat with us" aria-expanded="false" type="button">
         💬
     </button>
 
-    <div class="whatsapp-popup" role="dialog" aria-hidden="true">
+    <div class="whatsapp-popup" role="dialog" aria-hidden="true" aria-label="Chat with Hamilton Lawn Mowing">
         <div class="whatsapp-popup-header">
             <span>Hamilton Lawn Mowing</span>
             <button class="whatsapp-popup-close" aria-label="Close">&times;</button>
         </div>
         <div class="whatsapp-popup-body">
-            <p>Hi there! 👋 Ready for a tidy lawn? Tap below to start a chat.</p>
-            <a class="whatsapp-start" href="https://wa.me/send?phone=642108387863&text=Hi%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener">Start Chat</a>
+            <p>Hi there! 👋 Ready for a tidy lawn? Pick how you would like to chat.</p>
+            <a class="whatsapp-start chat-option chat-option-whatsapp" href="https://wa.me/send?phone=642108387863&text=Hi%20I%27d%20like%20a%20free%20quote" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
+            </a>
+            <a class="whatsapp-start chat-option chat-option-messenger" href="https://m.me/117241721397540" target="_blank" rel="noopener">
+                <i class="fab fa-facebook-messenger" aria-hidden="true"></i> Facebook Messenger
+            </a>
         </div>
     </div>
 
@@ -687,10 +692,14 @@
             toggle.setAttribute('aria-expanded', 'false');
         }
 
-        // Show/hide button based on scroll position
+        // Only show the chat button once the visitor is 70% down the page,
+        // so it stays clear of the booking form higher up.
         function handleScroll() {
-            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            if (scrollPercentage >= 80) {
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            // Short pages cannot scroll, so show the button rather than hide it forever.
+            const scrollPercentage = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 100;
+
+            if (scrollPercentage >= 70) {
                 toggle.style.display = 'flex';
             } else {
                 toggle.style.display = 'none';
@@ -698,7 +707,9 @@
             }
         }
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll);
+        handleScroll();
 
         toggle.addEventListener('click', function (e) {
             e.stopPropagation();
@@ -728,7 +739,6 @@
     </script>
 
     <!-------WHATSAPP FLOATING BUTTON + POPUP END -->
-
 
     <!-- ========== HAMBURGER MENU SCRIPT ========== -->
     <script>
