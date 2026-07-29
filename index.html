@@ -531,7 +531,7 @@
             //  SETUP: paste your deployed Web App URL here (see .env /
             //  SETUP-REVIEWS.md). Leave blank to stay on hardcoded reviews.
             // ============================================================
-            const GOOGLE_SCRIPT_WEBAPP_URL = ""; // e.g. "https://script.google.com/macros/s/XXXX/exec"
+            const GOOGLE_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxUuFtel2ZkRMKVQDvohZ_kM2vZf3ao8GSxX5vNUlrnVXrCsiYeWzZdG_wNZiYoYzcm/exec";
 
             const FALLBACK_REVIEWS = [
                 {
@@ -555,7 +555,10 @@
             ];
 
             function renderStars(rating) {
-                return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+                // Clamp to a whole 0-5 so a bad/missing rating from the API
+                // can never throw on .repeat() or over-render the row.
+                const n = Math.max(0, Math.min(5, Math.round(Number(rating) || 0)));
+                return '★'.repeat(n) + '☆'.repeat(5 - n);
             }
 
             const carousel = document.querySelector('.reviews-carousel');
@@ -564,11 +567,14 @@
 
             // Normalise a Google Places review object to our simple shape.
             function normalise(r) {
+                // Coerce to string - the API shape is not guaranteed, and the
+                // render path expects plain text for every field.
+                const str = v => (v == null ? '' : String(v));
                 return {
-                    name: r.author_name || r.name || 'Google review',
+                    name: str(r.author_name || r.name || 'Google review'),
                     rating: r.rating || 5,
-                    text: r.text || '',
-                    date: r.relative_time_description || r.date || ''
+                    text: str(r.text),
+                    date: str(r.relative_time_description || r.date)
                 };
             }
 
@@ -592,15 +598,28 @@
             reviews.forEach((review, i) => {
                 const slide = document.createElement('div');
                 slide.className = 'review-slide' + (i === 0 ? ' active' : '');
-                slide.innerHTML = `
-                    <div class="review-card">
-                        <div class="review-stars">${renderStars(review.rating)}</div>
-                        <p class="review-text">"${review.text}"</p>
-                        <div class="review-meta">
-                            <span class="review-name">${review.name}</span>
-                            <span class="review-date">${review.date}</span>
-                        </div>
-                    </div>`;
+
+                // Built with textContent, NOT innerHTML. Review text and author
+                // names come from Google and are public user input - anyone can
+                // leave a review. Interpolating them into innerHTML would let a
+                // review body inject markup/script into this page.
+                const el = (tag, className, text) => {
+                    const node = document.createElement(tag);
+                    node.className = className;
+                    node.textContent = text;
+                    return node;
+                };
+
+                const card = el('div', 'review-card', '');
+                card.appendChild(el('div', 'review-stars', renderStars(review.rating)));
+                card.appendChild(el('p', 'review-text', `"${review.text}"`));
+
+                const meta = el('div', 'review-meta', '');
+                meta.appendChild(el('span', 'review-name', review.name));
+                meta.appendChild(el('span', 'review-date', review.date));
+                card.appendChild(meta);
+
+                slide.appendChild(card);
                 carousel.appendChild(slide);
 
                 const dot = document.createElement('span');
