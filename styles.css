@@ -258,7 +258,7 @@ header {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 16px;
-  color: #f3f3f3;
+  color: #fcfce3;
 }
 
 .hero-content-box p {
@@ -266,7 +266,7 @@ header {
   font-weight: 700;
   margin: 0 auto 32px;
   max-width: 560px;
-  color: #fcf6ee;
+  color: #fcfce3;
   line-height: 1.5;
 }
 
