@@ -65,11 +65,23 @@ textarea:focus {
   display: inline-block;
   white-space: nowrap;
   transition: background 0.2s ease, transform 0.15s ease;
+  /* Buzz to draw the eye - short shake, long rest. Keyframes are
+     defined further down (shared with the floating button). */
+  animation: buzz 3s ease-in-out infinite;
 }
 
+/* Hover has its own transform, so pause the buzz rather than let the
+   two fight each other. */
 .call-now-btn:hover {
   background-color: #ff9a2b;
   transform: translateY(-1px);
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .call-now-btn {
+    animation: none;
+  }
 }
 
 /* ========= HEADER / NAVIGATION ========= */
