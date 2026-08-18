@@ -133,7 +133,7 @@
 
             <!-- Call to book (in nav) -->
             <div class="nav-call">
-                <span class="nav-call-text">&#128222; READY TO BOOK ? CALL US NOW</span>
+                <span class="nav-call-text">READY TO BOOK ? CALL US NOW</span>
                 <a href="tel:+6478096933" class="call-now-btn">CALL NOW</a>
             </div>
 
@@ -171,10 +171,9 @@
     <section class="hero">
         <div class="hero-overlay">
             <div class="hero-content-box">
-                <h1>About Us</h1>
-                <p>Your Lawn Mowing Service Based in Frankton <br>
-                    🌿 Clean Lines🌿Fair Quotes🌿🌿On Time🌿</p>
-                <a href="services.html" class="cta-button">Lawn Services <i class="fas fa-arrow-right"></i></a>
+                <h1>Our Standards</h1>
+                <p style="font-size: 16px;">🌿Clean Lines🌿Fair Quotes🌿On Time🌿</p>
+                <!-- <a href="services.html" class="cta-button">Lawn Services <i class="fas fa-arrow-right"></i></a> -->
             </div>
         </div>
     </section>
@@ -184,7 +183,7 @@
         <div class="container">
             <div class="why-card">
                 <div class="why-left">
-                    <p class="why-eyebrow">About Us</p>
+                    <p class="why-eyebrow">Why Us</p>
                     <h2 class="why-heading">Locals you can trust</h2>
                     <p class="why-intro">
                         Serving the local community of Hamilton long enough to treat every lawn like our own. We focus on tidy, reliable results every visit.
@@ -222,8 +221,8 @@
         <div class="container">
             <div class="why-card">
                 <div class="why-left">
-                    <p class="why-eyebrow">Why Choose Us</p>
-                    <h2 class="why-heading">Lawn care made easy</h2>
+                    <p class="why-eyebrow">Because...</p>
+                    <h2 class="why-heading">We Make It Easy</h2>
                     <p class="why-intro">
                         Simple online booking, clear pricing and tidy work so you never have to stress about your lawn again.
                     </p>
@@ -240,7 +239,7 @@
                         <li>
                             <h3>Fast Quotes &amp; Fair Pricing</h3>
                             <p>
-                                Quick, No-Obligation Quotes With Options For One-Off Or Recurring Jobs.
+                                Quick, No-obligation quotes with options for One-Off's, Recurring and Seasonal services.
                             </p>
                         </li>
                         <li>
@@ -337,6 +336,33 @@
     
     <!-------FLOATING CONTACT BUTTON =!!!!!!! IMPORTANT !!!!! must be between the footer and the scirpts -->
 
+
+    <!-- ========== CARD REVEAL ON SCROLL ========== -->
+    <script>
+        // Reveal cards as they enter the viewport. Without JS (or if
+        // IntersectionObserver is missing) the fallback below shows every
+        // card immediately, so content is never hidden.
+        (function () {
+            var cards = document.querySelectorAll('.card, .service-card, .why-card, .faq-item');
+            if (!cards.length) return;
+
+            if (!('IntersectionObserver' in window)) {
+                cards.forEach(function (c) { c.classList.add('is-visible'); });
+                return;
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+            cards.forEach(function (c) { observer.observe(c); });
+        })();
+    </script>
 
     <!-- ========== HAMBURGER MENU SCRIPT ========== -->
     <script>

@@ -134,7 +134,7 @@
 
             <!-- Call to book (in nav) -->
             <div class="nav-call">
-                <span class="nav-call-text">&#128222; READY TO BOOK ? CALL US NOW</span>
+                <span class="nav-call-text">READY TO BOOK ? CALL US NOW</span>
                 <a href="tel:+6478096933" class="call-now-btn">CALL NOW</a>
             </div>
 
@@ -173,7 +173,7 @@
             <div class="hero-content-box">
                 <h1>Book Your Job Today!</h1>
                 <p>Tell Us a Few Details About Your Lawn For a Fast, Accurate Quote.</p>
-                <a href="tel:+6478096933" class="cta-button"><i class="fas fa-phone"></i> Call Now</a>
+                <!-- <a href="tel:+6478096933" class="cta-button"><i class="fas fa-phone"></i> Call Now</a> this is a call to action JUST TESTING TO SEE IF IT NEEDS TO BE THERE -->
             </div>
         </div>
     </section>
@@ -182,23 +182,23 @@
     <section class="booking-info-section">
         <div class="container">
             <div class="why-card booking-info-card">
-                <p class="why-eyebrow">What's next?</p>
-                <h2 class="why-heading">How Online Booking Works?</h2>
+                <!-- <p class="why-eyebrow">What's next?</p> -->
+                <h2 class="why-heading">How Online Quotes Work?</h2>
                 <p class="why-intro">
-                    No sign up required.
+                    No Sign up Required.
                 </p>
                 <ul class="why-list">
                     <li>
-                        <h3>Step 1: Add your details</h3>
-                        <p>Simply complete the booking form below.</p>
+                        <h3>Step 1: Add Your Details</h3>
+                        <p>Simply complete the form below with your contact details.</p>
                     </li>
                     <li>
-                        <h3>Step 2: Request your quote</h3>
-                        <p>Tap the Request Quote button.</p>
+                        <h3>Step 2: Tap Request Quote button</h3>
+                        <p>We'll recieve your request & process it as soon as possible.</p>
                     </li>
                     <li>
-                        <h3>Step 3: Wait for Confirmation</h3>
-                        <p>We will call you to confirm your booking.</p>
+                        <h3>Step 3: We'll Call You</h3>
+                        <p>We call to schedule a date/time to visit your property & finalise your quote.</p>
                     </li>
                 </ul>
             </div>
@@ -209,7 +209,7 @@
     <section class="booking-section">
         <div class="container">
 
-            <h2 class="section-title">Book Your Lawn Service</h2>
+            <h2 class="section-title">Request Your Quote</h2>
 
                 <form class="form-container" id="bookingForm" action="https://script.google.com/macros/s/AKfycbzxNHLdyuHgkNsMdhfpuh0CBByC1Tjh8bBQTMLlXiU6npRRypRc6DdAg5opXtZn4cCY/exec" method="POST">
  
@@ -313,12 +313,12 @@
         <!-- Error message -->
         <div id="bookingErrorMessage" class="form-error-message" style="display:none;"></div>
  
-        <button type="submit">📅 Request Booking</button>
+        <button type="submit">📅 Request Quote</button>
  
         <p class="form-disclaimer">
           By submitting you agree to our
           <a href="/privacy-policy">Privacy Policy</a> and
-          <a href="/terms-of-services">Terms of Service</a>.<br>We'll call to confirm your booking. 
+          <a href="/terms-of-services">Terms of Service</a>.<br>We'll call to confirm your quote. 
         </p>
  
       </form>
@@ -333,96 +333,45 @@
     <div class="success-card-icon">
       <i class="fas fa-calendar-check"></i>
     </div>
-    <h2 class="success-card-heading">Booking Requested!</h2>
-    <p class="success-card-text">Thanks! We've got your request and will call to confirm your booking</p>
+    <h2 class="success-card-heading">Quote Requested Received!</h2>
+    <p class="success-card-text">Thanks! We've got your request and will call to confirm your quote</p>
     <div id="bookingSummary" style="background:#f2faf3;border-radius:10px;padding:14px 18px;margin:18px 0;font-size:0.92rem;color:#174903;text-align:left;line-height:1.9;"></div>
     <p class="success-card-text-secondary">Questions? Call us: <a href="tel:+642108387863" class="success-card-link">021 0838 7863</a></p>
   </div>
 </div>
 
-    <!-- Reviews Section -->
-    <section id="reviews" class="reviews-section">
+    <!-- ========== SERVICE AREAS + MAP (one card) ========== -->
+    <section class="areas-section">
         <div class="container">
-            <h2 class="section-title">See Our Reviews</h2>
-            <div class="reviews-carousel-wrapper">
-                <div class="reviews-carousel">
+            <h2 class="section-title">Our Service Areas</h2>
+            <div class="areas-card">
+                <div class="areas-list">
+                    <span class="area-tag">Frankton</span>
+                    <span class="area-tag">Hamilton East</span>
+                    <span class="area-tag">Chartwell</span>
+                    <span class="area-tag">Rototuna</span>
+                    <span class="area-tag">Pukete</span>
+                    <span class="area-tag">Te Rapa</span>
+                    <span class="area-tag">Nawton</span>
+                    <span class="area-tag">Melville</span>
+                    <span class="area-tag">Flagstaff</span>
+                    <span class="area-tag">Rototuna North</span>
+                    <span class="area-tag">Peacocke</span>
+                    <span class="area-tag">+ Surrounding Areas</span>
                 </div>
-                <div class="carousel-dots reviews-dots"></div>
+                <p class="areas-note">Not sure if we cover your street? Just call us and we'll let you know straight away.</p>
+                <div class="map-wrapper">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d27515.854326660265!2d175.27942612016295!3d-37.76616103858019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snz!4v1765919546761!5m2!1sen!2snz" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Hamilton Lawn Mowing service area map"></iframe>
+                </div>
             </div>
         </div>
     </section>
 
-    <style>
-        .reviews-carousel-wrapper {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        .reviews-carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            width: 100%;
-        }
-        .review-slide {
-            min-width: 100%;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-        .review-slide.active {
-            opacity: 1;
-        }
-        .reviews-carousel-wrapper .carousel-dots {
-            background: transparent;
-        }
-    </style>
-
-    <!-- ========== OUR RECENT WORK SLIDER ========== -->
-    <section class="our-work">
-        <div class="container">
-            <h2 class="section-title">Our Recent Work</h2>
-
-            <div class="work-carousel-wrapper">
-                <div class="work-carousel">
-                    <div class="work-slide active">
-                        <img src="https://cdn.prod.website-files.com/62a6520d16a4c82ce7aba2af/6327a3673dca23800c348921_Zones-Millwater-New-Zealand-Judd-Stratful-decorative-greenery-tidy-lawn-top-soil-design-lawns-nursery-G-N2.jpeg" alt="Lawn mowing before and after">
-                        <div class="work-caption">Complete Lawn Transformation Hamilton East</div>
-                    </div>
-                    <div class="work-slide">
-                        <img src="images/b4-after-4.png" alt="Hedge trimming before and after">
-                        <div class="work-caption">Hedge Trimming Chartwell</div>
-                    </div>
-                    <div class="work-slide">
-                        <img src="images/b4-after-3.png" alt="Backyard cleanup before and after">
-                        <div class="work-caption">Backyard cleanup Pukete</div>
-                    </div>
-                <div class="work-slide">
-                    <img src="images/b4-after-1.png" alt="Backyard cleanup before and after">
-                    <div class="work-caption">Backyard mow & tidy up</div>
-                </div>
-                <div class="work-slide">
-                    <img src="images/b4-after-2.png" alt="Backyard cleanup before and after">
-                    <div class="work-caption">Catch mow green waste removal </div>
-                </div>
-                </div>
-
-                <!-- Navigation arrows -->
-                <button class="carousel-btn prev-btn" aria-label="Previous">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-btn next-btn" aria-label="Next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-
-                <!-- Dots indicator -->
-                <div class="carousel-dots"></div>
-            </div>
-
-            <div style="text-align:center; margin-top:2rem;">
-                <button id="workWithUsBtn" class="cta-button" type="button">Work With Us</button>
-            </div>
-        </div>
-    </section>
+    <!-- Work With Us trigger - reveals the hidden form below. Lived in the
+         Our Recent Work section before that was removed from this page. -->
+    <div style="text-align:center; margin: 2rem 0 3rem;">
+        <button id="workWithUsBtn" class="cta-button" type="button">Work With Us</button>
+    </div>
 
     <!-- ========== WORK WITH US FORM ========== -->
     <section class="contact-section" id="workWithUsSection" style="display: none;">
@@ -658,6 +607,33 @@
         })();
     </script>
 
+    <!-- ========== CARD REVEAL ON SCROLL ========== -->
+    <script>
+        // Reveal cards as they enter the viewport. Without JS (or if
+        // IntersectionObserver is missing) the fallback below shows every
+        // card immediately, so content is never hidden.
+        (function () {
+            var cards = document.querySelectorAll('.card, .service-card, .why-card, .faq-item');
+            if (!cards.length) return;
+
+            if (!('IntersectionObserver' in window)) {
+                cards.forEach(function (c) { c.classList.add('is-visible'); });
+                return;
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+            cards.forEach(function (c) { observer.observe(c); });
+        })();
+    </script>
+
     <!-- ========== HAMBURGER MENU SCRIPT ========== -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -692,155 +668,20 @@
         });
     </script>
 
-    <!-- ========== REVIEWS CAROUSEL SCRIPT ========== -->
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reviews = [
-                {
-                    name: "Jo McLaren",
-                    rating: 5,
-                    text: "Amazing service, got in touch early morning and my lawns were done later that afternoon, done to an amazing standard. 10/10.",
-                    date: "6th November"
-                },
-                {
-                    name: "Shoshanna James",
-                    rating: 5,
-                    text: "Fast & efficient. Does a lovely tidy job of our lawns. Great communication & listens to customer's requests",
-                    date: "28th April"
-                },
-                {
-                    name: "Justin Compton",
-                    rating: 5,
-                    text: "Cheers to the team at Hamilton Lawn Mowing, for getting one of my rentals ready for new tenants. Quick booking, easy as, no fuss",
-                    date: "13 weeks ago"
-                }
-            ];
-
-            function renderStars(rating) {
-                return '★'.repeat(rating) + '☆'.repeat(5 - rating);
-            }
-
-            const carousel = document.querySelector('.reviews-carousel');
-            const dotsContainer = document.querySelector('.reviews-dots');
-            let currentIndex = 0;
-
-            reviews.forEach((review, i) => {
-                const slide = document.createElement('div');
-                slide.className = 'review-slide' + (i === 0 ? ' active' : '');
-                slide.innerHTML = `
-                    <div class="review-card">
-                        <div class="review-stars">${renderStars(review.rating)}</div>
-                        <p class="review-text">"${review.text}"</p>
-                        <div class="review-meta">
-                            <span class="review-name">${review.name}</span>
-                            <span class="review-date">${review.date}</span>
-                        </div>
-                    </div>`;
-                carousel.appendChild(slide);
-
-                const dot = document.createElement('span');
-                dot.classList.add('dot');
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(i));
-                dotsContainer.appendChild(dot);
-            });
-
-            const slides = carousel.querySelectorAll('.review-slide');
-            const dots = dotsContainer.querySelectorAll('span');
-
-            function updateCarousel() {
-                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-                slides.forEach((s, i) => s.classList.toggle('active', i === currentIndex));
-                dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
-            }
-
-            function goToSlide(index) {
-                currentIndex = index;
-                updateCarousel();
-            }
-
-            let touchStartX = 0;
-            carousel.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
-            carousel.addEventListener('touchend', e => {
-                const diff = touchStartX - e.changedTouches[0].clientX;
-                if (Math.abs(diff) > 50) {
-                    currentIndex = diff > 0
-                        ? (currentIndex + 1) % slides.length
-                        : (currentIndex - 1 + slides.length) % slides.length;
-                    updateCarousel();
-                }
-            });
-        });
-    </script>
-
-     <!-- ========== WORK CAROUSEL SCRIPT ========== -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const wrapper = document.querySelector(".work-carousel-wrapper");
-            const carousel = wrapper.querySelector(".work-carousel");
-            const slides = wrapper.querySelectorAll(".work-slide");
-            const prevBtn = wrapper.querySelector(".prev-btn");
-            const nextBtn = wrapper.querySelector(".next-btn");
-            const dotsContainer = wrapper.querySelector(".carousel-dots");
-
-            let currentIndex = 0;
-
-            slides.forEach((_, i) => {
-                const dot = document.createElement("span");
-                dot.classList.add("dot");
-                if (i === 0) dot.classList.add("active");
-                dot.addEventListener("click", () => goToSlide(i));
-                dotsContainer.appendChild(dot);
-            });
-
-            const dots = dotsContainer.querySelectorAll("span");
-
-            function updateCarousel() {
-                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-                slides.forEach((s, i) => s.classList.toggle("active", i === currentIndex));
-                dots.forEach((d, i) => d.classList.toggle("active", i === currentIndex));
-            }
-
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % slides.length;
-                updateCarousel();
-            }
-
-            function prevSlide() {
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                updateCarousel();
-            }
-
-            function goToSlide(index) {
-                currentIndex = index;
-                updateCarousel();
-            }
-
-            nextBtn.addEventListener("click", nextSlide);
-            prevBtn.addEventListener("click", prevSlide);
-
-            let touchStartX = 0;
-            wrapper.addEventListener("touchstart", e => touchStartX = e.touches[0].clientX);
-            wrapper.addEventListener("touchend", e => {
-                const diff = touchStartX - e.changedTouches[0].clientX;
-                if (Math.abs(diff) > 50) {
-                    if (diff > 0) nextSlide();
-                    else prevSlide();
-                }
-            });
-        });
-    </script>
 
 
     <!-- ========== WORK WITH US REVEAL ========== -->
     <script>
-        document.getElementById('workWithUsBtn').addEventListener('click', function () {
-            var section = document.getElementById('workWithUsSection');
-            section.style.display = 'block';
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            this.style.display = 'none';
-        });
+        var workWithUsBtn = document.getElementById('workWithUsBtn');
+        if (workWithUsBtn) {
+            workWithUsBtn.addEventListener('click', function () {
+                var section = document.getElementById('workWithUsSection');
+                if (!section) return;
+                section.style.display = 'block';
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                this.style.display = 'none';
+            });
+        }
     </script>
 
     <!-- ========== WORK WITH US FORM AJAX SUBMISSION ========== -->

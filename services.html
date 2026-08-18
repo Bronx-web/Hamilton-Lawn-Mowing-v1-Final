@@ -134,7 +134,7 @@
 
             <!-- Call to book (in nav) -->
             <div class="nav-call">
-                <span class="nav-call-text">&#128222; READY TO BOOK ? CALL US NOW</span>
+                <span class="nav-call-text">READY TO BOOK ? CALL US NOW</span>
                 <a href="tel:+6478096933" class="call-now-btn">CALL NOW</a>
             </div>
 
@@ -172,8 +172,8 @@
         <div class="hero-overlay">
             <div class="hero-content-box">
                 <h1>Our Services</h1>
-                <p>Residential & Commercial • Lawn & Garden Services </p>
-                <a href="contact.html" class="cta-button">Book Now <i class="fas fa-arrow-right"></i></a>
+                <p>Residential & Commercial • Lawn & Garden Maintenacnce Services </p>
+                <a href="contact.html" class="cta-button">Request a Quote <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -183,7 +183,7 @@
     <!-- ========== SERVICES SECTION ========== -->
     <section class="services-section">
         <div class="container">
-            <h2 class="services-title">Our Services</h2>
+            <h2 class="services-title">Lawn & Property Maintenance</h2>
             <div class="services-grid">
     
                 <div class="service-card">
@@ -195,8 +195,8 @@
                     </div>
                     <div class="service-content">
                         <h3>Lawn Mowing</h3>
-                        <p>Hamilton Lawn Mowing provides professional residential lawn mowing across the greater Hamilton area. We service all suburbs including Hamilton East, Chartwell, Pukete, Melville, Dinsdale, Rototuna, and more. We show up when we say we will, cut to a high standard, and leave your property tidy. No chasing, no stress.</p>
-                        <a href="contact.html" class="service-btn">Book Now <i class="fas fa-arrow-right"></i></a>
+                        <p>Hamilton Lawn Mowing provides professional residential and commercial lawn mowing services. Our experienced mowers will keep your lawn maintained and will use our expertise to keep your lawn looking its best year round. We offer Catch mowing, Mulch mowing.</p>
+                        <a href="contact.html" class="service-btn">Quote me<i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -209,8 +209,8 @@
                     </div>
                     <div class="service-content">
                         <h3>Gardening Maintenance</h3>
-                        <p>Our gardening service covers weeding, planting, pruning, tidying garden beds, and general outdoor upkeep to keep your plants healthy and your property looking its best year round. We service residential and commmercial properties across Hamilton.</p>
-                        <a href="contact.html" class="service-btn">Book Now <i class="fas fa-arrow-right"></i></a>
+                        <p>Love your garden, but hate the upkeep? Our gardening maintenance covers weeding, general garden upkeep to keep your plants healthy and your gardens tidy year round.</p>
+                        <a href="contact.html" class="service-btn">Quote me <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
     
@@ -223,8 +223,8 @@
                     </div>
                     <div class="service-content">
                         <h3>Green Waste Removal</h3>
-                        <p>We offer quick and efficient green waste removal for Hamilton homeowners. After lawn mowing, hedge trimming, or garden work, we remove all clippings, trimmings, and organic debris from your property. Keeping your outdoor areas clean and clutter-free.</p>
-                        <a href="contact.html" class="service-btn">Book Now <i class="fas fa-arrow-right"></i></a>
+                        <p>We offer quick & efficient green waste removal for organic debris from your property. Keeping your outdoor areas clean and clutter-free.</p>
+                        <a href="contact.html" class="service-btn">Quote me <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
     
@@ -238,7 +238,7 @@
                     <div class="service-content">
                         <h3>Hedge Trimming</h3>
                         <p>Love hedges but hate the maintenance? We offer professional hedge trimming for residential properties across Hamilton. We shape and trim hedges to maintain clean lines, encourage healthier growth, and keep your property neat.</p>
-                        <a href="contact.html" class="service-btn">Book Now <i class="fas fa-arrow-right"></i></a>
+                        <a href="contact.html" class="service-btn">Quote me <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
     
@@ -328,6 +328,33 @@
 
 
 <!-------FLOATING CONTACT BUTTON =!!!!!!! IMPORTANT !!!!! must be between the footer and the scirpts -->
+
+    <!-- ========== CARD REVEAL ON SCROLL ========== -->
+    <script>
+        // Reveal cards as they enter the viewport. Without JS (or if
+        // IntersectionObserver is missing) the fallback below shows every
+        // card immediately, so content is never hidden.
+        (function () {
+            var cards = document.querySelectorAll('.card, .service-card, .why-card, .faq-item');
+            if (!cards.length) return;
+
+            if (!('IntersectionObserver' in window)) {
+                cards.forEach(function (c) { c.classList.add('is-visible'); });
+                return;
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+            cards.forEach(function (c) { observer.observe(c); });
+        })();
+    </script>
 
     <!-- ========== HAMBURGER MENU SCRIPT ========== -->
     <script>

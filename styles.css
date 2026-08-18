@@ -238,7 +238,7 @@ header {
 
 .hero-overlay {
   position: relative;
-  background: linear-gradient(rgba(61, 61, 60, 0.644), rgba(214, 255, 31, 0.048));
+  background: linear-gradient(rgba(61, 61, 60, 0.432), rgba(214, 255, 31, 0.048));
   padding: 60px 20px 50px;
 }
 
@@ -387,11 +387,13 @@ header {
   padding-right: 0;
 }
 
+/* 2 x 2, matching .services-grid - auto-fit put 3 across and stranded
+   the 4th card alone on the second row. */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 30px;
-  max-width: 1300px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -429,11 +431,13 @@ header {
   letter-spacing: 0.05em;
 }
 
+/* 2 x 2 on wide screens. auto-fit would put 3 across and leave the 4th
+   card stranded alone on the second row. */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 30px;
-  max-width: 1300px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -1260,25 +1264,41 @@ footer {
     height: 44px;
   }
 
-  /* Call to book - shrink to fit beside logo + hamburger */
+  /* Call to book - shrink to fit beside logo + hamburger.
+     margin: auto both sides overrides the base rule's margin-right: auto,
+     which otherwise shoves the block left and strands the hamburger. */
   .nav-container {
     padding: 0 12px;
+    gap: 8px;
   }
 
   .nav-call {
     gap: 8px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 0;
   }
 
   .nav-call-text {
-    font-size: 11px;
+    font-size: clamp(10px, 2.6vw, 13px);
     letter-spacing: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .call-now-btn {
-    padding: 7px 10px;
-    font-size: 12px;
+    padding: 8px 12px;
+    font-size: clamp(11px, 2.8vw, 14px);
+    flex-shrink: 0;
+  }
+
+  .nav-logo {
+    flex-shrink: 0;
+  }
+
+  .hamburger {
+    flex-shrink: 0;
   }
 
   /* Hero adjustments */
@@ -1289,6 +1309,12 @@ footer {
   /* Services */
   .services-title {
     font-size: 2.3rem;
+  }
+
+  /* Single column - two columns squash the cards on a phone */
+  .services-grid,
+  .card-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .service-image img {
@@ -1407,6 +1433,38 @@ footer {
   line-height: 1.6;
 }
 
+/* Long Google reviews are truncated to a preview so every card is the same
+   height. JS splits the text and fills .review-more; clicking the toggle
+   swaps between preview and full text. */
+.review-more {
+  display: none;
+}
+
+.review-text.is-expanded .review-more {
+  display: inline;
+}
+
+.review-text.is-expanded .review-ellipsis {
+  display: none;
+}
+
+.review-toggle {
+  display: inline;
+  margin-left: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  color: #174903;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.review-toggle:hover {
+  color: #ff7b00;
+}
+
 /* Flex container - needs justify-content, text-align won't move the name */
 .review-meta {
   display: flex;
@@ -1473,9 +1531,10 @@ footer {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+/* transform lives on .faq-item.is-visible:hover in the scroll-animation
+   section, so hovering an unrevealed item can't cancel its slide-up. */
 .faq-item:hover {
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-  transform: translateY(-4px);
 }
 
 .faq-question {
@@ -1569,36 +1628,72 @@ footer {
   display: inline-block;
 }
 
-/* ========= SCROLL ANIMATION FOR CARDS ========= */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* ========= SCROLL ANIMATION FOR CARDS =========
+   Cards reveal as they scroll into view. An earlier version animated on
+   page load, so anything below the fold had already finished by the time
+   you scrolled to it - the animation was never actually seen. JS adds
+   .is-visible via IntersectionObserver (see the card reveal script on
+   each page). */
 .card,
 .service-card,
-.review-card,
 .why-card {
-  animation: fadeInUp 0.6s ease-out forwards;
   opacity: 0;
-  animation-delay: 0.15s;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.card:nth-child(1) { animation-delay: 0.2s; }
-.card:nth-child(2) { animation-delay: 0.3s; }
-.card:nth-child(3) { animation-delay: 0.4s; }
-.card:nth-child(4) { animation-delay: 0.5s; }
+.card.is-visible,
+.service-card.is-visible,
+.why-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-.services-grid .service-card:nth-child(1) { animation-delay: 0.2s; }
-.services-grid .service-card:nth-child(2) { animation-delay: 0.4s; }
-.services-grid .service-card:nth-child(3) { animation-delay: 0.5s; }
-.services-grid .service-card:nth-child(4) { animation-delay: 0.6s; }
+/* faq-item keeps its own box-shadow/transform hover transition from the
+   FAQ section above, so the reveal is listed alongside it rather than
+   replacing the whole transition property. */
+.faq-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: box-shadow 0.3s ease, transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.faq-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover lift only once revealed, so it can't fight the reveal transform */
+.faq-item.is-visible:hover {
+  transform: translateY(-4px);
+}
+
+/* Stagger within each row so cards cascade rather than land together */
+.services-grid .service-card:nth-child(1),
+.card-grid .card:nth-child(1) { transition-delay: 0s; }
+.services-grid .service-card:nth-child(2),
+.card-grid .card:nth-child(2) { transition-delay: 0.12s; }
+.services-grid .service-card:nth-child(3),
+.card-grid .card:nth-child(3) { transition-delay: 0.24s; }
+.services-grid .service-card:nth-child(4),
+.card-grid .card:nth-child(4) { transition-delay: 0.36s; }
+
+/* Review cards are carousel slides - they must not start invisible */
+.review-card {
+  opacity: 1;
+}
+
+/* Respect reduced-motion: show everything, no movement */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .service-card,
+  .why-card,
+  .faq-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 /* ========= TERMS OF SERVICE SECTION ========= */
 .terms-section {
@@ -1925,13 +2020,87 @@ input[type="file"]:focus {
 }
 
 /* ========= NAV CALL - narrow phones =========
-   Text won't fit beside logo + button + hamburger under ~380px. */
-@media (max-width: 380px) {
+   Below ~400px the text starts ellipsing rather than fitting, so hide it
+   and keep the CALL NOW button, which is the part that converts. */
+@media (max-width: 400px) {
   .nav-call-text {
     display: none;
   }
+}
 
-  .nav-call {
-    margin-left: 0;
+/* ========= SERVICE AREAS =========
+   Ported from promo-offer.html, which uses its own CSS variables. The
+   values below are the shared-palette equivalents. */
+/* No side padding - .container inside already supplies it, and doubling
+   up made this card narrower than the service cards. */
+.areas-section {
+  background: #fcfaee;
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* Tags, note and map sit in one card, matching .service-card */
+.areas-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 36px 32px;
+  background: #fcfcf6;
+  border-radius: 15px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(23, 73, 3, 0.06);
+}
+
+/* Pills keep their natural width (sized to their own label) and are
+   spread evenly across each row. */
+.areas-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Map sits inside the card, so it drops its own shadow */
+.areas-card .map-wrapper {
+  margin-top: 28px;
+  box-shadow: none;
+  border: 1px solid rgba(23, 73, 3, 0.08);
+}
+
+.area-tag {
+  background: #fcfcf6;
+  border: 1px solid #d3d7c8;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a3d1a;
+  white-space: nowrap;
+}
+
+.areas-note {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #555042;
+}
+
+/* Areas card - tighter padding on phones */
+@media (max-width: 768px) {
+  .areas-card {
+    padding: 24px 16px;
+  }
+
+  .areas-card .map-wrapper {
+    height: 300px;
+  }
+}
+
+/* Areas pills - slightly tighter on phones */
+@media (max-width: 480px) {
+  .area-tag {
+    font-size: 13px;
+    padding: 7px 14px;
   }
 }
