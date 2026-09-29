@@ -271,23 +271,24 @@
             position: relative;
             max-width: 600px;
             margin: 0 auto;
-            overflow: hidden;
         }
+        /* Only the active slide is in flow, so the carousel is exactly as tall
+           as the review being shown. Stacking every slide (flex row or grid
+           overlay) sizes the box to the TALLEST review and leaves a big dead
+           gap under the shorter ones. */
         .reviews-carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
             width: 100%;
         }
         .review-slide {
-            min-width: 100%;
-            opacity: 0;
-            transition: opacity 0.6s ease;
+            display: none;
         }
         .review-slide.active {
-            opacity: 1;
+            display: block;
+            animation: fadeIn 0.4s ease;
         }
         .reviews-carousel-wrapper .carousel-dots {
             background: transparent;
+            padding: 18px 0 0;
         }
         @keyframes fadeIn {
             0% {
@@ -403,7 +404,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const reviews = [
+            // ============================================================
+            //  LIVE GOOGLE REVIEWS
+            //  Fetches fresh reviews from the Apps Script Web App.
+            //  Falls back to the hardcoded FALLBACK_REVIEWS below if the
+            //  URL is unset, the request fails, or no reviews come back -
+            //  so the carousel ALWAYS shows something.
+            //
+            //  SETUP: paste your deployed Web App URL here (see .env /
+            //  SETUP-REVIEWS.md). Leave blank to stay on hardcoded reviews.
+            // ============================================================
+            const GOOGLE_SCRIPT_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxUuFtel2ZkRMKVQDvohZ_kM2vZf3ao8GSxX5vNUlrnVXrCsiYeWzZdG_wNZiYoYzcm/exec";
+
+            const FALLBACK_REVIEWS = [
                 {
                     name: "Jo McLaren",
                     rating: 5,
@@ -425,25 +438,115 @@
             ];
 
             function renderStars(rating) {
-                return '★'.repeat(rating) + '☆'.repeat(5 - rating);
+                // Clamp to a whole 0-5 so a bad/missing rating from the API
+                // can never throw on .repeat() or over-render the row.
+                const n = Math.max(0, Math.min(5, Math.round(Number(rating) || 0)));
+                return '★'.repeat(n) + '☆'.repeat(5 - n);
             }
 
             const carousel = document.querySelector('.reviews-carousel');
             const dotsContainer = document.querySelector('.reviews-dots');
             let currentIndex = 0;
 
+            // Normalise a Google Places review object to our simple shape.
+            function normalise(r) {
+                // Coerce to string - the API shape is not guaranteed, and the
+                // render path expects plain text for every field.
+                const str = v => (v == null ? '' : String(v));
+                return {
+                    name: str(r.author_name || r.name || 'Google review'),
+                    rating: r.rating || 5,
+                    text: str(r.text),
+                    date: str(r.relative_time_description || r.date)
+                };
+            }
+
+            async function getReviews() {
+                if (!GOOGLE_SCRIPT_WEBAPP_URL) return FALLBACK_REVIEWS;
+                try {
+                    const res = await fetch(GOOGLE_SCRIPT_WEBAPP_URL + '?action=getReviews');
+                    if (!res.ok) return FALLBACK_REVIEWS;
+                    const data = await res.json();
+                    if (!Array.isArray(data) || data.length === 0) return FALLBACK_REVIEWS;
+                    return data.map(normalise);
+                } catch (err) {
+                    console.warn('Live reviews unavailable, using fallback:', err);
+                    return FALLBACK_REVIEWS;
+                }
+            }
+
+            getReviews().then(reviews => buildCarousel(reviews));
+
+            // Long reviews are cut to a preview with a "read more" toggle so
+            // every card stays the same height. Split on a word boundary so
+            // the preview never ends mid-word. All text is set with
+            // textContent - review bodies are public user input.
+            const REVIEW_PREVIEW_LEN = 180;
+
+            function buildReviewText(rawText) {
+                const text = String(rawText == null ? '' : rawText);
+                const p = document.createElement('p');
+                p.className = 'review-text';
+
+                if (text.length <= REVIEW_PREVIEW_LEN) {
+                    p.textContent = `"${text}"`;
+                    return p;
+                }
+
+                let cut = text.lastIndexOf(' ', REVIEW_PREVIEW_LEN);
+                if (cut < REVIEW_PREVIEW_LEN * 0.6) cut = REVIEW_PREVIEW_LEN;
+
+                const head = document.createElement('span');
+                head.textContent = `"${text.slice(0, cut)}`;
+
+                const ellipsis = document.createElement('span');
+                ellipsis.className = 'review-ellipsis';
+                ellipsis.textContent = '...';
+
+                const rest = document.createElement('span');
+                rest.className = 'review-more';
+                rest.textContent = `${text.slice(cut)}"`;
+
+                const toggle = document.createElement('button');
+                toggle.type = 'button';
+                toggle.className = 'review-toggle';
+                toggle.textContent = 'Read more';
+                toggle.setAttribute('aria-expanded', 'false');
+                toggle.addEventListener('click', () => {
+                    const open = p.classList.toggle('is-expanded');
+                    toggle.textContent = open ? 'Show less' : 'Read more';
+                    toggle.setAttribute('aria-expanded', String(open));
+                });
+
+                p.append(head, ellipsis, rest, toggle);
+                return p;
+            }
+
+            function buildCarousel(reviews) {
             reviews.forEach((review, i) => {
                 const slide = document.createElement('div');
                 slide.className = 'review-slide' + (i === 0 ? ' active' : '');
-                slide.innerHTML = `
-                    <div class="review-card">
-                        <div class="review-stars">${renderStars(review.rating)}</div>
-                        <p class="review-text">"${review.text}"</p>
-                        <div class="review-meta">
-                            <span class="review-name">${review.name}</span>
-                            <span class="review-date">${review.date}</span>
-                        </div>
-                    </div>`;
+
+                // Built with textContent, NOT innerHTML. Review text and author
+                // names come from Google and are public user input - anyone can
+                // leave a review. Interpolating them into innerHTML would let a
+                // review body inject markup/script into this page.
+                const el = (tag, className, text) => {
+                    const node = document.createElement(tag);
+                    node.className = className;
+                    node.textContent = text;
+                    return node;
+                };
+
+                const card = el('div', 'review-card', '');
+                card.appendChild(el('div', 'review-stars', renderStars(review.rating)));
+                card.appendChild(buildReviewText(review.text));
+
+                const meta = el('div', 'review-meta', '');
+                meta.appendChild(el('span', 'review-name', review.name));
+                card.appendChild(meta);
+
+                slide.appendChild(card);
                 carousel.appendChild(slide);
 
                 const dot = document.createElement('span');
@@ -457,7 +560,8 @@
             const dots = dotsContainer.querySelectorAll('span');
 
             function updateCarousel() {
-                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                // Slides are stacked in one grid cell - the active class handles
+                // the crossfade. No translateX: that would shift them off-screen.
                 slides.forEach((s, i) => s.classList.toggle('active', i === currentIndex));
                 dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
             }
@@ -478,6 +582,7 @@
                     updateCarousel();
                 }
             });
+            } // end buildCarousel
         });
     </script>
 
