@@ -288,17 +288,10 @@
                     </div>
                 </div>
     
-                <!-- Navigation arrows -->
-                <button class="carousel-btn prev-btn" aria-label="Previous">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-btn next-btn" aria-label="Next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-    
-                <!-- Dots indicator -->
-                <div class="carousel-dots"></div>
             </div>
+
+            <!-- Dots sit under the card, not inside it -->
+            <div class="carousel-dots work-dots"></div>
         </div>
     </section>
 
@@ -407,9 +400,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             const carousel = document.querySelector(".work-carousel");
             const slides = document.querySelectorAll(".work-slide");
-            const prevBtn = document.querySelector(".prev-btn");
-            const nextBtn = document.querySelector(".next-btn");
-            const dotsContainer = document.querySelector(".carousel-dots");
+            const dotsContainer = document.querySelector(".work-dots");
 
             let currentIndex = 0;
 
@@ -422,7 +413,7 @@
                 dotsContainer.appendChild(dot);
             });
 
-            const dots = document.querySelectorAll(".carousel-dots span");
+            const dots = dotsContainer.querySelectorAll("span");
 
             function updateCarousel() {
                 carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -445,8 +436,6 @@
                 updateCarousel();
             }
 
-            nextBtn.addEventListener("click", nextSlide);
-            prevBtn.addEventListener("click", prevSlide);
 
             // Swipe support for mobile
             let touchStartX = 0;

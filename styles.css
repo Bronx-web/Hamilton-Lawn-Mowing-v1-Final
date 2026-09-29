@@ -1158,40 +1158,16 @@ button[type="submit"]:active {
   text-align: center;
 }
 
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 123, 0, 0.85);
-  color: white;
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 1.6rem;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255,123,0,0.4);
-}
-
-.carousel-btn:hover {
-  background: #175704;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.prev-btn { 
-  left: 15px; 
-}
-
-.next-btn { 
-  right: 15px; 
-}
-
 .carousel-dots {
   text-align: center;
   padding: 20px 0;
   background: #fcfaee;
+}
+
+/* Work dots sit below the card, so no strip under the photo */
+.work-dots {
+  background: transparent;
+  padding: 18px 0 0;
 }
 
 .carousel-dots span {
@@ -1362,13 +1338,6 @@ footer {
 
   .booking-info-card {
     margin-top: 20px;
-  }
-
-  /* Carousel */
-  .carousel-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.3rem;
   }
 
   .work-caption {

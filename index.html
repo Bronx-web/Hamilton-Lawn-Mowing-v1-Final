@@ -321,17 +321,10 @@
                 </div>
                 </div>
 
-                <!-- Navigation arrows -->
-                <button class="carousel-btn prev-btn" aria-label="Previous">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-btn next-btn" aria-label="Next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-
-                <!-- Dots indicator -->
-                <div class="carousel-dots"></div>
             </div>
+
+            <!-- Dots sit under the card, not inside it -->
+            <div class="carousel-dots work-dots"></div>
         </div>
     </section>
 
@@ -506,9 +499,7 @@
             const wrapper = document.querySelector(".work-carousel-wrapper");
             const carousel = wrapper.querySelector(".work-carousel");
             const slides = wrapper.querySelectorAll(".work-slide");
-            const prevBtn = wrapper.querySelector(".prev-btn");
-            const nextBtn = wrapper.querySelector(".next-btn");
-            const dotsContainer = wrapper.querySelector(".carousel-dots");
+            const dotsContainer = document.querySelector(".work-dots");
 
             let currentIndex = 0;
 
@@ -543,8 +534,6 @@
                 updateCarousel();
             }
 
-            nextBtn.addEventListener("click", nextSlide);
-            prevBtn.addEventListener("click", prevSlide);
 
             let touchStartX = 0;
             wrapper.addEventListener("touchstart", e => touchStartX = e.touches[0].clientX);
