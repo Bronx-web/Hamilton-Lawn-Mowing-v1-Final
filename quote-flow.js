@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const backBtn   = document.getElementById('qfBack');
   const nextBtn   = document.getElementById('qfNext');
   const errorEl   = document.getElementById('qfError');
-  const FINAL_LABEL = '🟢 Request Quote 🟢';
+  // Dots are hidden below tablet width by .qf-dot in styles.css
+  const FINAL_LABEL = '<span class="qf-dot">🟢 </span>Request Quote<span class="qf-dot"> 🟢</span>';
 
   let current = 0;
   const pct = [25, 50, 75, 100];
@@ -33,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
     percent.textContent = p + '% Complete';
     stepLabel.textContent = 'Step ' + (current + 1) + ' of ' + steps.length;
     backBtn.style.display = current === 0 ? 'none' : 'block';
-    nextBtn.textContent = current === steps.length - 1 ? FINAL_LABEL : 'Next →';
+    if (current === steps.length - 1) nextBtn.innerHTML = FINAL_LABEL;
+    else nextBtn.textContent = 'Next →';
     errorEl.style.display = 'none';
   }
 
@@ -124,11 +126,74 @@ document.addEventListener('DOMContentLoaded', function () {
           <p class="qf-success-call">Questions? Call us: <a href="tel:+642108387863">021 0838 7863</a></p>
         </div>`;
       form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      celebrate();
     } catch {
-      nextBtn.textContent = FINAL_LABEL;
+      nextBtn.innerHTML = FINAL_LABEL;
       nextBtn.disabled = false;
       showError('Something went wrong. Please try again or call 021 0838 7863.');
     }
+  }
+
+  // Confetti burst when the quote request is sent. Full-screen canvas that
+  // removes itself after a few seconds. Skipped for reduced-motion users.
+  function celebrate() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.className = 'qf-confetti';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const W = window.innerWidth, H = window.innerHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+
+    const colours = ['#174903', '#175704', '#4caf50', '#8bc34a', '#ff7b00', '#ff9a2b', '#ffd23f'];
+    const pieces = [];
+    // Two bursts, one from each bottom corner, aimed up and inwards
+    [[0, 1], [W, -1]].forEach(([x, dir]) => {
+      for (let i = 0; i < 90; i++) {
+        const angle = (55 + Math.random() * 30) * Math.PI / 180;
+        const speed = 9 + Math.random() * 9;
+        pieces.push({
+          x: x, y: H,
+          vx: Math.cos(angle) * speed * dir,
+          vy: -Math.sin(angle) * speed - 4,
+          w: 6 + Math.random() * 6,
+          h: 8 + Math.random() * 8,
+          rot: Math.random() * Math.PI,
+          spin: (Math.random() - 0.5) * 0.3,
+          colour: colours[i % colours.length]
+        });
+      }
+    });
+
+    const start = performance.now();
+    const DURATION = 4000;
+    function frame(now) {
+      const t = now - start;
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalAlpha = t > DURATION - 800 ? Math.max(0, (DURATION - t) / 800) : 1;
+      pieces.forEach(p => {
+        p.vy += 0.3;          // gravity
+        p.vx *= 0.99;         // air drag
+        p.vy = Math.min(p.vy, 6);
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.spin;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.colour;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.rot * 2)));
+        ctx.restore();
+      });
+      if (t < DURATION) requestAnimationFrame(frame);
+      else canvas.remove();
+    }
+    requestAnimationFrame(frame);
   }
 
   render();

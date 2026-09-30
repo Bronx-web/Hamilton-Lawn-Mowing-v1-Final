@@ -2274,6 +2274,21 @@ input[type="file"]:focus {
 }
 .qf-success-call a { color: #174903; font-weight: 700; }
 
+/* Confetti canvas shown when a quote request is sent */
+.qf-confetti {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Green dots on the Request Quote button: desktop/tablet only */
+@media (max-width: 767px) {
+  .qf-dot { display: none; }
+}
+
 @keyframes qfFadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
