@@ -402,6 +402,124 @@
         }
     </style>
     
+    <!-- ========== QUOTE FLOW SECTION ========== -->
+    <section class="booking-section" id="quote">
+        <div class="container">
+            <h2 class="section-title">Request Your Free Quote</h2>
+            <!-- Multi-step quote flow (same layout as promo-offer page). Logic in quote-flow.js -->
+            <form class="qf-card" id="quoteFlow" novalidate>
+
+                <!-- Progress -->
+                <div class="qf-progress">
+                    <div class="qf-progress-top">
+                        <span class="qf-step-label" id="qfStepLabel">Step 1 of 4</span>
+                        <span class="qf-percent" id="qfPercent">25% Complete</span>
+                    </div>
+                    <div class="qf-bar"><div class="qf-bar-fill" id="qfBarFill"></div></div>
+                    <div class="qf-done-note">✔ Free quote · No sign up required</div>
+                </div>
+
+                <!-- STEP 1 - Services -->
+                <div class="qf-step active" data-step="1">
+                    <h3>What do you need done?</h3>
+                    <p class="qf-hint">Tick everything you'd like quoted.</p>
+                    <div class="qf-checks">
+                        <label class="qf-check selected"><input type="checkbox" data-field="services" value="Lawn Mowing" checked> Lawn Mowing</label>
+                        <label class="qf-check"><input type="checkbox" data-field="services" value="Weed Spraying"> Weed Spraying</label>
+                        <label class="qf-check"><input type="checkbox" data-field="services" value="Hedge Trimming"> Hedge Trimming</label>
+                        <label class="qf-check"><input type="checkbox" data-field="services" value="Garden Maintenance"> Garden Maintenance</label>
+                        <label class="qf-check"><input type="checkbox" data-field="services" value="Green Waste Removal"> Green Waste Removal</label>
+                        <label class="qf-check"><input type="checkbox" data-field="services" value="Other"> Other</label>
+                    </div>
+                </div>
+
+                <!-- STEP 2 - Frequency -->
+                <div class="qf-step" data-step="2">
+                    <h3>How often?</h3>
+                    <p class="qf-hint">Fortnightly is our most popular choice.</p>
+                    <div class="qf-options cols-2">
+                        <div class="qf-tile" data-field="frequency" data-value="One-off">
+                            <span class="tile-emoji">✂️</span>One-off<span class="tile-sub">Single visit</span>
+                        </div>
+                        <div class="qf-tile selected" data-field="frequency" data-value="Fortnightly">
+                            <span class="tile-emoji">⭐</span>Fortnightly<span class="tile-sub">Most popular</span>
+                        </div>
+                        <div class="qf-tile" data-field="frequency" data-value="Weekly">
+                            <span class="tile-emoji">📅</span>Weekly<span class="tile-sub">Fast-growing</span>
+                        </div>
+                        <div class="qf-tile" data-field="frequency" data-value="Seasonal">
+                            <span class="tile-emoji">🍂</span>Seasonal<span class="tile-sub">Changes with the season</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3 - Lawn size + notes -->
+                <div class="qf-step" data-step="3">
+                    <h3>How big is your lawn?</h3>
+                    <p class="qf-hint">A rough idea is fine. We confirm on the day.</p>
+                    <div class="qf-options cols-3">
+                        <div class="qf-tile" data-field="size" data-value="Small">
+                            <span class="tile-emoji">🌱</span>Small<span class="tile-sub">Courtyard / unit</span>
+                        </div>
+                        <div class="qf-tile selected" data-field="size" data-value="Medium">
+                            <span class="tile-emoji">🏡</span>Medium<span class="tile-sub">Standard section</span>
+                        </div>
+                        <div class="qf-tile" data-field="size" data-value="Large">
+                            <span class="tile-emoji">🌳</span>Large<span class="tile-sub">Big / lifestyle</span>
+                        </div>
+                    </div>
+                    <div class="form-group qf-notes">
+                        <label for="qf-notes">Additional Notes (optional)</label>
+                        <textarea id="qf-notes" name="notes" placeholder="Gate code, dogs, overgrown areas, any useful info..."></textarea>
+                    </div>
+                </div>
+
+                <!-- STEP 4 - Contact details -->
+                <div class="qf-step" data-step="4">
+                    <h3>Last step, your details.</h3>
+                    <p class="qf-hint">We'll call you to confirm your quote.</p>
+                    <div class="form-group">
+                        <label for="qf-name">Full Name <span class="req-star">*</span></label>
+                        <input type="text" id="qf-name" name="name" placeholder="Jon Jones" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="qf-phone">Phone <span class="req-star">*</span></label>
+                        <input type="tel" id="qf-phone" name="phone" placeholder="021 123 456 78" autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="qf-email">Email</label>
+                        <input type="email" id="qf-email" name="email" placeholder="your@email.com" autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="qf-suburb">Suburb <span class="req-star">*</span></label>
+                        <input type="text" id="qf-suburb" name="suburb" placeholder="Rototuna" autocomplete="address-level2">
+                    </div>
+                    <div class="form-group">
+                        <label for="qf-address">Street Address <span class="req-star">*</span></label>
+                        <input type="text" id="qf-address" name="address" placeholder="21 Jump Street" autocomplete="street-address">
+                    </div>
+                </div>
+
+                <!-- Hidden fields carrying tile selections -->
+                <input type="hidden" id="qf-frequency" value="Fortnightly">
+                <input type="hidden" id="qf-size" value="Medium">
+
+                <p class="qf-error" id="qfError"></p>
+
+                <div class="qf-nav">
+                    <button type="button" class="qf-back" id="qfBack" style="display:none;">← Back</button>
+                    <button type="button" class="qf-next" id="qfNext">Next →</button>
+                </div>
+
+                <p class="form-disclaimer">
+                    By submitting you agree to our
+                    <a href="privacy-policy.html">Privacy Policy</a> and
+                    <a href="terms-of-services.html">Terms of Service</a>.<br>No obligation. We'll call to confirm your quote.
+                </p>
+            </form>
+        </div>
+    </section>
+
     <div class="center-btn"><a href="about.html" class="service-btn">More about us 👉</a></div>
 
 
@@ -431,6 +549,9 @@
 
 
     <!-------FLOATING CONTACT BUTTON =!!!!!!! IMPORTANT !!!!! must be between the footer and the scirpts -->
+
+    <!-- ========== QUOTE FLOW SCRIPT ========== -->
+    <script src="quote-flow.js"></script>
 
     <!-- ========== CARD REVEAL ON SCROLL ========== -->
     <script>

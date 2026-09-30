@@ -211,10 +211,165 @@
 
             <h2 class="section-title">Request Your Quote</h2>
 
-                <form class="form-container" id="bookingForm" action="https://script.google.com/macros/s/AKfycbzxNHLdyuHgkNsMdhfpuh0CBByC1Tjh8bBQTMLlXiU6npRRypRc6DdAg5opXtZn4cCY/exec" method="POST">
+            <!-- ================================================================
+                 HOW TO SWITCH BACK TO THE OLD BOOKING FORM (contact page)
+                 ================================================================
+                 The old form is still in this file, just commented out. There are
+                 3 BACKUP blocks, each marked "===== BACKUP: ..." and "===== END BACKUP".
+
+                 1. DELETE the new quote form: everything from
+                    "START: NEW QUOTE FLOW FORM" down to "END: NEW QUOTE FLOW FORM".
+                 2. BACKUP 1 - Old form (just below the new form):
+                    delete the opening line (starts with the comment-open tag and
+                    "===== BACKUP: ORIGINAL BOOKING FORM") plus the 4 note lines
+                    under it, AND the closing line "===== END BACKUP: ORIGINAL
+                    BOOKING FORM =====" (which ends with the comment-close tag).
+                 3. BACKUP 2 - Old success popup (just below this section):
+                    delete its opening "===== BACKUP" line and its closing
+                    "===== END BACKUP" line.
+                 4. BACKUP 3 - Old form script (near the bottom, under the footer):
+                    delete its opening "===== BACKUP" line and its closing
+                    "===== END BACKUP" line.
+                 5. Near the bottom, delete the line:
+                    <script src="quote-flow.js"></script>
+                    (Keep it if the home page still uses the new form. It does
+                    nothing on a page that has no new form.)
+                 6. GOOGLE SHEET: the old form sends "preferred_date" and no lawn
+                    size. The Apps Script was updated for the new form, so paste the
+                    OLD Apps Script back in and redeploy, or ask Claude to make one
+                    script that accepts both forms.
+
+                 Optional tidy-up: lines like "[ Name + Phone ]" inside the backup
+                 were HTML comments. They were changed so they wouldn't end the
+                 backup comment early. Turn them back into normal HTML comments
+                 or delete them. Left as they are, they show as text on the page.
+
+                 Home page: the new form is also on index.html (QUOTE FLOW SECTION).
+                 To remove it there, delete that <section> and its quote-flow.js line.
+                 ================================================================ -->
+
+            <!-- ===== START: NEW QUOTE FLOW FORM (step-by-step, same layout as promo-offer page). Logic in quote-flow.js ===== -->
+            <form class="qf-card" id="quoteFlow" novalidate>
+
+                <!-- Progress -->
+                <div class="qf-progress">
+                    <div class="qf-progress-top">
+                        <span class="qf-step-label" id="qfStepLabel">Step 1 of 4</span>
+                        <span class="qf-percent" id="qfPercent">25% Complete</span>
+                    </div>
+                    <div class="qf-bar"><div class="qf-bar-fill" id="qfBarFill"></div></div>
+                    <div class="qf-done-note">✔ Free quote · No sign up required</div>
+                </div>
+
+                <!-- STEP 1 - Services -->
+                <div class="qf-step active" data-step="1">
+                    <h3>What do you need done?</h3>
+                    <p class="qf-hint">Tick everything you'd like quoted.</p>
+                    <div class="qf-checks">
+                        <label class="qf-check selected"><input type="checkbox" data-field="services" value="Lawn Mowing" checked> Lawn Mowing</label>
+                        <label class="qf-check"><input type="checkbox" data-field="services" value="Weed Spraying"> Weed Spraying</label>
+                        <label class="qf-check"><input type="checkbox" data-field="services" value="Hedge Trimming"> Hedge Trimming</label>
+                        <label class="qf-check"><input type="checkbox" data-field="services" value="Garden Maintenance"> Garden Maintenance</label>
+                        <label class="qf-check"><input type="checkbox" data-field="services" value="Green Waste Removal"> Green Waste Removal</label>
+                        <label class="qf-check"><input type="checkbox" data-field="services" value="Other"> Other</label>
+                    </div>
+                </div>
+
+                <!-- STEP 2 - Frequency -->
+                <div class="qf-step" data-step="2">
+                    <h3>How often?</h3>
+                    <p class="qf-hint">Fortnightly is our most popular choice.</p>
+                    <div class="qf-options cols-2">
+                        <div class="qf-tile" data-field="frequency" data-value="One-off">
+                            <span class="tile-emoji">✂️</span>One-off<span class="tile-sub">Single visit</span>
+                        </div>
+                        <div class="qf-tile selected" data-field="frequency" data-value="Fortnightly">
+                            <span class="tile-emoji">⭐</span>Fortnightly<span class="tile-sub">Most popular</span>
+                        </div>
+                        <div class="qf-tile" data-field="frequency" data-value="Weekly">
+                            <span class="tile-emoji">📅</span>Weekly<span class="tile-sub">Fast-growing</span>
+                        </div>
+                        <div class="qf-tile" data-field="frequency" data-value="Seasonal">
+                            <span class="tile-emoji">🍂</span>Seasonal<span class="tile-sub">Changes with the season</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3 - Lawn size + notes -->
+                <div class="qf-step" data-step="3">
+                    <h3>How big is your lawn?</h3>
+                    <p class="qf-hint">A rough idea is fine. We confirm on the day.</p>
+                    <div class="qf-options cols-3">
+                        <div class="qf-tile" data-field="size" data-value="Small">
+                            <span class="tile-emoji">🌱</span>Small<span class="tile-sub">Courtyard / unit</span>
+                        </div>
+                        <div class="qf-tile selected" data-field="size" data-value="Medium">
+                            <span class="tile-emoji">🏡</span>Medium<span class="tile-sub">Standard section</span>
+                        </div>
+                        <div class="qf-tile" data-field="size" data-value="Large">
+                            <span class="tile-emoji">🌳</span>Large<span class="tile-sub">Big / lifestyle</span>
+                        </div>
+                    </div>
+                    <div class="form-group qf-notes">
+                        <label for="qf-notes">Additional Notes (optional)</label>
+                        <textarea id="qf-notes" name="notes" placeholder="Gate code, dogs, overgrown areas, any useful info..."></textarea>
+                    </div>
+                </div>
+
+                <!-- STEP 4 - Contact details -->
+                <div class="qf-step" data-step="4">
+                    <h3>Last step, your details.</h3>
+                    <p class="qf-hint">We'll call you to confirm your quote.</p>
+                    <div class="form-group">
+                        <label for="qf-name">Full Name <span class="req-star">*</span></label>
+                        <input type="text" id="qf-name" name="name" placeholder="Jon Jones" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="qf-phone">Phone <span class="req-star">*</span></label>
+                        <input type="tel" id="qf-phone" name="phone" placeholder="021 123 456 78" autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="qf-email">Email</label>
+                        <input type="email" id="qf-email" name="email" placeholder="your@email.com" autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="qf-suburb">Suburb <span class="req-star">*</span></label>
+                        <input type="text" id="qf-suburb" name="suburb" placeholder="Rototuna" autocomplete="address-level2">
+                    </div>
+                    <div class="form-group">
+                        <label for="qf-address">Street Address <span class="req-star">*</span></label>
+                        <input type="text" id="qf-address" name="address" placeholder="21 Jump Street" autocomplete="street-address">
+                    </div>
+                </div>
+
+                <!-- Hidden fields carrying tile selections -->
+                <input type="hidden" id="qf-frequency" value="Fortnightly">
+                <input type="hidden" id="qf-size" value="Medium">
+
+                <p class="qf-error" id="qfError"></p>
+
+                <div class="qf-nav">
+                    <button type="button" class="qf-back" id="qfBack" style="display:none;">← Back</button>
+                    <button type="button" class="qf-next" id="qfNext">Next →</button>
+                </div>
+
+                <p class="form-disclaimer">
+                    By submitting you agree to our
+                    <a href="privacy-policy.html">Privacy Policy</a> and
+                    <a href="terms-of-services.html">Terms of Service</a>.<br>No obligation. We'll call to confirm your quote.
+                </p>
+            </form>
+            <!-- ===== END: NEW QUOTE FLOW FORM ===== -->
+
+            <!-- ===== BACKUP: ORIGINAL BOOKING FORM (BACKUP 1 of 3, turned off) =====
+                 Replaced by the new quote form above. To bring it back, follow the
+                 "HOW TO SWITCH BACK" steps at the top of this section.
+                 All 3 backups (form, popup, script) must be turned back on together,
+                 or the old form will not work.
+                <form class="form-container" id="bookingForm" action="https://script.google.com/macros/s/AKfycbyGHCTBi1lF6lqq-L-S9CtjsJqyBrH36hbUV0C5W15GPOyyIe-nFmavqPewYCJQBBE/exec" method="POST">
  
  
-        <!-- Name + Phone -->
+        [ Name + Phone ]
         <div class="form-row-split">
           <div class="form-group">
             <label for="b-name">Full Name <span class="req-star">*</span></label>
@@ -226,7 +381,7 @@
           </div>
         </div>
  
-        <!-- Email + Suburb -->
+        [ Email + Suburb ]
         <div class="form-row-split">
           <div class="form-group">
             <label for="b-email">Email <span class="req-star">*</span></label>
@@ -238,13 +393,13 @@
           </div>
         </div>
  
-        <!-- Address -->
+        [ Address ]
         <div class="form-group">
           <label for="b-address">Street Address <span class="req-star">*</span></label>
           <input type="text" id="b-address" name="address" placeholder="21 Jump Street" required>
         </div>
  
-        <!-- Services -->
+        [ Services ]
         <div class="form-group">
           <label>Service Required <span class="req-star">*</span></label>
           <div class="checkbox-group">
@@ -275,7 +430,7 @@
           </div>
         </div>
  
-        <!-- Frequency -->
+        [ Frequency ]
         <div class="form-group">
           <label>How often? <span class="req-star">*</span></label>
           <div class="radio-group booking-radio-group">
@@ -298,19 +453,19 @@
           </div>
         </div>
  
-        <!-- Preferred Date -->
+        [ Preferred Date ]
         <div class="form-group">
           <label for="b-date">Preferred Date <span class="req-star">*</span> <span class="label-note"></span></label>
           <input type="date" id="b-date" name="preferred_date" required>
         </div>
  
-        <!-- Notes -->
+        [ Notes ]
         <div class="form-group">
           <label for="b-notes">Additional Notes</label>
           <textarea id="b-notes" name="notes" placeholder="lawn, garden size, any useful info..."></textarea>
         </div>
  
-        <!-- Error message -->
+        [ Error message ]
         <div id="bookingErrorMessage" class="form-error-message" style="display:none;"></div>
  
         <button type="submit">🟢 Request Quote 🟢</button>
@@ -322,11 +477,14 @@
         </p>
  
       </form>
+            ===== END BACKUP: ORIGINAL BOOKING FORM ===== -->
   </div><!-- /.container -->
 </section>
  
  
-<!-- ========== SUCCESS POPUP - matches your existing .success-popup-card pattern ========== -->
+<!-- ===== BACKUP: ORIGINAL BOOKING SUCCESS POPUP (BACKUP 2 of 3, turned off) =====
+     The "Quote Request Received" popup for the OLD form. See the "HOW TO SWITCH BACK" steps above the booking form.
+[ ========== SUCCESS POPUP - matches your existing .success-popup-card pattern ========== ]
 <div id="bookingSuccessCard" class="success-popup-card">
   <div class="success-card-content">
     <button type="button" class="success-card-close" id="closeBookingSuccess" aria-label="Close">&times;</button>
@@ -339,6 +497,7 @@
     <p class="success-card-text-secondary">Questions? Call us: <a href="tel:+642108387863" class="success-card-link">021 0838 7863</a></p>
   </div>
 </div>
+===== END BACKUP: ORIGINAL BOOKING SUCCESS POPUP ===== -->
 
     <!-- ========== SERVICE AREAS + MAP (one card) ========== -->
     <section class="areas-section">
@@ -500,7 +659,12 @@
 
     <!-- SCRIPTS -->
 
-    <!-- ========== BOOKING FORM SCRIPT ========== -->
+    <!-- ========== QUOTE FLOW SCRIPT (runs the NEW quote form) ========== -->
+    <script src="quote-flow.js"></script>
+
+    <!-- ===== BACKUP: ORIGINAL BOOKING FORM SCRIPT (BACKUP 3 of 3, turned off) =====
+         Sends the OLD form to the Google Sheet and shows its popup. See the "HOW TO SWITCH BACK" steps above the booking form.
+    [ ========== BOOKING FORM SCRIPT ========== ]
             
     <script>
         (function () {
@@ -606,6 +770,7 @@
         });
         })();
     </script>
+    ===== END BACKUP: ORIGINAL BOOKING FORM SCRIPT ===== -->
 
     <!-- ========== CARD REVEAL ON SCROLL ========== -->
     <script>
