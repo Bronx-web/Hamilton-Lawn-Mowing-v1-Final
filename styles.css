@@ -2067,6 +2067,68 @@ input[type="file"]:focus {
   color: #555042;
 }
 
+/* Three cards in one row (How It Works). Phones stay single column. */
+@media (min-width: 769px) {
+  .card-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Lead line above the suburb pills */
+.areas-lead {
+  margin-bottom: 18px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #174903;
+}
+
+/* 5th service card sits centred on its own row at single-card width,
+   instead of stranded on the left. Phones are single column anyway. */
+@media (min-width: 769px) {
+  .services-grid .service-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 15px);
+  }
+}
+
+.services-grid .service-card:nth-child(5) { transition-delay: 0.12s; }
+
+/* Image slot for a card whose photo isn't uploaded yet. Same height as
+   the other card images; if the file is missing the img removes itself
+   (onerror) and this soft green panel with a leaf shows instead. */
+.service-image--pending {
+  position: relative;
+  height: 240px;
+  background: #e6ecd8;
+  overflow: hidden;
+}
+
+.service-image--pending::before {
+  content: "\f06c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: rgba(23, 73, 3, 0.25);
+}
+
+.service-image--pending img {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .service-image--pending {
+    height: 200px;
+  }
+}
+
 /* Areas card - tighter padding on phones */
 @media (max-width: 768px) {
   .areas-card {
