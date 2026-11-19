@@ -820,7 +820,21 @@
     }
     .xmas-btn:hover { transform: translateY(-1px); }
     .xmas-btn:focus-visible { outline: 3px solid var(--xmas-cream); outline-offset: 3px; }
-    .xmas-btn-call { background: var(--xmas-orange); color: var(--xmas-dark); }
+    /* Matches the form's submit button (.flow-next) */
+    .xmas-btn-call {
+      background: linear-gradient(135deg, #ff7b00, #ff9a2b);
+      color: #fff;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-radius: 6px;
+      padding: 15px;
+      box-shadow: 0 10px 22px rgba(255,123,0,0.35);
+      transition: transform 0.12s, box-shadow 0.2s;
+    }
+    .xmas-btn-call:hover { box-shadow: 0 14px 28px rgba(255,123,0,0.42); }
 
     /* ── XMAS HOW IT WORKS ── */
     .xmas-how {
@@ -868,18 +882,18 @@
     .xmas-terms {
       background: var(--xmas-cream);
       border-top: 1px solid var(--xmas-divider);
-      padding: 40px 16px;
+      padding: 20px 16px;
     }
     .xmas-terms-inner { max-width: 760px; margin: 0 auto; }
     .xmas-terms h2 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-weight: 600;
-      font-size: 22px;
-      line-height: 1.25;
-      color: var(--xmas-dark);
-      margin: 0 0 12px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      line-height: 1.4;
+      color: var(--xmas-muted);
+      margin: 0 0 4px;
     }
-    .xmas-terms p { font-size: 14px; line-height: 1.6; color: var(--xmas-muted); margin: 0; }
+    .xmas-terms p { font-size: 10px; line-height: 1.5; color: var(--xmas-muted); margin: 0; }
 
     @media (min-width: 768px) {
       .xmas-hero { --xmas-media-h: 540px; }
@@ -890,7 +904,7 @@
       .xmas-how { padding: 64px 24px; }
       .xmas-step { grid-template-columns: 72px 1fr; padding: 24px 0; }
       .xmas-step-num { font-size: 46px; }
-      .xmas-terms { padding: 48px 24px; }
+      .xmas-terms { padding: 24px 24px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .xmas-btn { transition: none; }
@@ -933,8 +947,8 @@
           <div class="xmas-hamper"><img src="images/xmas-hamper-2.png" alt="Cane picnic basket hamper with gold ribbon" width="196" height="151" /></div>
         </div>
         <span class="xmas-label">Christmas Giveaway</span>
-        <h1 id="xmas-hero-title">Win One of <em>Three</em> Christmas Hampers!</h1>
-        <p class="xmas-hero-sub">Every visit we complete puts you in the draw.</p>
+        <h1 id="xmas-hero-title">Win One of <em>Three</em> <em>Christmas</em> Hampers!</h1>
+        <p class="xmas-hero-sub">Every visit we do puts you in the draw.</p>
 
         <div class="xmas-entry-card">
           <div class="xmas-entry-half">
@@ -951,17 +965,17 @@
         <div class="xmas-dates">
           <div>
             <span class="xmas-label">Entries Open</span>
-            <span class="xmas-date-value">20 November</span>
+            <span class="xmas-date-value">20th November</span>
           </div>
           <div class="xmas-dates-divider" aria-hidden="true"></div>
           <div>
             <span class="xmas-label">Entries Close</span>
-            <span class="xmas-date-value">22 December</span>
+            <span class="xmas-date-value">22nd December</span>
           </div>
         </div>
 
         <div class="xmas-hero-ctas">
-          <a href="#quote-form" class="xmas-btn xmas-btn-call">Book Online</a>
+          <a href="#quote-form" class="xmas-btn xmas-btn-call buzz">Enter Now</a>
         </div>
       </div>
     </div>
@@ -984,13 +998,13 @@
           <span class="xmas-step-num" aria-hidden="true">02</span>
           <div>
             <h3>Every visit is an entry</h3>
-            <p>Each completed visit between 20 November and 22 December goes in the hat. Weekly mows add up fast.</p>
+            <p>Each completed visit between 20th November and 22nd December goes in the hat. Weekly mows add up fast.</p>
           </div>
         </li>
         <li class="xmas-step">
           <span class="xmas-step-num" aria-hidden="true">03</span>
           <div>
-            <h3>Three winners drawn 23 December</h3>
+            <h3>Three winners drawn 23rd December</h3>
             <p>Drawn by hand and filmed for Facebook. Hampers delivered before Christmas.</p>
           </div>
         </li>
