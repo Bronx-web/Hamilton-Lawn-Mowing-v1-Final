@@ -710,26 +710,28 @@
     .xmas-hero { --xmas-hamper-h: 120px; }
     .xmas-hero-copy { margin-top: calc(var(--xmas-media-h) - 28px - 140px - 92px - var(--xmas-hamper-h)); }
 
-    /* Hampers: pop in with sparkles, then float slowly */
+    /* Hampers: drop in, circle once into the foreground (script), then float.
+       Resting layout is a plain row, used as-is without JS or with reduced motion. */
     .xmas-hampers {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      gap: 6%;
+      gap: 3%;
       height: var(--xmas-hamper-h);
       margin-bottom: 16px;
     }
-    .xmas-hamper { position: relative; width: 42%; max-width: 200px; animation: xmasPop 0.9s cubic-bezier(.2,.9,.3,1.2) 0.3s backwards; }
-    .xmas-hamper + .xmas-hamper { animation-delay: 0.52s; }
+    .xmas-hamper { position: relative; width: 30%; max-width: 170px; }
+    .xmas-hampers.is-orbiting .xmas-hamper { position: absolute; left: 0; top: 0; will-change: transform; }
     .xmas-hamper img {
       display: block;
       width: 100%;
       height: auto;
       filter: drop-shadow(0 14px 16px rgba(0,0,0,0.5));
-      animation: xmasFloat 4s ease-in-out 1.4s infinite;
+      animation: xmasFloat 4s ease-in-out 4.6s infinite;
     }
-    .xmas-hamper + .xmas-hamper img { animation-delay: 2.2s; }
+    .xmas-hamper:nth-child(2) img { animation-delay: 5.4s; }
+    .xmas-hamper:nth-child(3) img { animation-delay: 6.2s; }
     .xmas-spark {
       position: absolute;
       left: 50%; top: 45%;
@@ -739,12 +741,6 @@
       opacity: 0;
       animation: xmasSpark 0.9s ease-out backwards;
       animation-delay: var(--xmas-delay);
-    }
-    @keyframes xmasPop {
-      0% { transform: scale(0.2) rotate(-14deg); opacity: 0; }
-      55% { transform: scale(1.14) rotate(5deg); opacity: 1; }
-      75% { transform: scale(0.95) rotate(-2deg); }
-      100% { transform: scale(1) rotate(0); }
     }
     @keyframes xmasFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
     @keyframes xmasSpark {
@@ -944,6 +940,7 @@
       <div class="xmas-hero-copy">
         <div class="xmas-hampers" id="xmasHampers">
           <div class="xmas-hamper"><img src="images/xmas-hamper-1.png" alt="Woven flax Christmas hamper with green ribbon" width="234" height="166" /></div>
+          <div class="xmas-hamper"><img src="images/xmas-hamper-3.png" alt="Wooden basket hamper with handles and green ribbon" width="185" height="194" /></div>
           <div class="xmas-hamper"><img src="images/xmas-hamper-2.png" alt="Cane picnic basket hamper with gold ribbon" width="196" height="151" /></div>
         </div>
         <span class="xmas-label">Christmas Giveaway</span>
@@ -1417,19 +1414,74 @@ document.addEventListener('DOMContentLoaded', function() {
     else { running = false; ctx.clearRect(0, 0, W, H); }
   }
 
-  // Sparkle burst behind the hampers as they pop in
+  // Hampers: drop in with a bounce, circle once round the lawn coming
+  // forward, then settle into their resting row (same move as the FB video).
   var hamperRow = document.getElementById('xmasHampers');
   if (hamperRow) {
+    var hs = Array.prototype.slice.call(hamperRow.querySelectorAll('.xmas-hamper'));
+    var rest = hs.map(function (h) { return { x: h.offsetLeft, y: h.offsetTop }; });
+    var RW = hamperRow.clientWidth, RH = hamperRow.clientHeight;
+    var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
+    var bounce = function (x) {
+      var n = 7.5625, d = 2.75;
+      if (x < 1 / d) return n * x * x;
+      if (x < 2 / d) return n * (x -= 1.5 / d) * x + 0.75;
+      if (x < 2.5 / d) return n * (x -= 2.25 / d) * x + 0.9375;
+      return n * (x -= 2.625 / d) * x + 0.984375;
+    };
+    var inOut = function (x) { return -(Math.cos(Math.PI * x) - 1) / 2; };
+    var outCubic = function (x) { return 1 - Math.pow(1 - x, 3); };
+
+    hamperRow.classList.add('is-orbiting');
+    var sizes = hs.map(function (h) { return { w: h.offsetWidth, h: h.offsetHeight }; });
+
+    function place(t) {
+      hs.forEach(function (h, i) {
+        var th0 = Math.PI / 2 + i * (2 * Math.PI / 3);
+        var p = inOut(clamp((t - 1.2) / 2.6));
+        var th = th0 + 2 * Math.PI * p;
+        var depth = Math.sin(th);
+        var ox = RW / 2 + RW * 0.36 * Math.cos(th) - sizes[i].w / 2;
+        var oy = RH * 0.5 + RH * 0.35 * depth - sizes[i].h / 2;
+        var sc = (0.8 + 0.2 * p) * (1 + 0.2 * depth);
+        // Drop from above with a bounce, staggered
+        var u = clamp((t - i * 0.15) / 0.9);
+        oy -= (RH + 420) * (1 - bounce(u));
+        var rot = (1 - u) * (i % 2 ? 12 : -12);
+        // Settle into the resting row
+        var s = outCubic(clamp((t - 3.3) / 0.8));
+        var x = ox + (rest[i].x - ox) * s;
+        var y = oy + (rest[i].y - oy) * s;
+        sc = sc + (1 - sc) * s;
+        h.style.zIndex = String(Math.round(10 + depth * 5 * (1 - s)));
+        h.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) scale(' + sc.toFixed(3) + ') rotate(' + rot.toFixed(1) + 'deg)';
+      });
+    }
+
+    place(0);
+    var t0 = null;
+    function tick(now) {
+      if (t0 === null) t0 = now;
+      var t = (now - t0) / 1000;
+      if (t < 4.1) { place(t); requestAnimationFrame(tick); }
+      else {
+        hamperRow.classList.remove('is-orbiting');
+        hs.forEach(function (h) { h.style.transform = ''; h.style.zIndex = ''; });
+      }
+    }
+    requestAnimationFrame(tick);
+
+    // Sparkle burst as the hampers land in their row
     var sparkColours = ['#ff7b00', '#ffd23f', '#d93a2b', '#fcfaee', '#4caf50'];
-    for (var s = 0; s < 18; s++) {
+    for (var s = 0; s < 22; s++) {
       var el = document.createElement('span');
       el.className = 'xmas-spark';
       el.setAttribute('aria-hidden', 'true');
-      var ang = (s / 18) * Math.PI * 2;
-      var dist = 60 + Math.random() * 50;
-      el.style.setProperty('--xmas-dx', (Math.cos(ang) * dist * 1.4).toFixed(1) + 'px');
+      var ang = (s / 22) * Math.PI * 2;
+      var dist = 70 + Math.random() * 60;
+      el.style.setProperty('--xmas-dx', (Math.cos(ang) * dist * 1.5).toFixed(1) + 'px');
       el.style.setProperty('--xmas-dy', (Math.sin(ang) * dist).toFixed(1) + 'px');
-      el.style.setProperty('--xmas-delay', (0.55 + Math.random() * 0.2).toFixed(2) + 's');
+      el.style.setProperty('--xmas-delay', (3.7 + Math.random() * 0.2).toFixed(2) + 's');
       el.style.background = sparkColours[s % sparkColours.length];
       hamperRow.appendChild(el);
     }
