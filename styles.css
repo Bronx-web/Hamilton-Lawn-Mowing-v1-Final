@@ -241,7 +241,7 @@ header {
   position: relative;
   margin-top: 64px;
   width: 100%;
-  background-image: url("images/hompage-hero.jpg");
+  background-image: url("images/hompage-hero.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1292,6 +1292,7 @@ footer {
   /* Hero adjustments */
   .hero {
     margin-top: 64px;
+    background-image: url("images/hompage-hero-800.webp");
   }
 
   /* Services */
@@ -2779,4 +2780,15 @@ input[type="file"]:focus {
   margin-top: 24px;
   border-radius: 14px;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* Links inside FAQ answers (to the service pages) */
+.faq-answer a {
+  color: #174903;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.faq-answer a:hover {
+  color: #2e7d10;
 }
