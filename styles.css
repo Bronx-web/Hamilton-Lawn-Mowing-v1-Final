@@ -2365,3 +2365,386 @@ input[type="file"]:focus {
 @media (prefers-reduced-motion: reduce) {
   .qf-step { animation: none; }
 }
+
+/* ========================================
+   SERVICE PAGES (Phase 1 SEO pages)
+   Shared by the service detail pages and the Services dropdown on every page.
+   ======================================== */
+
+/* ----- Services dropdown in the desktop nav ----- */
+.nav-links .has-dropdown {
+  position: relative;
+}
+
+.nav-links .has-dropdown > a::after {
+  content: "";
+  display: inline-block;
+  margin-left: 6px;
+  border: 5px solid transparent;
+  border-top-color: currentColor;
+  border-bottom: 0;
+  vertical-align: middle;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 240px;
+  list-style: none;
+  margin: 0;
+  padding: 18px 0 8px;
+  background: transparent;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 1002;
+}
+
+.nav-dropdown::before {
+  content: "";
+  position: absolute;
+  inset: 10px 0 0;
+  background: #1a3d1a;
+  border-radius: 10px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+  z-index: -1;
+}
+
+.has-dropdown:hover .nav-dropdown,
+.has-dropdown:focus-within .nav-dropdown {
+  visibility: visible;
+  opacity: 1;
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.nav-dropdown a:hover {
+  background: rgba(255, 123, 0, 0.15);
+}
+
+/* ----- Services sub-links in the mobile menu ----- */
+.mobile-nav-links .mobile-sub a {
+  font-size: 1rem;
+  padding: 12px 24px 12px 44px;
+  opacity: 0.9;
+}
+
+.mobile-nav-links .mobile-sub a:hover {
+  padding-left: 48px;
+}
+
+.mobile-menu {
+  overflow-y: auto;
+}
+
+/* ----- Page body ----- */
+.page-section {
+  padding: 60px 0;
+  background: #fcfaee;
+}
+
+.page-section--alt {
+  background: #f4f1e1;
+}
+
+.page-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.page-wrap h2 {
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  color: #174903;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.page-wrap h3 {
+  font-size: 1.25rem;
+  color: #174903;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.page-wrap p,
+.page-wrap li {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #3a3a35;
+}
+
+.page-wrap p + p {
+  margin-top: 1rem;
+}
+
+.page-wrap ul {
+  margin: 1rem 0 0 1.25rem;
+}
+
+.page-wrap li + li {
+  margin-top: 0.4rem;
+}
+
+.page-wrap a:not(.service-btn) {
+  color: #174903;
+  font-weight: 600;
+}
+
+.lead {
+  font-size: 1.15rem !important;
+}
+
+/* Breadcrumb under the hero */
+.breadcrumb {
+  font-size: 0.9rem;
+  color: #6b675a;
+  padding: 18px 0 0;
+}
+
+.breadcrumb a {
+  color: #174903;
+}
+
+/* Key facts strip */
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 2rem;
+}
+
+.fact {
+  background: #fcfcf6;
+  border: 1px solid rgba(23, 73, 3, 0.1);
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.fact strong {
+  display: block;
+  color: #174903;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+.fact span {
+  font-size: 0.95rem;
+  color: #555042;
+  line-height: 1.5;
+}
+
+/* Before and after photos */
+.ba-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 1.5rem;
+}
+
+.ba-grid figure {
+  margin: 0;
+  background: #fcfcf6;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+.ba-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.ba-grid figcaption {
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  color: #555042;
+}
+
+.ba-grid figcaption b {
+  color: #174903;
+}
+
+/* FAQ using native details/summary: works with no JavaScript */
+.faq-list {
+  margin-top: 1.5rem;
+}
+
+.faq-list details {
+  background: #fcfcf6;
+  border: 1px solid rgba(23, 73, 3, 0.08);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+}
+
+.faq-list summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 18px 56px 18px 20px;
+  position: relative;
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: #174903;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "+";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #174903;
+  color: #fff;
+  text-align: center;
+  line-height: 28px;
+  font-size: 1.2rem;
+}
+
+.faq-list details[open] summary::after {
+  content: "\2212";
+  background: #ff7b00;
+}
+
+.faq-list details p {
+  padding: 0 20px 18px;
+  margin: 0;
+}
+
+/* Call to action band */
+.cta-band {
+  background: #1a3d1a;
+  color: #fcfce3;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.cta-band h2 {
+  color: #fcfce3;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 0.75rem;
+}
+
+.cta-band p {
+  max-width: 620px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.7;
+}
+
+.cta-band .cta-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-band .cta-call {
+  display: inline-block;
+  padding: 0.85rem 1.8rem;
+  border-radius: 8px;
+  border: 2px solid #fcfce3;
+  color: #fcfce3;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cta-band .cta-call:hover {
+  background: rgba(252, 252, 227, 0.12);
+}
+
+/* Related services */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 1.5rem;
+}
+
+.related-grid a {
+  display: block;
+  background: #fcfcf6;
+  border: 1px solid rgba(23, 73, 3, 0.1);
+  border-radius: 12px;
+  padding: 18px 20px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.related-grid a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+}
+
+.related-grid strong {
+  display: block;
+  color: #174903;
+  margin-bottom: 4px;
+}
+
+.related-grid span {
+  color: #555042;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Footer service links */
+.footer-services {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  margin: 0 0 12px;
+  padding: 0;
+}
+
+.footer-services a {
+  color: #fcfce3;
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.footer-services a:hover {
+  color: #fdf28e;
+  text-decoration: underline;
+}
+
+/* "Learn more" link under a Services page card */
+.service-more {
+  display: block;
+  margin-top: 14px;
+  color: #174903;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .page-section {
+    padding: 44px 0;
+  }
+
+  .ba-grid {
+    gap: 10px;
+  }
+
+  .ba-grid figcaption {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+}
