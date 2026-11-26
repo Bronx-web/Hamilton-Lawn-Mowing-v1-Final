@@ -2748,3 +2748,14 @@ input[type="file"]:focus {
     padding: 8px 10px;
   }
 }
+
+/* About page: ride-on photo under the "Locals you can trust" intro */
+.why-photo {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin-top: 24px;
+  border-radius: 14px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
