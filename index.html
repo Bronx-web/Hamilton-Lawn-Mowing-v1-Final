@@ -112,6 +112,18 @@
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamilton Lawn Mowing | Book Online</title>
+    <!-- Link preview (Facebook, Messenger, texts): Christmas giveaway DL flyer image -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hamilton Lawn Mowing">
+    <meta property="og:title" content="Win One of Three Christmas Hampers! | Hamilton Lawn Mowing">
+    <meta property="og:description" content="Every visit we complete puts you in the draw. Entries open Friday 20 Nov, close Tuesday 22 Dec. New customers get 30% off their first mow.">
+    <meta property="og:url" content="https://hamiltonlawns.co.nz/">
+    <meta property="og:image" content="https://hamiltonlawns.co.nz/images/og-xmas-giveaway.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Hamilton Lawn Mowing Christmas giveaway: win one of three Christmas hampers">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://hamiltonlawns.co.nz/images/og-xmas-giveaway.jpg">
     <meta name="description" content="Hamilton Lawn Mowing & Property Maintenance Service. Clean Lines, Fair Quotes, On time. Book Online or Call Us Now. WINZ Quotes Approved. ">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -142,7 +154,16 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li class="has-dropdown"><a href="services.html">Services</a>
+                    <ul class="nav-dropdown">
+                        <li><a href="services.html">All Services</a></li>
+                        <li><a href="commercial-lawn-mowing.html">Commercial Mowing</a></li>
+                        <li><a href="one-off-lawn-mowing.html">One-Off &amp; Overgrown Lawns</a></li>
+                        <li><a href="ride-on-mowing.html">Ride-On Mowing</a></li>
+                        <li><a href="section-clean-ups.html">Section Clean-Ups</a></li>
+                        <li><a href="gardening-services.html">Gardening Services</a></li>
+                    </ul>
+                </li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="faqs.html">FAQs</a></li>
             </ul>
@@ -160,16 +181,12 @@
             <ul class="mobile-nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li class="has-dropdown"><a href="services.html">Services</a>
-                    <ul class="nav-dropdown">
-                        <li><a href="services.html">All Services</a></li>
-                        <li><a href="commercial-lawn-mowing.html">Commercial Mowing</a></li>
-                        <li><a href="one-off-lawn-mowing.html">One-Off &amp; Overgrown Lawns</a></li>
-                        <li><a href="ride-on-mowing.html">Ride-On Mowing</a></li>
-                        <li><a href="section-clean-ups.html">Section Clean-Ups</a></li>
-                        <li><a href="gardening-services.html">Gardening Services</a></li>
-                    </ul>
-                </li>
+                <li><a href="services.html">Services</a></li>
+                <li class="mobile-sub"><a href="commercial-lawn-mowing.html">Commercial Mowing</a></li>
+                <li class="mobile-sub"><a href="one-off-lawn-mowing.html">One-Off &amp; Overgrown Lawns</a></li>
+                <li class="mobile-sub"><a href="ride-on-mowing.html">Ride-On Mowing</a></li>
+                <li class="mobile-sub"><a href="section-clean-ups.html">Section Clean-Ups</a></li>
+                <li class="mobile-sub"><a href="gardening-services.html">Gardening Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="faqs.html">F.A.Q</a></li>
             </ul>
@@ -182,11 +199,6 @@
             <div class="hero-content-box">
                 <h1>Hamilton Lawn Mowing</h1>
                 <p style="font-size: 16px;">🌿Clean Lines🌿Fair Quotes🌿On Time🌿</p>
-                <li class="mobile-sub"><a href="commercial-lawn-mowing.html">Commercial Mowing</a></li>
-                <li class="mobile-sub"><a href="one-off-lawn-mowing.html">One-Off &amp; Overgrown Lawns</a></li>
-                <li class="mobile-sub"><a href="ride-on-mowing.html">Ride-On Mowing</a></li>
-                <li class="mobile-sub"><a href="section-clean-ups.html">Section Clean-Ups</a></li>
-                <li class="mobile-sub"><a href="gardening-services.html">Gardening Services</a></li>
                 <!-- <a href="about.html" class="cta-button">About Us <i class="fas fa-arrow-right"></i></a> COMMENT THIS OUT TO TEST IF THE BUTTON MAKES A DIFFERENCE -->
             </div>
         </div>
@@ -243,9 +255,8 @@
                 </div>
 
                 <div class="service-card">
-                    <!-- TODO: upload your weed spraying photo to images/weed-spraying.jpg. Until then a green placeholder panel shows. -->
                     <div class="service-image service-image--pending">
-                        <img src="images/weed-spraying.jpg" alt="Weed Spraying" loading="lazy" onerror="this.remove()">
+                        <img src="images\weedspray.jpg" alt="Weed Spraying" loading="lazy" onerror="this.remove()">
                     </div>
                     <div class="service-content">
                         <h3>Weed Spraying</h3>
@@ -555,6 +566,15 @@
     <!-- ========== FOOTER ========== -->
     <footer>
         <div class="container">
+            <ul class="footer-services">
+                <li><a href="index.html">Lawn Mowing Hamilton</a></li>
+                <li><a href="services.html">All Services</a></li>
+                <li><a href="commercial-lawn-mowing.html">Commercial Mowing</a></li>
+                <li><a href="one-off-lawn-mowing.html">One-Off &amp; Overgrown Lawns</a></li>
+                <li><a href="ride-on-mowing.html">Ride-On Mowing</a></li>
+                <li><a href="section-clean-ups.html">Section Clean-Ups</a></li>
+                <li><a href="gardening-services.html">Gardening Services</a></li>
+            </ul>
             <p>&copy; 2026 All Rights Reserved. Hamilton Lawn Mowing. New Zealand</p>
         </div>
     </footer>
@@ -566,15 +586,6 @@
                 <li><a href="privacy-policy.html">Privacy Policy</a></li>
                 <li><a href="terms-of-services.html">Terms of Service</a></li>
                 <li><a href="https://bronxweb.nz" target="_blank" rel="noopener">Bronx Web</a></li>
-            <ul class="footer-services">
-                <li><a href="index.html">Lawn Mowing Hamilton</a></li>
-                <li><a href="services.html">All Services</a></li>
-                <li><a href="commercial-lawn-mowing.html">Commercial Mowing</a></li>
-                <li><a href="one-off-lawn-mowing.html">One-Off &amp; Overgrown Lawns</a></li>
-                <li><a href="ride-on-mowing.html">Ride-On Mowing</a></li>
-                <li><a href="section-clean-ups.html">Section Clean-Ups</a></li>
-                <li><a href="gardening-services.html">Gardening Services</a></li>
-            </ul>
                 
             </ul>
         </div>
